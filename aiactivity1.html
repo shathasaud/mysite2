@@ -1,0 +1,4917 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أنشطة صفية - الذكاء الاصطناعي</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header-container {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .activities-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e2e8f0;
+        }
+
+        .activity-title {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .description {
+            font-size: 1.4rem;
+            color: #718096;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 25px auto;
+            border-radius: 2px;
+        }
+
+        .game-instructions {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+            border-right: 4px solid #667eea;
+        }
+
+        .codes-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .code-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .code-item.solved {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+
+        .code-display {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .code-text {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #495057;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 2px dashed #6c757d;
+            display: inline-block;
+        }
+
+        .question {
+            margin-bottom: 15px;
+        }
+
+        .question p {
+            margin-bottom: 10px;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .check-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .check-btn:hover {
+            background: #5a67d8;
+        }
+
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .result.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .result.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .final-message {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .success-animation {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .decoded-message {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .message-translation {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .header-container, .activity-card {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .code-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <script>
+        let solvedCodes = 0;
+        const totalCodes = 3;
+
+        function checkAnswer(codeNumber) {
+            const input = document.querySelector(`#code${codeNumber} .answer-input`);
+            const result = document.getElementById(`result${codeNumber}`);
+            const codeItem = document.getElementById(`code${codeNumber}`);
+            const codeDisplay = codeItem.querySelector('.code-text');
+            
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctAnswer = input.getAttribute('data-answer');
+            const codeWord = input.getAttribute('data-code');
+            
+            if (userAnswer === correctAnswer) {
+                result.textContent = '✅ إجابة صحيحة! تم فك الكود.';
+                result.className = 'result correct';
+                codeDisplay.textContent = codeWord;
+                codeItem.classList.add('solved');
+                input.disabled = true;
+                codeItem.querySelector('.check-btn').disabled = true;
+                
+                solvedCodes++;
+                
+                if (solvedCodes === totalCodes) {
+                    setTimeout(() => {
+                        document.getElementById('finalMessage').style.display = 'block';
+                        document.getElementById('finalMessage').scrollIntoView({ behavior: 'smooth' });
+                    }, 1000);
+                }
+            } else {
+                result.textContent = '❌ إجابة خاطئة، حاولي مرة أخرى.';
+                result.className = 'result incorrect';
+            }
+        }
+
+        // إضافة إمكانية الضغط على Enter للتحقق من الإجابة
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('.answer-input');
+            inputs.forEach((input, index) => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkAnswer(index + 1);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header-container">
+        <h1 class="title">أنشطة صفية لوحدة الذكاء الاصطناعي</h1>
+        
+        <div class="divider"></div>
+        
+        <h2 class="subtitle">مقرر تقنية رقمية 2</h2>
+        
+        <div class="divider"></div>
+        
+        <p class="description">لطالبات الصف الثاني ثانوي _ مسار إدارة الأعمال</p>
+    </div>
+
+    <div class="activities-container">
+        <!-- لعبة الكود السري -->
+        <div class="activity-card">
+            <h3 class="activity-title">🔐 لعبة الكود السري</h3>
+            
+            <div class="secret-code-game">
+                <div class="game-instructions">
+                    <p>أجيبي على الأسئلة لفك الأكواد واكتشاف الرسالة السرية!</p>
+                </div>
+
+                <div class="codes-container">
+                    <div class="code-item" id="code1">
+                        <div class="code-display">
+                            <span class="code-text">A***I****L</span>
+                        </div>
+                        <div class="question">
+                            <p><strong>السؤال 1:</strong> ما هو المصطلح الإنجليزي للذكاء الاصطناعي؟</p>
+                            <input type="text" class="answer-input" placeholder="اكتبي الإجابة هنا" data-answer="artificial intelligence" data-code="ARTIFICIAL">
+                            <button class="check-btn" onclick="checkAnswer(1)">تحقق من الإجابة</button>
+                        </div>
+                        <div class="result" id="result1"></div>
+                    </div>
+
+                    <div class="code-item" id="code2">
+                        <div class="code-display">
+                            <span class="code-text">I*T*L*I*E*C*</span>
+                        </div>
+                        <div class="question">
+                            <p><strong>السؤال 2:</strong> ما هو نوع الذكاء الذي يمكن للآلات أن تتعلم وتتكيف معه؟</p>
+                            <input type="text" class="answer-input" placeholder="اكتبي الإجابة هنا" data-answer="machine learning" data-code="INTELLIGENCE">
+                            <button class="check-btn" onclick="checkAnswer(2)">تحقق من الإجابة</button>
+                        </div>
+                        <div class="result" id="result2"></div>
+                    </div>
+
+                    <div class="code-item" id="code3">
+                        <div class="code-display">
+                            <span class="code-text">I* E*E*Y*H*R*</span>
+                        </div>
+                        <div class="question">
+                            <p><strong>السؤال 3:</strong> أين يمكن أن نجد تطبيقات الذكاء الاصطناعي في حياتنا؟</p>
+                            <input type="text" class="answer-input" placeholder="اكتبي الإجابة هنا" data-answer="everywhere" data-code="IS EVERYWHERE">
+                            <button class="check-btn" onclick="checkAnswer(3)">تحقق من الإجابة</button>
+                        </div>
+                        <div class="result" id="result3"></div>
+                    </div>
+                </div>
+
+                <div class="final-message" id="finalMessage" style="display: none;">
+                    <div class="success-animation">🎉</div>
+                    <h4>تهانينا! لقد فككت الكود السري:</h4>
+                    <div class="decoded-message">
+                        <span id="decodedText">ARTIFICIAL INTELLIGENCE IS EVERYWHERE</span>
+                    </div>
+                    <p class="message-translation">الذكاء الاصطناعي موجود في كل مكان</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- لعبة من سيكون المبرمج -->
+        <div class="activity-card">
+            <h3 class="activity-title">👨‍💻 لعبة "من سيكون المبرمج؟"</h3>
+            
+            <div class="role-play-game">
+                <div class="game-instructions">
+                    <p>كل مجموعة تختار دورًا وتعرض كيف تستخدم الذكاء الاصطناعي في عملها!</p>
+                </div>
+
+                <div class="roles-container">
+                    <div class="role-card" id="role1">
+                        <div class="role-header">
+                            <div class="role-icon">📊</div>
+                            <h4 class="role-title">عالِم البيانات</h4>
+                        </div>
+                        <div class="role-description">
+                            <p><strong>مهامك:</strong></p>
+                            <ul>
+                                <li>تحليل البيانات الضخمة</li>
+                                <li>اكتشاف الأنماط والاتجاهات</li>
+                                <li>بناء نماذج التنبؤ</li>
+                                <li>تحويل البيانات إلى قرارات ذكية</li>
+                            </ul>
+                            <div class="example-scenario">
+                                <strong>مثال للعرض:</strong> كيف تستخدم الذكاء الاصطناعي لتحليل سلوك العملاء في متجر إلكتروني
+                            </div>
+                        </div>
+                        <div class="presentation-area">
+                            <h5>عرض المجموعة:</h5>
+                            <textarea class="presentation-text" placeholder="اكتبي هنا كيف ستعرض مجموعتك دور عالِم البيانات..."></textarea>
+                            <div class="voting-section">
+                                <button class="vote-btn" onclick="vote('role1')">صوتي لهذه المجموعة 🗳️</button>
+                                <span class="vote-count" id="votes1">0 أصوات</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="role-card" id="role2">
+                        <div class="role-header">
+                            <div class="role-icon">🤖</div>
+                            <h4 class="role-title">مهندس التعلم الآلي</h4>
+                        </div>
+                        <div class="role-description">
+                            <p><strong>مهامك:</strong></p>
+                            <ul>
+                                <li>تطوير خوارزميات التعلم الآلي</li>
+                                <li>تدريب النماذج الذكية</li>
+                                <li>تحسين أداء الأنظمة</li>
+                                <li>دمج الذكاء الاصطناعي في التطبيقات</li>
+                            </ul>
+                            <div class="example-scenario">
+                                <strong>مثال للعرض:</strong> كيف تطور نظام ذكي للتعرف على الوجوه في الهواتف الذكية
+                            </div>
+                        </div>
+                        <div class="presentation-area">
+                            <h5>عرض المجموعة:</h5>
+                            <textarea class="presentation-text" placeholder="اكتبي هنا كيف ستعرض مجموعتك دور مهندس التعلم الآلي..."></textarea>
+                            <div class="voting-section">
+                                <button class="vote-btn" onclick="vote('role2')">صوتي لهذه المجموعة 🗳️</button>
+                                <span class="vote-count" id="votes2">0 أصوات</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="role-card" id="role3">
+                        <div class="role-header">
+                            <div class="role-icon">💡</div>
+                            <h4 class="role-title">المستخدم الذكي</h4>
+                        </div>
+                        <div class="role-description">
+                            <p><strong>مهامك:</strong></p>
+                            <ul>
+                                <li>استخدام تطبيقات الذكاء الاصطناعي بذكاء</li>
+                                <li>حل المشاكل اليومية بالتقنية</li>
+                                <li>تحسين الإنتاجية والكفاءة</li>
+                                <li>اتخاذ قرارات مدعومة بالبيانات</li>
+                            </ul>
+                            <div class="example-scenario">
+                                <strong>مثال للعرض:</strong> كيف تستخدم المساعدات الذكية لتنظيم يومك وإدارة أعمالك
+                            </div>
+                        </div>
+                        <div class="presentation-area">
+                            <h5>عرض المجموعة:</h5>
+                            <textarea class="presentation-text" placeholder="اكتبي هنا كيف ستعرض مجموعتك دور المستخدم الذكي..."></textarea>
+                            <div class="voting-section">
+                                <button class="vote-btn" onclick="vote('role3')">صوتي لهذه المجموعة 🗳️</button>
+                                <span class="vote-count" id="votes3">0 أصوات</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h4>🏆 نتائج التصويت</h4>
+                    <div class="leaderboard" id="leaderboard">
+                        <p>ابدئي التصويت لرؤية النتائج!</p>
+                    </div>
+                    <button class="reset-btn" onclick="resetVotes()">إعادة تعيين الأصوات</button>
+                </div>
+
+                <div class="tips-section">
+                    <h5>💡 نصائح للعرض المميز:</h5>
+                    <ul>
+                        <li>استخدمي أمثلة من الواقع</li>
+                        <li>اشرحي الفوائد بوضوح</li>
+                        <li>أضيفي لمسة إبداعية للعرض</li>
+                        <li>تفاعلي مع الجمهور</li>
+                        <li>استخدمي الرسوم أو المحاكاة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- لعبة تحدي 60 ثانية -->
+        <div class="activity-card">
+            <h3 class="activity-title">⏰ لعبة "تحدي 60 ثانية"</h3>
+            
+            <div class="speed-challenge-game">
+                <div class="game-instructions">
+                    <p>اختاري سؤالاً وابدئي التحدي! أمامك 60 ثانية فقط لكتابة أكبر عدد من الأمثلة الصحيحة!</p>
+                </div>
+
+                <div class="challenge-selector">
+                    <h4>اختاري التحدي:</h4>
+                    <div class="challenges-grid">
+                        <button class="challenge-btn" onclick="startChallenge(1)">
+                            <div class="challenge-icon">📱</div>
+                            <div class="challenge-title">تطبيقات الذكاء الاصطناعي</div>
+                            <div class="challenge-desc">في الحياة اليومية</div>
+                        </button>
+                        
+                        <button class="challenge-btn" onclick="startChallenge(2)">
+                            <div class="challenge-icon">🤖</div>
+                            <div class="challenge-title">أنواع الروبوتات</div>
+                            <div class="challenge-desc">المختلفة والمتنوعة</div>
+                        </button>
+                        
+                        <button class="challenge-btn" onclick="startChallenge(3)">
+                            <div class="challenge-icon">🧠</div>
+                            <div class="challenge-title">مهارات الذكاء الاصطناعي</div>
+                            <div class="challenge-desc">وقدراته المختلفة</div>
+                        </button>
+                        
+                        <button class="challenge-btn" onclick="startChallenge(4)">
+                            <div class="challenge-icon">🏢</div>
+                            <div class="challenge-title">مجالات استخدام الذكاء الاصطناعي</div>
+                            <div class="challenge-desc">في الصناعات المختلفة</div>
+                        </button>
+                        
+                        <button class="challenge-btn" onclick="startChallenge(5)">
+                            <div class="challenge-icon">🔮</div>
+                            <div class="challenge-title">مستقبل الذكاء الاصطناعي</div>
+                            <div class="challenge-desc">والتطورات المتوقعة</div>
+                        </button>
+                        
+                        <button class="challenge-btn" onclick="startChallenge(6)">
+                            <div class="challenge-icon">⚠️</div>
+                            <div class="challenge-title">تحديات الذكاء الاصطناعي</div>
+                            <div class="challenge-desc">والمخاطر المحتملة</div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="challenge-area" id="challengeArea" style="display: none;">
+                    <div class="challenge-header">
+                        <div class="timer-display">
+                            <div class="timer-circle">
+                                <span class="timer-text" id="timerText">60</span>
+                            </div>
+                            <div class="timer-label">ثانية متبقية</div>
+                        </div>
+                        
+                        <div class="challenge-question">
+                            <h4 id="currentQuestion">السؤال سيظهر هنا</h4>
+                        </div>
+                        
+                        <div class="challenge-controls">
+                            <button class="start-btn" id="startBtn" onclick="startTimer()">ابدأ التحدي! 🚀</button>
+                            <button class="stop-btn" id="stopBtn" onclick="stopTimer()" style="display: none;">إيقاف ⏹️</button>
+                            <button class="reset-btn" id="resetBtn" onclick="resetChallenge()" style="display: none;">إعادة تعيين 🔄</button>
+                            <button class="back-btn" onclick="backToSelector()">العودة للتحديات 🔙</button>
+                        </div>
+                    </div>
+
+                    <div class="teams-container">
+                        <div class="team-section" id="team1">
+                            <div class="team-header">
+                                <h5>👥 المجموعة الأولى</h5>
+                                <div class="team-score">
+                                    <span class="score-number" id="score1">0</span>
+                                    <span class="score-label">إجابة</span>
+                                </div>
+                            </div>
+                            <div class="answers-input">
+                                <textarea class="team-textarea" id="textarea1" placeholder="اكتبي الأمثلة هنا، كل مثال في سطر منفصل..." disabled></textarea>
+                            </div>
+                            <div class="answers-display" id="answers1"></div>
+                        </div>
+
+                        <div class="team-section" id="team2">
+                            <div class="team-header">
+                                <h5>👥 المجموعة الثانية</h5>
+                                <div class="team-score">
+                                    <span class="score-number" id="score2">0</span>
+                                    <span class="score-label">إجابة</span>
+                                </div>
+                            </div>
+                            <div class="answers-input">
+                                <textarea class="team-textarea" id="textarea2" placeholder="اكتبي الأمثلة هنا، كل مثال في سطر منفصل..." disabled></textarea>
+                            </div>
+                            <div class="answers-display" id="answers2"></div>
+                        </div>
+
+                        <div class="team-section" id="team3">
+                            <div class="team-header">
+                                <h5>👥 المجموعة الثالثة</h5>
+                                <div class="team-score">
+                                    <span class="score-number" id="score3">0</span>
+                                    <span class="score-label">إجابة</span>
+                                </div>
+                            </div>
+                            <div class="answers-input">
+                                <textarea class="team-textarea" id="textarea3" placeholder="اكتبي الأمثلة هنا، كل مثال في سطر منفصل..." disabled></textarea>
+                            </div>
+                            <div class="answers-display" id="answers3"></div>
+                        </div>
+                    </div>
+
+                    <div class="results-section" id="resultsSection" style="display: none;">
+                        <h4>🏆 نتائج التحدي</h4>
+                        <div class="final-results" id="finalResults"></div>
+                        <div class="all-answers" id="allAnswers"></div>
+                    </div>
+                </div>
+
+                <div class="challenge-tips">
+                    <h5>💡 نصائح للفوز في التحدي:</h5>
+                    <ul>
+                        <li>فكري بسرعة ولا تتردي في كتابة أي فكرة تخطر ببالك</li>
+                        <li>اكتبي كل مثال في سطر منفصل</li>
+                        <li>ركزي على الأمثلة الواضحة والمعروفة أولاً</li>
+                        <li>تعاوني مع أعضاء مجموعتك لتوليد أفكار أكثر</li>
+                        <li>لا تقلقي من الأخطاء الإملائية، المهم السرعة!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- لعبة المحاكمة -->
+        <div class="activity-card">
+            <h3 class="activity-title">⚖️ لعبة "المحاكمة" (Debate Game)</h3>
+            
+            <div class="debate-game">
+                <div class="game-instructions">
+                    <p>تقسم الطالبات إلى فريقين: مؤيد ومعارض لتطبيق الذكاء الاصطناعي في مجال معين. الحكام يصوتون للفريق الأفضل حُجّة!</p>
+                </div>
+
+                <div class="topic-selector">
+                    <h4>اختاري موضوع النقاش:</h4>
+                    <div class="topics-grid">
+                        <button class="topic-btn" onclick="startDebate(1)">
+                            <div class="topic-icon">📚</div>
+                            <div class="topic-title">الذكاء الاصطناعي في التعليم</div>
+                            <div class="topic-desc">هل يجب استخدام الذكاء الاصطناعي في المدارس والجامعات؟</div>
+                        </button>
+                        
+                        <button class="topic-btn" onclick="startDebate(2)">
+                            <div class="topic-icon">🏥</div>
+                            <div class="topic-title">الذكاء الاصطناعي في الطب</div>
+                            <div class="topic-desc">هل يمكن للذكاء الاصطناعي أن يحل محل الأطباء في التشخيص؟</div>
+                        </button>
+                        
+                        <button class="topic-btn" onclick="startDebate(3)">
+                            <div class="topic-icon">🚗</div>
+                            <div class="topic-title">السيارات ذاتية القيادة</div>
+                            <div class="topic-desc">هل السيارات ذاتية القيادة آمنة بما فيه الكفاية للاستخدام العام؟</div>
+                        </button>
+                        
+                        <button class="topic-btn" onclick="startDebate(4)">
+                            <div class="topic-icon">💼</div>
+                            <div class="topic-title">الذكاء الاصطناعي والوظائف</div>
+                            <div class="topic-desc">هل سيقضي الذكاء الاصطناعي على الوظائف أم سيخلق فرصاً جديدة؟</div>
+                        </button>
+                        
+                        <button class="topic-btn" onclick="startDebate(5)">
+                            <div class="topic-icon">🔒</div>
+                            <div class="topic-title">الخصوصية والمراقبة</div>
+                            <div class="topic-desc">هل يهدد الذكاء الاصطناعي خصوصيتنا الشخصية؟</div>
+                        </button>
+                        
+                        <button class="topic-btn" onclick="startDebate(6)">
+                            <div class="topic-icon">🏠</div>
+                            <div class="topic-title">الروبوتات في المنزل</div>
+                            <div class="topic-desc">هل نحتاج روبوتات ذكية في منازلنا للمساعدة في الأعمال؟</div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="debate-area" id="debateArea" style="display: none;">
+                    <div class="debate-header">
+                        <div class="current-topic">
+                            <h4 id="currentTopic">موضوع النقاش</h4>
+                            <p id="topicDescription">وصف الموضوع</p>
+                        </div>
+                        
+                        <div class="debate-timer">
+                            <div class="timer-display-debate">
+                                <span class="timer-text-debate" id="debateTimerText">5:00</span>
+                                <div class="timer-label-debate">دقائق متبقية</div>
+                            </div>
+                            
+                            <div class="timer-controls">
+                                <button class="timer-btn start-btn" id="startTimerBtn" onclick="startDebateTimer()">ابدأ المؤقت ⏰</button>
+                                <button class="timer-btn stop-btn" id="pauseTimerBtn" onclick="pauseDebateTimer()" style="display: none;">إيقاف مؤقت ⏸️</button>
+                                <button class="timer-btn reset-btn" id="switchTeamBtn" onclick="switchTeam()" style="display: none;">تبديل الفريق 🔄</button>
+                                <button class="timer-btn reset-btn" onclick="resetDebateTimer()">إعادة تعيين المؤقت 🔄</button>
+                            </div>
+                            
+                            <div class="current-speaker">
+                                <div class="speaker-indicator">
+                                    الفريق النشط: <span id="activeTeam">لم يبدأ النقاش بعد</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teams-debate-container">
+                        <div class="team-debate-section pro-team" id="proTeam">
+                            <div class="team-debate-header">
+                                <div class="team-icon">✅</div>
+                                <h5>الفريق المؤيد</h5>
+                                <div class="team-time" id="proTime">5:00</div>
+                            </div>
+                            <div class="arguments-section">
+                                <h6>الحجج والأدلة المؤيدة:</h6>
+                                <textarea class="arguments-textarea" id="proArguments" placeholder="اكتبي هنا حجج الفريق المؤيد وأدلتهم..."></textarea>
+                            </div>
+                            <div class="team-score-section">
+                                <div class="score-display">
+                                    <span class="score-number" id="proScore">0</span>
+                                    <span class="score-label">نقطة</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="vs-divider">
+                            <div class="vs-circle">VS</div>
+                        </div>
+
+                        <div class="team-debate-section con-team" id="conTeam">
+                            <div class="team-debate-header">
+                                <div class="team-icon">❌</div>
+                                <h5>الفريق المعارض</h5>
+                                <div class="team-time" id="conTime">5:00</div>
+                            </div>
+                            <div class="arguments-section">
+                                <h6>الحجج والأدلة المعارضة:</h6>
+                                <textarea class="arguments-textarea" id="conArguments" placeholder="اكتبي هنا حجج الفريق المعارض وأدلتهم..."></textarea>
+                            </div>
+                            <div class="team-score-section">
+                                <div class="score-display">
+                                    <span class="score-number" id="conScore">0</span>
+                                    <span class="score-label">نقطة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="judges-section">
+                        <h4>👩‍⚖️ لجنة التحكيم</h4>
+                        
+                        <div class="judges-container">
+                            <div class="judge-card" id="judge1">
+                                <div class="judge-info">
+                                    <div class="judge-icon">👩‍🏫</div>
+                                    <div class="judge-name">المعلمة</div>
+                                </div>
+                                <div class="judge-voting">
+                                    <button class="vote-pro-btn" onclick="judgeVote('judge1', 'pro')">صوت للمؤيد ✅</button>
+                                    <button class="vote-con-btn" onclick="judgeVote('judge1', 'con')">صوت للمعارض ❌</button>
+                                    <div class="judge-vote-status" id="judge1Status">لم تصوت بعد</div>
+                                </div>
+                            </div>
+
+                            <div class="judge-card" id="judge2">
+                                <div class="judge-info">
+                                    <div class="judge-icon">👩‍🎓</div>
+                                    <div class="judge-name">الطالبة الأولى</div>
+                                </div>
+                                <div class="judge-voting">
+                                    <button class="vote-pro-btn" onclick="judgeVote('judge2', 'pro')">صوت للمؤيد ✅</button>
+                                    <button class="vote-con-btn" onclick="judgeVote('judge2', 'con')">صوت للمعارض ❌</button>
+                                    <div class="judge-vote-status" id="judge2Status">لم تصوت بعد</div>
+                                </div>
+                            </div>
+
+                            <div class="judge-card" id="judge3">
+                                <div class="judge-info">
+                                    <div class="judge-icon">👩‍🎓</div>
+                                    <div class="judge-name">الطالبة الثانية</div>
+                                </div>
+                                <div class="judge-voting">
+                                    <button class="vote-pro-btn" onclick="judgeVote('judge3', 'pro')">صوت للمؤيد ✅</button>
+                                    <button class="vote-con-btn" onclick="judgeVote('judge3', 'con')">صوت للمعارض ❌</button>
+                                    <div class="judge-vote-status" id="judge3Status">لم تصوت بعد</div>
+                                </div>
+                            </div>
+
+                            <div class="judge-card" id="judge4">
+                                <div class="judge-info">
+                                    <div class="judge-icon">👩‍🎓</div>
+                                    <div class="judge-name">الطالبة الثالثة</div>
+                                </div>
+                                <div class="judge-voting">
+                                    <button class="vote-pro-btn" onclick="judgeVote('judge4', 'pro')">صوت للمؤيد ✅</button>
+                                    <button class="vote-con-btn" onclick="judgeVote('judge4', 'con')">صوت للمعارض ❌</button>
+                                    <div class="judge-vote-status" id="judge4Status">لم تصوت بعد</div>
+                                </div>
+                            </div>
+
+                            <div class="judge-card" id="judge5">
+                                <div class="judge-info">
+                                    <div class="judge-icon">👩‍🎓</div>
+                                    <div class="judge-name">الطالبة الرابعة</div>
+                                </div>
+                                <div class="judge-voting">
+                                    <button class="vote-pro-btn" onclick="judgeVote('judge5', 'pro')">صوت للمؤيد ✅</button>
+                                    <button class="vote-con-btn" onclick="judgeVote('judge5', 'con')">صوت للمعارض ❌</button>
+                                    <div class="judge-vote-status" id="judge5Status">لم تصوت بعد</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="voting-results">
+                            <h5>📊 نتائج التصويت</h5>
+                            
+                            <div class="result-bar">
+                                <div class="result-label">الفريق المؤيد:</div>
+                                <div class="result-progress">
+                                    <div class="progress-bar pro-progress" id="proProgress" style="width: 0%"></div>
+                                </div>
+                                <div class="result-count" id="proVotes">0 أصوات</div>
+                            </div>
+                            
+                            <div class="result-bar">
+                                <div class="result-label">الفريق المعارض:</div>
+                                <div class="result-progress">
+                                    <div class="progress-bar con-progress" id="conProgress" style="width: 0%"></div>
+                                </div>
+                                <div class="result-count" id="conVotes">0 أصوات</div>
+                            </div>
+                        </div>
+
+                        <div class="winner-announcement" id="winnerAnnouncement" style="display: none;">
+                            <!-- سيتم ملء المحتوى بواسطة JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="debate-controls">
+                        <button class="reset-debate-btn" onclick="resetDebate()">إعادة تعيين المحاكمة 🔄</button>
+                        <button class="back-to-topics-btn" onclick="backToTopics()">العودة للمواضيع 🔙</button>
+                    </div>
+                </div>
+
+                <div class="debate-tips">
+                    <h5>💡 نصائح لمحاكمة ناجحة</h5>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <div class="tip-icon">👥</div>
+                            <div class="tip-title">للفرق المتنافسة</div>
+                            <ul>
+                                <li>حضري أدلة قوية ومقنعة</li>
+                                <li>استمعي لحجج الفريق الآخر</li>
+                                <li>استخدمي أمثلة من الواقع</li>
+                                <li>كوني محترمة ومهذبة</li>
+                                <li>نظمي أفكارك بوضوح</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <div class="tip-icon">⚖️</div>
+                            <div class="tip-title">للحكام</div>
+                            <ul>
+                                <li>استمعي لكلا الفريقين بإنصاف</li>
+                                <li>قيمي قوة الحجج والأدلة</li>
+                                <li>انتبهي لوضوح العرض</li>
+                                <li>لا تتأثري بالتحيز الشخصي</li>
+                                <li>صوتي للفريق الأقوى حجة</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <div class="tip-icon">🎯</div>
+                            <div class="tip-title">معايير التقييم</div>
+                            <ul>
+                                <li>قوة الحجج والأدلة</li>
+                                <li>وضوح العرض والتنظيم</li>
+                                <li>الرد على حجج الخصم</li>
+                                <li>استخدام أمثلة مناسبة</li>
+                                <li>الالتزام بالوقت المحدد</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- لعبة من أنا؟ -->
+        <div class="activity-card">
+            <h3 class="activity-title">🤔 لعبة "من أنا؟" (Guess Who – AI Edition)</h3>
+            
+            <div class="guess-who-game">
+                <div class="game-instructions">
+                    <p>كل مجموعة تختار بطاقة مخفية فيها مصطلح من الذكاء الاصطناعي. المجموعة الأخرى تطرح أسئلة "نعم/لا" لتخمين المصطلح. الوقت المحدد: دقيقتان لكل جولة!</p>
+                </div>
+
+                <div class="game-setup">
+                    <h4>⚙️ إعداد اللعبة</h4>
+                    
+                    <div class="teams-grid">
+                        <div class="team-setup-card" id="teamA">
+                            <div class="team-name">
+                                <h5>👥 المجموعة الأولى</h5>
+                                <input type="text" class="team-name-input" placeholder="اسم المجموعة الأولى" value="المجموعة الأولى">
+                            </div>
+                            <div class="team-role">
+                                <h6>اختاري الدور:</h6>
+                                <label class="role-option">
+                                    <input type="radio" name="teamA-role" value="guesser" checked>
+                                    <span>🤔 الفريق المخمن (يطرح الأسئلة)</span>
+                                </label>
+                                <label class="role-option">
+                                    <input type="radio" name="teamA-role" value="holder">
+                                    <span>🎯 حامل البطاقة (يجيب على الأسئلة)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="vs-separator">VS</div>
+
+                        <div class="team-setup-card" id="teamB">
+                            <div class="team-name">
+                                <h5>👥 المجموعة الثانية</h5>
+                                <input type="text" class="team-name-input" placeholder="اسم المجموعة الثانية" value="المجموعة الثانية">
+                            </div>
+                            <div class="team-role">
+                                <h6>اختاري الدور:</h6>
+                                <label class="role-option">
+                                    <input type="radio" name="teamB-role" value="guesser">
+                                    <span>🤔 الفريق المخمن (يطرح الأسئلة)</span>
+                                </label>
+                                <label class="role-option">
+                                    <input type="radio" name="teamB-role" value="holder" checked>
+                                    <span>🎯 حامل البطاقة (يجيب على الأسئلة)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="start-game-section">
+                        <button class="start-guess-game-btn" onclick="startGuessWhoGame()">ابدأ اللعبة! 🚀</button>
+                    </div>
+                </div>
+
+                <div class="guess-who-game-area" id="guessWhoGameArea" style="display: none;">
+                    <div class="game-header">
+                        <div class="current-round">
+                            <h4 id="currentRoundTitle">الجولة 1</h4>
+                            <p id="roundDescription">وصف الجولة</p>
+                        </div>
+                        
+                        <div class="timer-display-guess">
+                            <span class="timer-text-guess" id="guessTimerText">2:00</span>
+                            <div class="timer-label-guess">دقائق متبقية</div>
+                        </div>
+                        
+                        <div class="timer-controls-guess">
+                            <button class="start-btn" id="startGuessTimerBtn" onclick="startGuessTimer()">ابدأ المؤقت ⏰</button>
+                            <button class="stop-btn" id="pauseGuessTimerBtn" onclick="pauseGuessTimer()" style="display: none;">إيقاف مؤقت ⏸️</button>
+                            <button class="reset-btn" onclick="resetGuessTimer()">إعادة تعيين المؤقت 🔄</button>
+                        </div>
+                    </div>
+
+                    <div class="cards-section">
+                        <h4>🎴 اختيار البطاقة السرية</h4>
+                        <div class="cards-instruction">
+                            <strong>تعليمات لحامل البطاقة:</strong> اختاري بطاقة واحدة فقط ولا تظهريها للفريق المخمن!
+                        </div>
+                        
+                        <div class="cards-container">
+                            <div class="card-item" onclick="selectCard(1)">
+                                <div class="card-front">
+                                    <div class="card-icon">🗣️</div>
+                                    <div class="card-title">البطاقة 1</div>
+                                    <div class="card-subtitle">اضغطي لاختيار</div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="card-term">معالجة اللغات الطبيعية</div>
+                                    <div class="card-english">Natural Language Processing (NLP)</div>
+                                    <div class="card-hint">تقنية تساعد الحاسوب على فهم اللغة البشرية</div>
+                                </div>
+                            </div>
+
+                            <div class="card-item" onclick="selectCard(2)">
+                                <div class="card-front">
+                                    <div class="card-icon">🧠</div>
+                                    <div class="card-title">البطاقة 2</div>
+                                    <div class="card-subtitle">اضغطي لاختيار</div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="card-term">الشبكات العصبية</div>
+                                    <div class="card-english">Neural Networks</div>
+                                    <div class="card-hint">نظام يحاكي طريقة عمل الدماغ البشري</div>
+                                </div>
+                            </div>
+
+                            <div class="card-item" onclick="selectCard(3)">
+                                <div class="card-front">
+                                    <div class="card-icon">🤖</div>
+                                    <div class="card-title">البطاقة 3</div>
+                                    <div class="card-subtitle">اضغطي لاختيار</div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="card-term">روبوت المحادثة</div>
+                                    <div class="card-english">Chatbot</div>
+                                    <div class="card-hint">برنامج يحاكي المحادثة مع البشر</div>
+                                </div>
+                            </div>
+
+                            <div class="card-item" onclick="selectCard(4)">
+                                <div class="card-front">
+                                    <div class="card-icon">🎯</div>
+                                    <div class="card-title">البطاقة 4</div>
+                                    <div class="card-subtitle">اضغطي لاختيار</div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="card-term">التعلم التعزيزي</div>
+                                    <div class="card-english">Reinforcement Learning</div>
+                                    <div class="card-hint">نوع من التعلم يعتمد على المكافآت والعقوبات</div>
+                                </div>
+                            </div>
+
+                            <div class="card-item" onclick="selectCard(5)">
+                                <div class="card-front">
+                                    <div class="card-icon">👁️</div>
+                                    <div class="card-title">البطاقة 5</div>
+                                    <div class="card-subtitle">اضغطي لاختيار</div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="card-term">الرؤية الحاسوبية</div>
+                                    <div class="card-english">Computer Vision</div>
+                                    <div class="card-hint">تقنية تمكن الحاسوب من "رؤية" وفهم الصور</div>
+                                </div>
+                            </div>
+
+                            <div class="card-item" onclick="selectCard(6)">
+                                <div class="card-front">
+                                    <div class="card-icon">⚙️</div>
+                                    <div class="card-title">البطاقة 6</div>
+                                    <div class="card-subtitle">اضغطي لاختيار</div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="card-term">التعلم الآلي</div>
+                                    <div class="card-english">Machine Learning</div>
+                                    <div class="card-hint">قدرة الآلة على التعلم من البيانات</div>
+                                </div>
+                            </div>
+
+                            <div class="card-item" onclick="selectCard(7)">
+                                <div class="card-front">
+                                    <div class="card-icon">✨</div>
+                                    <div class="card-title">البطاقة 7</div>
+                                    <div class="card-subtitle">اضغطي لاختيار</div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="card-term">الذكاء الاصطناعي التوليدي</div>
+                                    <div class="card-english">Generative AI</div>
+                                    <div class="card-hint">ذكاء اصطناعي يمكنه إنشاء محتوى جديد</div>
+                                </div>
+                            </div>
+
+                            <div class="card-item" onclick="selectCard(8)">
+                                <div class="card-front">
+                                    <div class="card-icon">🔢</div>
+                                    <div class="card-title">البطاقة 8</div>
+                                    <div class="card-subtitle">اضغطي لاختيار</div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="card-term">خوارزمية</div>
+                                    <div class="card-english">Algorithm</div>
+                                    <div class="card-hint">مجموعة من التعليمات لحل مشكلة معينة</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="selected-card-display" id="selectedCardDisplay" style="display: none;">
+                            <h5>🎯 البطاقة المختارة (لحامل البطاقة فقط):</h5>
+                            <div id="selectedCardInfo"></div>
+                        </div>
+                    </div>
+
+                    <div class="game-play-area">
+                        <div class="questions-section">
+                            <h4>❓ طرح الأسئلة</h4>
+                            <p><strong>للفريق المخمن:</strong> اطرحي أسئلة يمكن الإجابة عليها بـ "نعم" أو "لا" أو "أحياناً"</p>
+                            
+                            <div class="input-group">
+                                <input type="text" class="question-input" id="questionInput" placeholder="اكتبي سؤالك هنا..." disabled>
+                                <button class="ask-btn" onclick="askQuestion()">اطرحي السؤال</button>
+                            </div>
+
+                            <div class="answer-buttons" id="answerButtons" style="display: none;">
+                                <div class="current-question" id="currentQuestion"></div>
+                                <p><strong>لحامل البطاقة:</strong> اختاري الإجابة المناسبة:</p>
+                                <div class="answer-options">
+                                    <button class="answer-btn yes-btn" onclick="answerQuestion('yes')">نعم ✅</button>
+                                    <button class="answer-btn no-btn" onclick="answerQuestion('no')">لا ❌</button>
+                                    <button class="answer-btn maybe-btn" onclick="answerQuestion('maybe')">أحياناً 🤷‍♀️</button>
+                                </div>
+                            </div>
+
+                            <div class="questions-history">
+                                <h5>📝 تاريخ الأسئلة والأجوبة</h5>
+                                <div class="history-list" id="historyList">
+                                    <p class="no-questions">لم يتم طرح أي أسئلة بعد</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="guess-section">
+                            <h4>🎯 التخمين النهائي</h4>
+                            <p><strong>للفريق المخمن:</strong> عندما تكوني مستعدة، اكتبي تخمينك النهائي:</p>
+                            
+                            <div class="guess-input-group">
+                                <input type="text" class="final-guess-input" id="finalGuessInput" placeholder="اكتبي تخمينك للمصطلح...">
+                                <button class="final-guess-btn" onclick="makeFinalGuess()">تخمين نهائي! 🎯</button>
+                            </div>
+
+                            <div class="guess-result" id="guessResult" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="game-controls">
+                        <button class="next-round-btn" id="nextRoundBtn" onclick="nextRound()" style="display: none;">الجولة التالية 🔄</button>
+                        <button class="reset-game-btn" onclick="resetGuessWhoGame()">إعادة تعيين اللعبة 🔄</button>
+                        <button class="back-to-setup-btn" onclick="backToGameSetup()">العودة للإعداد 🔙</button>
+                    </div>
+
+                    <div class="game-results" id="gameResults" style="display: none;">
+                        <h4>🏆 النتائج النهائية</h4>
+                        <div id="finalScores"></div>
+                    </div>
+                </div>
+
+                <div class="game-tips">
+                    <h5>💡 نصائح للعب لعبة "من أنا؟"</h5>
+                    
+                    <div class="tips-columns">
+                        <div class="tip-column">
+                            <div class="tip-header">
+                                <div class="tip-icon">🤔</div>
+                                <h6>للفريق المخمن</h6>
+                            </div>
+                            <ul>
+                                <li>ابدئي بأسئلة عامة ثم تدرجي للتفاصيل</li>
+                                <li>اسألي عن المجال أو النوع أولاً</li>
+                                <li>استخدمي المعلومات من الأجوبة السابقة</li>
+                                <li>لا تتسرعي في التخمين النهائي</li>
+                                <li>فكري في المرادفات والمصطلحات المشابهة</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip-column">
+                            <div class="tip-header">
+                                <div class="tip-icon">🎯</div>
+                                <h6>لحامل البطاقة</h6>
+                            </div>
+                            <ul>
+                                <li>اقرئي البطاقة بعناية قبل البدء</li>
+                                <li>أجيبي بصدق وبناءً على المعلومات الصحيحة</li>
+                                <li>استخدمي "أحياناً" للحالات المتوسطة</li>
+                                <li>لا تعطي معلومات إضافية غير مطلوبة</li>
+                                <li>كوني متسقة في إجاباتك</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example-questions">
+                        <h6>🔍 أمثلة على أسئلة جيدة</h6>
+                        <div class="questions-examples">
+                            <span class="example-q">هل يستخدم في الهواتف الذكية؟</span>
+                            <span class="example-q">هل يتعامل مع النصوص؟</span>
+                            <span class="example-q">هل يحتاج إلى تدريب؟</span>
+                            <span class="example-q">هل يستخدم في الطب؟</span>
+                            <span class="example-q">هل يمكنه التعلم من الأخطاء؟</span>
+                            <span class="example-q">هل يحاكي الدماغ البشري؟</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- لعبة صورة وتعليق -->
+        <div class="activity-card">
+            <h3 class="activity-title">🖼️ لعبة "صورة وتعليق"</h3>
+            
+            <div class="meme-game">
+                <div class="game-instructions">
+                    <p>شاهدي الصور واكتبي تعليقًا إبداعيًا يربط الصورة بمفهوم من درس الذكاء الاصطناعي!</p>
+                </div>
+
+                <div class="images-container">
+                    <div class="image-card" id="image1">
+                        <div class="image-display">
+                            <svg width="200" height="150" viewBox="0 0 200 150" class="ai-image">
+                                <!-- روبوت ذكي -->
+                                <rect x="70" y="40" width="60" height="80" fill="#4a90e2" rx="10"/>
+                                <circle cx="85" cy="60" r="8" fill="#ffffff"/>
+                                <circle cx="115" cy="60" r="8" fill="#ffffff"/>
+                                <circle cx="85" cy="60" r="4" fill="#000"/>
+                                <circle cx="115" cy="60" r="4" fill="#000"/>
+                                <rect x="90" y="75" width="20" height="3" fill="#ffffff" rx="2"/>
+                                <rect x="60" y="50" width="15" height="40" fill="#4a90e2" rx="5"/>
+                                <rect x="125" y="50" width="15" height="40" fill="#4a90e2" rx="5"/>
+                                <rect x="75" y="120" width="12" height="25" fill="#4a90e2" rx="3"/>
+                                <rect x="113" y="120" width="12" height="25" fill="#4a90e2" rx="3"/>
+                                <circle cx="100" cy="30" r="15" fill="#ffd700"/>
+                                <path d="M95 25 L100 20 L105 25" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+                            </svg>
+                            <p class="image-title">الروبوت الذكي</p>
+                        </div>
+                        <div class="comment-section">
+                            <h5>💭 اكتبي تعليقك:</h5>
+                            <textarea class="comment-input" placeholder="مثال: عندما يحاول الروبوت فهم مشاعر البشر..."></textarea>
+                            <div class="comment-actions">
+                                <button class="submit-comment-btn" onclick="submitComment('image1')">إرسال التعليق</button>
+                                <button class="vote-comment-btn" onclick="voteForComment('image1')" disabled>صوتي لهذا التعليق 👍</button>
+                                <span class="comment-votes" id="commentVotes1">0 إعجاب</span>
+                            </div>
+                            <div class="submitted-comment" id="submittedComment1" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="image-card" id="image2">
+                        <div class="image-display">
+                            <svg width="200" height="150" viewBox="0 0 200 150" class="ai-image">
+                                <!-- مدينة ذكية -->
+                                <rect x="20" y="80" width="25" height="60" fill="#34495e"/>
+                                <rect x="50" y="70" width="30" height="70" fill="#2c3e50"/>
+                                <rect x="85" y="60" width="35" height="80" fill="#34495e"/>
+                                <rect x="125" y="75" width="28" height="65" fill="#2c3e50"/>
+                                <rect x="158" y="85" width="22" height="55" fill="#34495e"/>
+                                
+                                <!-- نوافذ مضيئة -->
+                                <rect x="25" y="90" width="4" height="6" fill="#ffd700"/>
+                                <rect x="35" y="90" width="4" height="6" fill="#ffd700"/>
+                                <rect x="25" y="105" width="4" height="6" fill="#ffd700"/>
+                                <rect x="55" y="80" width="4" height="6" fill="#ffd700"/>
+                                <rect x="65" y="80" width="4" height="6" fill="#ffd700"/>
+                                <rect x="90" y="70" width="4" height="6" fill="#ffd700"/>
+                                <rect x="105" y="70" width="4" height="6" fill="#ffd700"/>
+                                <rect x="130" y="85" width="4" height="6" fill="#ffd700"/>
+                                
+                                <!-- إشارات ذكية -->
+                                <circle cx="40" cy="140" r="3" fill="#e74c3c"/>
+                                <circle cx="100" cy="140" r="3" fill="#27ae60"/>
+                                <circle cx="160" cy="140" r="3" fill="#f39c12"/>
+                                
+                                <!-- خطوط الاتصال -->
+                                <path d="M40 137 Q100 120 160 137" stroke="#3498db" stroke-width="2" fill="none" stroke-dasharray="3,3"/>
+                            </svg>
+                            <p class="image-title">المدينة الذكية</p>
+                        </div>
+                        <div class="comment-section">
+                            <h5>💭 اكتبي تعليقك:</h5>
+                            <textarea class="comment-input" placeholder="مثال: عندما تصبح المدينة أذكى من سكانها..."></textarea>
+                            <div class="comment-actions">
+                                <button class="submit-comment-btn" onclick="submitComment('image2')">إرسال التعليق</button>
+                                <button class="vote-comment-btn" onclick="voteForComment('image2')" disabled>صوتي لهذا التعليق 👍</button>
+                                <span class="comment-votes" id="commentVotes2">0 إعجاب</span>
+                            </div>
+                            <div class="submitted-comment" id="submittedComment2" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="image-card" id="image3">
+                        <div class="image-display">
+                            <svg width="200" height="150" viewBox="0 0 200 150" class="ai-image">
+                                <!-- سيارة ذاتية القيادة -->
+                                <ellipse cx="100" cy="110" rx="70" ry="25" fill="#e74c3c"/>
+                                <rect x="40" y="85" width="120" height="40" fill="#c0392b" rx="20"/>
+                                <rect x="50" y="75" width="100" height="20" fill="#34495e" rx="10"/>
+                                
+                                <!-- العجلات -->
+                                <circle cx="65" cy="125" r="12" fill="#2c3e50"/>
+                                <circle cx="135" cy="125" r="12" fill="#2c3e50"/>
+                                <circle cx="65" cy="125" r="6" fill="#95a5a6"/>
+                                <circle cx="135" cy="125" r="6" fill="#95a5a6"/>
+                                
+                                <!-- المصابيح -->
+                                <ellipse cx="45" cy="95" rx="5" ry="8" fill="#f1c40f"/>
+                                <ellipse cx="155" cy="95" rx="5" ry="8" fill="#f1c40f"/>
+                                
+                                <!-- أجهزة الاستشعار -->
+                                <circle cx="100" cy="70" r="8" fill="#3498db"/>
+                                <circle cx="100" cy="70" r="4" fill="#2980b9"/>
+                                <path d="M92 62 Q100 50 108 62" stroke="#3498db" stroke-width="2" fill="none"/>
+                                
+                                <!-- إشارات الاتصال -->
+                                <path d="M85 55 Q100 40 115 55" stroke="#27ae60" stroke-width="2" fill="none" stroke-dasharray="2,2"/>
+                                <path d="M80 50 Q100 30 120 50" stroke="#27ae60" stroke-width="2" fill="none" stroke-dasharray="2,2"/>
+                            </svg>
+                            <p class="image-title">السيارة ذاتية القيادة</p>
+                        </div>
+                        <div class="comment-section">
+                            <h5>💭 اكتبي تعليقك:</h5>
+                            <textarea class="comment-input" placeholder="مثال: عندما تقود السيارة نفسها وأنت تشرب الشاي..."></textarea>
+                            <div class="comment-actions">
+                                <button class="submit-comment-btn" onclick="submitComment('image3')">إرسال التعليق</button>
+                                <button class="vote-comment-btn" onclick="voteForComment('image3')" disabled>صوتي لهذا التعليق 👍</button>
+                                <span class="comment-votes" id="commentVotes3">0 إعجاب</span>
+                            </div>
+                            <div class="submitted-comment" id="submittedComment3" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="image-card" id="image4">
+                        <div class="image-display">
+                            <svg width="200" height="150" viewBox="0 0 200 150" class="ai-image">
+                                <!-- مساعد ذكي -->
+                                <circle cx="100" cy="75" r="50" fill="#9b59b6"/>
+                                <circle cx="100" cy="75" r="35" fill="#8e44ad"/>
+                                
+                                <!-- الوجه -->
+                                <circle cx="85" cy="65" r="6" fill="#ffffff"/>
+                                <circle cx="115" cy="65" r="6" fill="#ffffff"/>
+                                <circle cx="85" cy="65" r="3" fill="#2c3e50"/>
+                                <circle cx="115" cy="65" r="3" fill="#2c3e50"/>
+                                <path d="M90 85 Q100 95 110 85" stroke="#ffffff" stroke-width="3" fill="none"/>
+                                
+                                <!-- موجات الصوت -->
+                                <path d="M130 60 Q140 65 130 70" stroke="#e74c3c" stroke-width="3" fill="none"/>
+                                <path d="M135 55 Q150 65 135 75" stroke="#e74c3c" stroke-width="2" fill="none"/>
+                                <path d="M140 50 Q160 65 140 80" stroke="#e74c3c" stroke-width="1" fill="none"/>
+                                
+                                <path d="M70 60 Q60 65 70 70" stroke="#e74c3c" stroke-width="3" fill="none"/>
+                                <path d="M65 55 Q50 65 65 75" stroke="#e74c3c" stroke-width="2" fill="none"/>
+                                <path d="M60 50 Q40 65 60 80" stroke="#e74c3c" stroke-width="1" fill="none"/>
+                                
+                                <!-- قاعدة -->
+                                <ellipse cx="100" cy="125" rx="30" ry="8" fill="#34495e"/>
+                                <rect x="85" y="117" width="30" height="15" fill="#2c3e50" rx="5"/>
+                            </svg>
+                            <p class="image-title">المساعد الذكي</p>
+                        </div>
+                        <div class="comment-section">
+                            <h5>💭 اكتبي تعليقك:</h5>
+                            <textarea class="comment-input" placeholder="مثال: عندما يعرف المساعد الذكي إجابة كل شيء إلا امتحان الرياضيات..."></textarea>
+                            <div class="comment-actions">
+                                <button class="submit-comment-btn" onclick="submitComment('image4')">إرسال التعليق</button>
+                                <button class="vote-comment-btn" onclick="voteForComment('image4')" disabled>صوتي لهذا التعليق 👍</button>
+                                <span class="comment-votes" id="commentVotes4">0 إعجاب</span>
+                            </div>
+                            <div class="submitted-comment" id="submittedComment4" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meme-results">
+                    <h4>🏆 أفضل التعليقات</h4>
+                    <div class="top-comments" id="topComments">
+                        <p>ابدئي بكتابة التعليقات والتصويت لرؤية أفضل التعليقات!</p>
+                    </div>
+                    <button class="reset-meme-btn" onclick="resetMemeGame()">إعادة تعيين اللعبة</button>
+                </div>
+
+                <div class="meme-tips">
+                    <h5>💡 نصائح لكتابة تعليق مميز:</h5>
+                    <ul>
+                        <li>اربطي الصورة بمفهوم من الدرس</li>
+                        <li>استخدمي الفكاهة بذكاء</li>
+                        <li>اجعلي التعليق قصيرًا ومؤثرًا</li>
+                        <li>فكري في المواقف اليومية</li>
+                        <li>استخدمي الإيموجي لإضافة المرح</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let votes = { role1: 0, role2: 0, role3: 0 };
+        let hasVoted = false;
+        
+        // متغيرات لعبة التعليقات
+        let commentVotes = { image1: 0, image2: 0, image3: 0, image4: 0 };
+        let submittedComments = { image1: '', image2: '', image3: '', image4: '' };
+        let hasVotedForComment = { image1: false, image2: false, image3: false, image4: false };
+
+        // متغيرات لعبة من أنا؟
+        let guessWhoTimer;
+        let guessTimeLeft = 120; // دقيقتان
+        let isGuessTimerRunning = false;
+        let currentRound = 1;
+        let maxRounds = 2;
+        let selectedCardId = null;
+        let questionsAsked = [];
+        let teamAName = 'المجموعة الأولى';
+        let teamBName = 'المجموعة الثانية';
+        let teamARole = 'guesser'; // 'guesser' or 'holder'
+        let teamBRole = 'holder';
+        let gameScores = { teamA: 0, teamB: 0 };
+        let currentGuessingTeam = 'A';
+        let currentHoldingTeam = 'B';
+
+        const cardTerms = {
+            1: { arabic: 'معالجة اللغات الطبيعية', english: 'Natural Language Processing (NLP)' },
+            2: { arabic: 'الشبكات العصبية', english: 'Neural Networks' },
+            3: { arabic: 'روبوت المحادثة', english: 'Chatbot' },
+            4: { arabic: 'التعلم التعزيزي', english: 'Reinforcement Learning' },
+            5: { arabic: 'الرؤية الحاسوبية', english: 'Computer Vision' },
+            6: { arabic: 'التعلم الآلي', english: 'Machine Learning' },
+            7: { arabic: 'الذكاء الاصطناعي التوليدي', english: 'Generative AI' },
+            8: { arabic: 'خوارزمية', english: 'Algorithm' }
+        };
+
+        // متغيرات لعبة المحاكمة
+        let debateTimer;
+        let debateTimeLeft = 300; // 5 دقائق
+        let isDebateTimerRunning = false;
+        let currentDebateTopicId = 0;
+        let currentActiveTeam = 'none'; // 'pro', 'con', or 'none'
+        let judgeVotes = { pro: 0, con: 0 };
+        let judgeVotedStatus = { judge1: false, judge2: false, judge3: false, judge4: false, judge5: false };
+        
+        const debateTopics = {
+            1: {
+                title: "الذكاء الاصطناعي في التعليم",
+                description: "هل يجب استخدام الذكاء الاصطناعي في المدارس والجامعات؟"
+            },
+            2: {
+                title: "الذكاء الاصطناعي في الطب",
+                description: "هل يمكن للذكاء الاصطناعي أن يحل محل الأطباء في التشخيص والعلاج؟"
+            },
+            3: {
+                title: "السيارات ذاتية القيادة",
+                description: "هل السيارات ذاتية القيادة آمنة بما فيه الكفاية للاستخدام العام؟"
+            },
+            4: {
+                title: "الذكاء الاصطناعي والوظائف",
+                description: "هل سيقضي الذكاء الاصطناعي على الوظائف البشرية أم سيخلق فرصاً جديدة؟"
+            },
+            5: {
+                title: "الخصوصية والمراقبة",
+                description: "هل يهدد الذكاء الاصطناعي خصوصيتنا الشخصية؟"
+            },
+            6: {
+                title: "الروبوتات في المنزل",
+                description: "هل نحتاج روبوتات ذكية في منازلنا للمساعدة في الأعمال المنزلية؟"
+            }
+        };
+
+        // متغيرات لعبة تحدي 60 ثانية
+        let challengeTimer;
+        let timeLeft = 60;
+        let isTimerRunning = false;
+        let currentChallengeId = 0;
+        
+        const challenges = {
+            1: "اذكري أكبر عدد ممكن من تطبيقات الذكاء الاصطناعي في حياتنا اليومية",
+            2: "اذكري أكبر عدد ممكن من أنواع الروبوتات المختلفة",
+            3: "اذكري أكبر عدد ممكن من مهارات وقدرات الذكاء الاصطناعي",
+            4: "اذكري أكبر عدد ممكن من مجالات استخدام الذكاء الاصطناعي في الصناعات",
+            5: "اذكري أكبر عدد ممكن من التطورات المستقبلية للذكاء الاصطناعي",
+            6: "اذكري أكبر عدد ممكن من تحديات ومخاطر الذكاء الاصطناعي"
+        };
+
+        function vote(roleId) {
+            if (hasVoted) {
+                alert('لقد صوتت بالفعل! يمكنك إعادة تعيين الأصوات للتصويت مرة أخرى.');
+                return;
+            }
+
+            votes[roleId]++;
+            document.getElementById(`votes${roleId.slice(-1)}`).textContent = `${votes[roleId]} ${votes[roleId] === 1 ? 'صوت' : 'أصوات'}`;
+            
+            updateLeaderboard();
+            hasVoted = true;
+            
+            // تغيير لون الزر بعد التصويت
+            event.target.style.background = '#28a745';
+            event.target.textContent = 'تم التصويت ✅';
+            event.target.disabled = true;
+        }
+
+        function updateLeaderboard() {
+            const sortedRoles = Object.entries(votes).sort((a, b) => b[1] - a[1]);
+            const roleNames = {
+                'role1': 'عالِم البيانات 📊',
+                'role2': 'مهندس التعلم الآلي 🤖',
+                'role3': 'المستخدم الذكي 💡'
+            };
+
+            let leaderboardHTML = '<div class="ranking">';
+            sortedRoles.forEach((role, index) => {
+                const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉';
+                const voteText = role[1] === 1 ? 'صوت' : 'أصوات';
+                leaderboardHTML += `
+                    <div class="rank-item ${index === 0 ? 'winner' : ''}">
+                        <span class="medal">${medal}</span>
+                        <span class="role-name">${roleNames[role[0]]}</span>
+                        <span class="vote-number">${role[1]} ${voteText}</span>
+                    </div>
+                `;
+            });
+            leaderboardHTML += '</div>';
+
+            document.getElementById('leaderboard').innerHTML = leaderboardHTML;
+        }
+
+        function resetVotes() {
+            votes = { role1: 0, role2: 0, role3: 0 };
+            hasVoted = false;
+            
+            // إعادة تعيين عدادات الأصوات
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`votes${i}`).textContent = '0 أصوات';
+            }
+            
+            // إعادة تعيين أزرار التصويت
+            const voteButtons = document.querySelectorAll('.vote-btn');
+            voteButtons.forEach(btn => {
+                btn.style.background = '#667eea';
+                btn.textContent = 'صوتي لهذه المجموعة 🗳️';
+                btn.disabled = false;
+            });
+            
+            // إعادة تعيين لوحة النتائج
+            document.getElementById('leaderboard').innerHTML = '<p>ابدئي التصويت لرؤية النتائج!</p>';
+        }
+
+        // وظائف لعبة التعليقات
+        function submitComment(imageId) {
+            const textarea = document.querySelector(`#${imageId} .comment-input`);
+            const comment = textarea.value.trim();
+            
+            if (comment === '') {
+                alert('يرجى كتابة تعليق أولاً!');
+                return;
+            }
+            
+            if (comment.length < 10) {
+                alert('التعليق قصير جداً! اكتبي تعليقاً أطول قليلاً.');
+                return;
+            }
+            
+            // حفظ التعليق
+            submittedComments[imageId] = comment;
+            
+            // عرض التعليق المرسل
+            const submittedDiv = document.getElementById(`submittedComment${imageId.slice(-1)}`);
+            submittedDiv.innerHTML = `
+                <div class="comment-display">
+                    <strong>تعليقك:</strong>
+                    <p>"${comment}"</p>
+                </div>
+            `;
+            submittedDiv.style.display = 'block';
+            
+            // تعطيل زر الإرسال وتفعيل زر التصويت
+            const submitBtn = document.querySelector(`#${imageId} .submit-comment-btn`);
+            const voteBtn = document.querySelector(`#${imageId} .vote-comment-btn`);
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'تم الإرسال ✅';
+            submitBtn.style.background = '#28a745';
+            
+            voteBtn.disabled = false;
+            textarea.disabled = true;
+            
+            updateTopComments();
+        }
+
+        function voteForComment(imageId) {
+            if (hasVotedForComment[imageId]) {
+                alert('لقد صوتت لهذا التعليق بالفعل!');
+                return;
+            }
+            
+            if (submittedComments[imageId] === '') {
+                alert('لا يوجد تعليق للتصويت عليه!');
+                return;
+            }
+            
+            commentVotes[imageId]++;
+            hasVotedForComment[imageId] = true;
+            
+            // تحديث عداد الأصوات
+            const voteCount = document.getElementById(`commentVotes${imageId.slice(-1)}`);
+            const votes = commentVotes[imageId];
+            voteCount.textContent = `${votes} ${votes === 1 ? 'إعجاب' : 'إعجاب'}`;
+            
+            // تغيير زر التصويت
+            const voteBtn = document.querySelector(`#${imageId} .vote-comment-btn`);
+            voteBtn.style.background = '#e74c3c';
+            voteBtn.textContent = 'تم التصويت ❤️';
+            voteBtn.disabled = true;
+            
+            updateTopComments();
+        }
+
+        function updateTopComments() {
+            const topCommentsDiv = document.getElementById('topComments');
+            const imageNames = {
+                'image1': 'الروبوت الذكي 🤖',
+                'image2': 'المدينة الذكية 🏙️',
+                'image3': 'السيارة ذاتية القيادة 🚗',
+                'image4': 'المساعد الذكي 🎯'
+            };
+            
+            // ترتيب التعليقات حسب عدد الأصوات
+            const sortedComments = Object.entries(commentVotes)
+                .filter(([imageId, votes]) => submittedComments[imageId] !== '')
+                .sort((a, b) => b[1] - a[1]);
+            
+            if (sortedComments.length === 0) {
+                topCommentsDiv.innerHTML = '<p>ابدئي بكتابة التعليقات والتصويت لرؤية أفضل التعليقات!</p>';
+                return;
+            }
+            
+            let html = '<div class="comments-ranking">';
+            sortedComments.forEach(([imageId, votes], index) => {
+                const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '🏅';
+                const voteText = votes === 1 ? 'إعجاب' : 'إعجاب';
+                html += `
+                    <div class="top-comment-item ${index === 0 ? 'winner-comment' : ''}">
+                        <div class="comment-header">
+                            <span class="comment-medal">${medal}</span>
+                            <span class="comment-image-name">${imageNames[imageId]}</span>
+                            <span class="comment-vote-count">${votes} ${voteText}</span>
+                        </div>
+                        <div class="comment-text">"${submittedComments[imageId]}"</div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            topCommentsDiv.innerHTML = html;
+        }
+
+        function resetMemeGame() {
+            // إعادة تعيين جميع المتغيرات
+            commentVotes = { image1: 0, image2: 0, image3: 0, image4: 0 };
+            submittedComments = { image1: '', image2: '', image3: '', image4: '' };
+            hasVotedForComment = { image1: false, image2: false, image3: false, image4: false };
+            
+            // إعادة تعيين واجهة المستخدم
+            for (let i = 1; i <= 4; i++) {
+                const imageId = `image${i}`;
+                
+                // إعادة تعيين النصوص
+                document.querySelector(`#${imageId} .comment-input`).value = '';
+                document.querySelector(`#${imageId} .comment-input`).disabled = false;
+                
+                // إعادة تعيين الأزرار
+                const submitBtn = document.querySelector(`#${imageId} .submit-comment-btn`);
+                const voteBtn = document.querySelector(`#${imageId} .vote-comment-btn`);
+                
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'إرسال التعليق';
+                submitBtn.style.background = '#667eea';
+                
+                voteBtn.disabled = true;
+                voteBtn.textContent = 'صوتي لهذا التعليق 👍';
+                voteBtn.style.background = '#667eea';
+                
+                // إعادة تعيين عدادات الأصوات
+                document.getElementById(`commentVotes${i}`).textContent = '0 إعجاب';
+                
+                // إخفاء التعليقات المرسلة
+                document.getElementById(`submittedComment${i}`).style.display = 'none';
+            }
+            
+            // إعادة تعيين أفضل التعليقات
+            updateTopComments();
+        }
+
+        // وظائف لعبة تحدي 60 ثانية
+        function startChallenge(challengeId) {
+            currentChallengeId = challengeId;
+            document.getElementById('currentQuestion').textContent = challenges[challengeId];
+            document.getElementById('challengeArea').style.display = 'block';
+            document.querySelector('.challenge-selector').style.display = 'none';
+            
+            // إعادة تعيين كل شيء
+            resetChallenge();
+            
+            // التمرير إلى منطقة التحدي
+            document.getElementById('challengeArea').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function startTimer() {
+            if (isTimerRunning) return;
+            
+            isTimerRunning = true;
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('stopBtn').style.display = 'inline-block';
+            document.getElementById('resetBtn').style.display = 'inline-block';
+            
+            // تفعيل مناطق النص
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`textarea${i}`).disabled = false;
+                document.getElementById(`textarea${i}`).focus();
+            }
+            
+            // بدء العداد
+            challengeTimer = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                // تحديث النتائج في الوقت الفعلي
+                updateScores();
+                
+                if (timeLeft <= 0) {
+                    stopTimer();
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (!isTimerRunning) return;
+            
+            isTimerRunning = false;
+            clearInterval(challengeTimer);
+            
+            document.getElementById('stopBtn').style.display = 'none';
+            
+            // تعطيل مناطق النص
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`textarea${i}`).disabled = true;
+            }
+            
+            // عرض النتائج النهائية
+            showFinalResults();
+        }
+
+        function resetChallenge() {
+            // إيقاف المؤقت
+            if (isTimerRunning) {
+                clearInterval(challengeTimer);
+                isTimerRunning = false;
+            }
+            
+            // إعادة تعيين الوقت
+            timeLeft = 60;
+            updateTimerDisplay();
+            
+            // إعادة تعيين الأزرار
+            document.getElementById('startBtn').style.display = 'inline-block';
+            document.getElementById('stopBtn').style.display = 'none';
+            document.getElementById('resetBtn').style.display = 'none';
+            
+            // إعادة تعيين مناطق النص والنتائج
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`textarea${i}`).value = '';
+                document.getElementById(`textarea${i}`).disabled = true;
+                document.getElementById(`score${i}`).textContent = '0';
+                document.getElementById(`answers${i}`).innerHTML = '';
+            }
+            
+            // إخفاء النتائج
+            document.getElementById('resultsSection').style.display = 'none';
+        }
+
+        function updateTimerDisplay() {
+            const timerText = document.getElementById('timerText');
+            timerText.textContent = timeLeft;
+            
+            // تغيير لون المؤقت حسب الوقت المتبقي
+            const timerCircle = document.querySelector('.timer-circle');
+            if (timeLeft <= 10) {
+                timerCircle.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+                timerCircle.style.animation = 'pulse 1s infinite';
+            } else if (timeLeft <= 30) {
+                timerCircle.style.background = 'linear-gradient(135deg, #f39c12, #e67e22)';
+                timerCircle.style.animation = 'none';
+            } else {
+                timerCircle.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+                timerCircle.style.animation = 'none';
+            }
+        }
+
+        function updateScores() {
+            for (let i = 1; i <= 3; i++) {
+                const textarea = document.getElementById(`textarea${i}`);
+                const answers = textarea.value.split('\n').filter(answer => answer.trim().length > 0);
+                const uniqueAnswers = [...new Set(answers.map(answer => answer.trim().toLowerCase()))];
+                
+                document.getElementById(`score${i}`).textContent = uniqueAnswers.length;
+                
+                // عرض الإجابات في الوقت الفعلي
+                const answersDisplay = document.getElementById(`answers${i}`);
+                answersDisplay.innerHTML = uniqueAnswers.map((answer, index) => 
+                    `<div class="answer-item">${index + 1}. ${answer}</div>`
+                ).join('');
+            }
+        }
+
+        function showFinalResults() {
+            const scores = [];
+            const allTeamAnswers = [];
+            
+            for (let i = 1; i <= 3; i++) {
+                const textarea = document.getElementById(`textarea${i}`);
+                const answers = textarea.value.split('\n').filter(answer => answer.trim().length > 0);
+                const uniqueAnswers = [...new Set(answers.map(answer => answer.trim().toLowerCase()))];
+                
+                scores.push({
+                    team: i,
+                    score: uniqueAnswers.length,
+                    answers: uniqueAnswers
+                });
+                
+                allTeamAnswers.push({
+                    team: i,
+                    answers: uniqueAnswers
+                });
+            }
+            
+            // ترتيب النتائج
+            scores.sort((a, b) => b.score - a.score);
+            
+            // عرض النتائج النهائية
+            let resultsHTML = '<div class="final-ranking">';
+            scores.forEach((team, index) => {
+                const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉';
+                const answerText = team.score === 1 ? 'إجابة' : 'إجابة';
+                resultsHTML += `
+                    <div class="final-rank-item ${index === 0 ? 'winner-team' : ''}">
+                        <span class="final-medal">${medal}</span>
+                        <span class="final-team-name">المجموعة ${team.team === 1 ? 'الأولى' : team.team === 2 ? 'الثانية' : 'الثالثة'}</span>
+                        <span class="final-score">${team.score} ${answerText}</span>
+                    </div>
+                `;
+            });
+            resultsHTML += '</div>';
+            
+            document.getElementById('finalResults').innerHTML = resultsHTML;
+            
+            // عرض جميع الإجابات
+            let allAnswersHTML = '<div class="all-teams-answers">';
+            allTeamAnswers.forEach(team => {
+                allAnswersHTML += `
+                    <div class="team-answers-section">
+                        <h6>إجابات المجموعة ${team.team === 1 ? 'الأولى' : team.team === 2 ? 'الثانية' : 'الثالثة'} (${team.answers.length} إجابة):</h6>
+                        <div class="team-answers-list">
+                            ${team.answers.map((answer, index) => 
+                                `<span class="answer-tag">${index + 1}. ${answer}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            allAnswersHTML += '</div>';
+            
+            document.getElementById('allAnswers').innerHTML = allAnswersHTML;
+            document.getElementById('resultsSection').style.display = 'block';
+            
+            // التمرير إلى النتائج
+            setTimeout(() => {
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
+
+        function backToSelector() {
+            document.getElementById('challengeArea').style.display = 'none';
+            document.querySelector('.challenge-selector').style.display = 'block';
+            resetChallenge();
+        }
+
+        // وظائف لعبة المحاكمة
+        function startDebate(topicId) {
+            currentDebateTopicId = topicId;
+            const topic = debateTopics[topicId];
+            
+            document.getElementById('currentTopic').textContent = topic.title;
+            document.getElementById('topicDescription').textContent = topic.description;
+            document.getElementById('debateArea').style.display = 'block';
+            document.querySelector('.topic-selector').style.display = 'none';
+            
+            // إعادة تعيين كل شيء
+            resetDebate();
+            
+            // التمرير إلى منطقة النقاش
+            document.getElementById('debateArea').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function startDebateTimer() {
+            if (isDebateTimerRunning) return;
+            
+            // بدء المؤقت للفريق المؤيد أولاً
+            currentActiveTeam = 'pro';
+            isDebateTimerRunning = true;
+            
+            document.getElementById('startTimerBtn').style.display = 'none';
+            document.getElementById('pauseTimerBtn').style.display = 'inline-block';
+            document.getElementById('switchTeamBtn').style.display = 'inline-block';
+            
+            updateActiveTeamDisplay();
+            
+            debateTimer = setInterval(() => {
+                debateTimeLeft--;
+                updateDebateTimerDisplay();
+                
+                if (debateTimeLeft <= 0) {
+                    // تبديل الفريق أو إنهاء المؤقت
+                    if (currentActiveTeam === 'pro') {
+                        switchTeam();
+                    } else {
+                        pauseDebateTimer();
+                        alert('انتهى وقت النقاش! يمكن للحكام الآن التصويت.');
+                    }
+                }
+            }, 1000);
+        }
+
+        function pauseDebateTimer() {
+            if (!isDebateTimerRunning) return;
+            
+            isDebateTimerRunning = false;
+            clearInterval(debateTimer);
+            
+            document.getElementById('startTimerBtn').style.display = 'inline-block';
+            document.getElementById('startTimerBtn').textContent = 'استكمال المؤقت ⏰';
+            document.getElementById('pauseTimerBtn').style.display = 'none';
+        }
+
+        function switchTeam() {
+            if (currentActiveTeam === 'pro') {
+                currentActiveTeam = 'con';
+                debateTimeLeft = 300; // إعادة تعيين الوقت للفريق الثاني
+            } else if (currentActiveTeam === 'con') {
+                currentActiveTeam = 'pro';
+                debateTimeLeft = 300; // إعادة تعيين الوقت للفريق الأول
+            }
+            
+            updateActiveTeamDisplay();
+            updateDebateTimerDisplay();
+        }
+
+        function resetDebateTimer() {
+            if (isDebateTimerRunning) {
+                clearInterval(debateTimer);
+                isDebateTimerRunning = false;
+            }
+            
+            debateTimeLeft = 300;
+            currentActiveTeam = 'none';
+            
+            document.getElementById('startTimerBtn').style.display = 'inline-block';
+            document.getElementById('startTimerBtn').textContent = 'ابدأ المؤقت ⏰';
+            document.getElementById('pauseTimerBtn').style.display = 'none';
+            document.getElementById('switchTeamBtn').style.display = 'none';
+            
+            updateActiveTeamDisplay();
+            updateDebateTimerDisplay();
+        }
+
+        function updateDebateTimerDisplay() {
+            const minutes = Math.floor(debateTimeLeft / 60);
+            const seconds = debateTimeLeft % 60;
+            const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            document.getElementById('debateTimerText').textContent = timeString;
+            
+            // تحديث وقت الفريق النشط
+            if (currentActiveTeam === 'pro') {
+                document.getElementById('proTime').textContent = timeString;
+            } else if (currentActiveTeam === 'con') {
+                document.getElementById('conTime').textContent = timeString;
+            }
+            
+            // تغيير لون المؤقت حسب الوقت المتبقي
+            const timerDisplay = document.querySelector('.timer-display-debate');
+            if (debateTimeLeft <= 60) {
+                timerDisplay.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+                timerDisplay.style.animation = 'pulse 1s infinite';
+            } else if (debateTimeLeft <= 120) {
+                timerDisplay.style.background = 'linear-gradient(135deg, #f39c12, #e67e22)';
+                timerDisplay.style.animation = 'none';
+            } else {
+                timerDisplay.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+                timerDisplay.style.animation = 'none';
+            }
+        }
+
+        function updateActiveTeamDisplay() {
+            const activeTeamSpan = document.getElementById('activeTeam');
+            const proTeam = document.getElementById('proTeam');
+            const conTeam = document.getElementById('conTeam');
+            
+            // إزالة التمييز من كلا الفريقين
+            proTeam.classList.remove('active-team');
+            conTeam.classList.remove('active-team');
+            
+            if (currentActiveTeam === 'pro') {
+                activeTeamSpan.textContent = 'الفريق المؤيد';
+                proTeam.classList.add('active-team');
+            } else if (currentActiveTeam === 'con') {
+                activeTeamSpan.textContent = 'الفريق المعارض';
+                conTeam.classList.add('active-team');
+            } else {
+                activeTeamSpan.textContent = 'لم يبدأ النقاش بعد';
+            }
+        }
+
+        function judgeVote(judgeId, vote) {
+            if (judgeVotedStatus[judgeId]) {
+                alert('لقد صوت هذا الحكم بالفعل!');
+                return;
+            }
+            
+            // تسجيل الصوت
+            judgeVotes[vote]++;
+            judgeVotedStatus[judgeId] = true;
+            
+            // تحديث حالة الحكم
+            const statusElement = document.getElementById(`${judgeId}Status`);
+            const voteButtons = document.querySelectorAll(`#${judgeId} .vote-pro-btn, #${judgeId} .vote-con-btn`);
+            
+            if (vote === 'pro') {
+                statusElement.textContent = 'صوت للمؤيد ✅';
+                statusElement.style.color = '#27ae60';
+            } else {
+                statusElement.textContent = 'صوت للمعارض ❌';
+                statusElement.style.color = '#e74c3c';
+            }
+            
+            // تعطيل أزرار التصويت
+            voteButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+            });
+            
+            // تحديث النتائج
+            updateVotingResults();
+        }
+
+        function updateVotingResults() {
+            const totalVotes = judgeVotes.pro + judgeVotes.con;
+            const proPercentage = totalVotes > 0 ? (judgeVotes.pro / totalVotes) * 100 : 0;
+            const conPercentage = totalVotes > 0 ? (judgeVotes.con / totalVotes) * 100 : 0;
+            
+            // تحديث أشرطة التقدم
+            document.getElementById('proProgress').style.width = `${proPercentage}%`;
+            document.getElementById('conProgress').style.width = `${conPercentage}%`;
+            
+            // تحديث عدد الأصوات
+            const proVoteText = judgeVotes.pro === 1 ? 'صوت' : 'أصوات';
+            const conVoteText = judgeVotes.con === 1 ? 'صوت' : 'أصوات';
+            
+            document.getElementById('proVotes').textContent = `${judgeVotes.pro} ${proVoteText}`;
+            document.getElementById('conVotes').textContent = `${judgeVotes.con} ${conVoteText}`;
+            
+            // تحديث النقاط
+            document.getElementById('proScore').textContent = judgeVotes.pro;
+            document.getElementById('conScore').textContent = judgeVotes.con;
+            
+            // إعلان الفائز إذا صوت جميع الحكام
+            if (totalVotes === 5) {
+                announceWinner();
+            }
+        }
+
+        function announceWinner() {
+            const winnerDiv = document.getElementById('winnerAnnouncement');
+            let winnerText = '';
+            
+            if (judgeVotes.pro > judgeVotes.con) {
+                winnerText = `
+                    <div class="winner-content pro-winner">
+                        <div class="winner-icon">🏆</div>
+                        <div class="winner-text">
+                            <h3>الفريق المؤيد هو الفائز!</h3>
+                            <p>بنتيجة ${judgeVotes.pro} أصوات مقابل ${judgeVotes.con}</p>
+                        </div>
+                    </div>
+                `;
+            } else if (judgeVotes.con > judgeVotes.pro) {
+                winnerText = `
+                    <div class="winner-content con-winner">
+                        <div class="winner-icon">🏆</div>
+                        <div class="winner-text">
+                            <h3>الفريق المعارض هو الفائز!</h3>
+                            <p>بنتيجة ${judgeVotes.con} أصوات مقابل ${judgeVotes.pro}</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                winnerText = `
+                    <div class="winner-content tie">
+                        <div class="winner-icon">🤝</div>
+                        <div class="winner-text">
+                            <h3>تعادل!</h3>
+                            <p>كلا الفريقين حصل على ${judgeVotes.pro} أصوات</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            winnerDiv.innerHTML = winnerText;
+            winnerDiv.style.display = 'block';
+            
+            // التمرير إلى النتيجة
+            setTimeout(() => {
+                winnerDiv.scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
+
+        function resetDebate() {
+            // إيقاف المؤقت
+            if (isDebateTimerRunning) {
+                clearInterval(debateTimer);
+                isDebateTimerRunning = false;
+            }
+            
+            // إعادة تعيين المتغيرات
+            debateTimeLeft = 300;
+            currentActiveTeam = 'none';
+            judgeVotes = { pro: 0, con: 0 };
+            judgeVotedStatus = { judge1: false, judge2: false, judge3: false, judge4: false, judge5: false };
+            
+            // إعادة تعيين الواجهة
+            document.getElementById('proArguments').value = '';
+            document.getElementById('conArguments').value = '';
+            document.getElementById('proTime').textContent = '5:00';
+            document.getElementById('conTime').textContent = '5:00';
+            
+            // إعادة تعيين أزرار المؤقت
+            resetDebateTimer();
+            
+            // إعادة تعيين أزرار التصويت
+            for (let i = 1; i <= 5; i++) {
+                const judgeId = `judge${i}`;
+                const statusElement = document.getElementById(`${judgeId}Status`);
+                const voteButtons = document.querySelectorAll(`#${judgeId} .vote-pro-btn, #${judgeId} .vote-con-btn`);
+                
+                statusElement.textContent = 'لم يصوت بعد';
+                statusElement.style.color = '#718096';
+                
+                voteButtons.forEach(btn => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                });
+            }
+            
+            // إعادة تعيين النتائج
+            updateVotingResults();
+            document.getElementById('winnerAnnouncement').style.display = 'none';
+        }
+
+        function backToTopics() {
+            document.getElementById('debateArea').style.display = 'none';
+            document.querySelector('.topic-selector').style.display = 'block';
+            resetDebate();
+        }
+
+        // وظائف لعبة من أنا؟
+        function startGuessWhoGame() {
+            // الحصول على أسماء الفرق وأدوارها
+            teamAName = document.querySelector('#teamA .team-name-input').value || 'المجموعة الأولى';
+            teamBName = document.querySelector('#teamB .team-name-input').value || 'المجموعة الثانية';
+            
+            const teamARoleInput = document.querySelector('input[name="teamA-role"]:checked');
+            const teamBRoleInput = document.querySelector('input[name="teamB-role"]:checked');
+            
+            teamARole = teamARoleInput ? teamARoleInput.value : 'guesser';
+            teamBRole = teamBRoleInput ? teamBRoleInput.value : 'holder';
+            
+            // التأكد من أن الفريقين لهما أدوار مختلفة
+            if (teamARole === teamBRole) {
+                alert('يجب أن يكون لكل فريق دور مختلف! فريق واحد يخمن والآخر يحمل البطاقة.');
+                return;
+            }
+            
+            // تحديد الفريق المخمن والحامل للبطاقة
+            if (teamARole === 'guesser') {
+                currentGuessingTeam = 'A';
+                currentHoldingTeam = 'B';
+            } else {
+                currentGuessingTeam = 'B';
+                currentHoldingTeam = 'A';
+            }
+            
+            // إخفاء منطقة الإعداد وإظهار منطقة اللعبة
+            document.querySelector('.game-setup').style.display = 'none';
+            document.getElementById('guessWhoGameArea').style.display = 'block';
+            
+            // تحديث عنوان الجولة
+            updateRoundDisplay();
+            
+            // إعادة تعيين اللعبة
+            resetGuessWhoRound();
+            
+            // التمرير إلى منطقة اللعبة
+            document.getElementById('guessWhoGameArea').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateRoundDisplay() {
+            const guessingTeamName = currentGuessingTeam === 'A' ? teamAName : teamBName;
+            const holdingTeamName = currentHoldingTeam === 'A' ? teamAName : teamBName;
+            
+            document.getElementById('currentRoundTitle').textContent = `الجولة ${currentRound}`;
+            document.getElementById('roundDescription').textContent = `${guessingTeamName} تخمن و ${holdingTeamName} تحمل البطاقة`;
+        }
+
+        function selectCard(cardId) {
+            // إلغاء تحديد البطاقات الأخرى
+            document.querySelectorAll('.card-item').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // تحديد البطاقة الحالية
+            const selectedCard = document.querySelectorAll('.card-item')[cardId - 1];
+            selectedCard.classList.add('selected');
+            selectedCardId = cardId;
+            
+            // عرض معلومات البطاقة المختارة
+            const cardInfo = cardTerms[cardId];
+            document.getElementById('selectedCardInfo').innerHTML = `
+                <div class="selected-card-content">
+                    <div class="selected-term">${cardInfo.arabic}</div>
+                    <div class="selected-english">${cardInfo.english}</div>
+                    <div class="selected-warning">⚠️ لا تظهري هذه المعلومات للفريق المخمن!</div>
+                </div>
+            `;
+            document.getElementById('selectedCardDisplay').style.display = 'block';
+        }
+
+        function startGuessTimer() {
+            if (isGuessTimerRunning || !selectedCardId) {
+                if (!selectedCardId) {
+                    alert('يجب اختيار بطاقة أولاً!');
+                }
+                return;
+            }
+            
+            isGuessTimerRunning = true;
+            document.getElementById('startGuessTimerBtn').style.display = 'none';
+            document.getElementById('pauseGuessTimerBtn').style.display = 'inline-block';
+            
+            // تفعيل منطقة الأسئلة
+            document.getElementById('questionInput').disabled = false;
+            
+            guessWhoTimer = setInterval(() => {
+                guessTimeLeft--;
+                updateGuessTimerDisplay();
+                
+                if (guessTimeLeft <= 0) {
+                    pauseGuessTimer();
+                    alert('انتهى الوقت! يمكن للفريق المخمن تقديم تخمين نهائي أو الانتقال للجولة التالية.');
+                }
+            }, 1000);
+        }
+
+        function pauseGuessTimer() {
+            if (!isGuessTimerRunning) return;
+            
+            isGuessTimerRunning = false;
+            clearInterval(guessWhoTimer);
+            
+            document.getElementById('startGuessTimerBtn').style.display = 'inline-block';
+            document.getElementById('startGuessTimerBtn').textContent = 'استكمال المؤقت ⏰';
+            document.getElementById('pauseGuessTimerBtn').style.display = 'none';
+        }
+
+        function resetGuessTimer() {
+            if (isGuessTimerRunning) {
+                clearInterval(guessWhoTimer);
+                isGuessTimerRunning = false;
+            }
+            
+            guessTimeLeft = 120;
+            updateGuessTimerDisplay();
+            
+            document.getElementById('startGuessTimerBtn').style.display = 'inline-block';
+            document.getElementById('startGuessTimerBtn').textContent = 'ابدأ المؤقت ⏰';
+            document.getElementById('pauseGuessTimerBtn').style.display = 'none';
+        }
+
+        function updateGuessTimerDisplay() {
+            const minutes = Math.floor(guessTimeLeft / 60);
+            const seconds = guessTimeLeft % 60;
+            const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            document.getElementById('guessTimerText').textContent = timeString;
+            
+            // تغيير لون المؤقت حسب الوقت المتبقي
+            const timerDisplay = document.querySelector('.timer-display-guess');
+            if (guessTimeLeft <= 30) {
+                timerDisplay.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+                timerDisplay.style.animation = 'pulse 1s infinite';
+            } else if (guessTimeLeft <= 60) {
+                timerDisplay.style.background = 'linear-gradient(135deg, #f39c12, #e67e22)';
+                timerDisplay.style.animation = 'none';
+            } else {
+                timerDisplay.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+                timerDisplay.style.animation = 'none';
+            }
+        }
+
+        function askQuestion() {
+            const questionInput = document.getElementById('questionInput');
+            const question = questionInput.value.trim();
+            
+            if (question === '') {
+                alert('يرجى كتابة سؤال أولاً!');
+                return;
+            }
+            
+            if (question.length < 5) {
+                alert('السؤال قصير جداً! اكتبي سؤالاً أوضح.');
+                return;
+            }
+            
+            // عرض السؤال ومنطقة الإجابة
+            document.getElementById('currentQuestion').textContent = `السؤال: "${question}"`;
+            document.getElementById('answerButtons').style.display = 'block';
+            
+            // تعطيل إدخال السؤال مؤقتاً
+            questionInput.disabled = true;
+            document.querySelector('.ask-btn').disabled = true;
+        }
+
+        function answerQuestion(answer) {
+            const question = document.getElementById('currentQuestion').textContent.replace('السؤال: "', '').replace('"', '');
+            
+            let answerText = '';
+            let answerClass = '';
+            
+            switch(answer) {
+                case 'yes':
+                    answerText = 'نعم ✅';
+                    answerClass = 'answer-yes';
+                    break;
+                case 'no':
+                    answerText = 'لا ❌';
+                    answerClass = 'answer-no';
+                    break;
+                case 'maybe':
+                    answerText = 'أحياناً 🤷‍♀️';
+                    answerClass = 'answer-maybe';
+                    break;
+            }
+            
+            // إضافة السؤال والجواب إلى التاريخ
+            questionsAsked.push({ question, answer: answerText });
+            updateQuestionsHistory();
+            
+            // إخفاء منطقة الإجابة وإعادة تفعيل إدخال السؤال
+            document.getElementById('answerButtons').style.display = 'none';
+            document.getElementById('questionInput').disabled = false;
+            document.getElementById('questionInput').value = '';
+            document.querySelector('.ask-btn').disabled = false;
+            
+            // التركيز على حقل السؤال التالي
+            document.getElementById('questionInput').focus();
+        }
+
+        function updateQuestionsHistory() {
+            const historyList = document.getElementById('historyList');
+            
+            if (questionsAsked.length === 0) {
+                historyList.innerHTML = '<p class="no-questions">لم يتم طرح أي أسئلة بعد</p>';
+                return;
+            }
+            
+            let historyHTML = '';
+            questionsAsked.forEach((qa, index) => {
+                let answerClass = '';
+                if (qa.answer.includes('نعم')) answerClass = 'answer-yes';
+                else if (qa.answer.includes('لا')) answerClass = 'answer-no';
+                else answerClass = 'answer-maybe';
+                
+                historyHTML += `
+                    <div class="history-item">
+                        <div class="history-question">
+                            <span class="question-number">${index + 1}.</span>
+                            <span class="question-text">${qa.question}</span>
+                        </div>
+                        <div class="history-answer ${answerClass}">${qa.answer}</div>
+                    </div>
+                `;
+            });
+            
+            historyList.innerHTML = historyHTML;
+        }
+
+        function makeFinalGuess() {
+            const guessInput = document.getElementById('finalGuessInput');
+            const guess = guessInput.value.trim();
+            
+            if (guess === '') {
+                alert('يرجى كتابة تخمينك النهائي!');
+                return;
+            }
+            
+            if (guess.length < 3) {
+                alert('التخمين قصير جداً! اكتبي المصطلح كاملاً.');
+                return;
+            }
+            
+            // التحقق من صحة التخمين
+            const correctTerm = cardTerms[selectedCardId];
+            const isCorrect = guess.toLowerCase().includes(correctTerm.arabic.toLowerCase()) || 
+                             correctTerm.arabic.toLowerCase().includes(guess.toLowerCase()) ||
+                             guess.toLowerCase().includes(correctTerm.english.toLowerCase()) ||
+                             correctTerm.english.toLowerCase().includes(guess.toLowerCase());
+            
+            // عرض النتيجة
+            const resultDiv = document.getElementById('guessResult');
+            const guessingTeamName = currentGuessingTeam === 'A' ? teamAName : teamBName;
+            
+            if (isCorrect) {
+                // إضافة نقطة للفريق المخمن
+                if (currentGuessingTeam === 'A') {
+                    gameScores.teamA++;
+                } else {
+                    gameScores.teamB++;
+                }
+                
+                resultDiv.innerHTML = `
+                    <div class="guess-correct">
+                        <div class="result-icon">🎉</div>
+                        <div class="result-text">
+                            <h5>تخمين صحيح!</h5>
+                            <p><strong>${guessingTeamName}</strong> خمنت بشكل صحيح!</p>
+                            <div class="correct-answer">
+                                <strong>الإجابة الصحيحة:</strong><br>
+                                ${correctTerm.arabic}<br>
+                                <em>${correctTerm.english}</em>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                resultDiv.className = 'guess-result correct-result';
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="guess-incorrect">
+                        <div class="result-icon">😔</div>
+                        <div class="result-text">
+                            <h5>تخمين خاطئ!</h5>
+                            <p><strong>تخمينك:</strong> ${guess}</p>
+                            <div class="correct-answer">
+                                <strong>الإجابة الصحيحة:</strong><br>
+                                ${correctTerm.arabic}<br>
+                                <em>${correctTerm.english}</em>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                resultDiv.className = 'guess-result incorrect-result';
+            }
+            
+            resultDiv.style.display = 'block';
+            
+            // إيقاف المؤقت
+            if (isGuessTimerRunning) {
+                pauseGuessTimer();
+            }
+            
+            // تعطيل الأسئلة والتخمين
+            document.getElementById('questionInput').disabled = true;
+            document.querySelector('.ask-btn').disabled = true;
+            guessInput.disabled = true;
+            document.querySelector('.final-guess-btn').disabled = true;
+            
+            // إظهار زر الجولة التالية أو النتائج النهائية
+            if (currentRound < maxRounds) {
+                document.getElementById('nextRoundBtn').style.display = 'inline-block';
+            } else {
+                showFinalGameResults();
+            }
+        }
+
+        function nextRound() {
+            currentRound++;
+            
+            // تبديل الأدوار
+            if (currentGuessingTeam === 'A') {
+                currentGuessingTeam = 'B';
+                currentHoldingTeam = 'A';
+            } else {
+                currentGuessingTeam = 'A';
+                currentHoldingTeam = 'B';
+            }
+            
+            // إعادة تعيين الجولة
+            resetGuessWhoRound();
+            updateRoundDisplay();
+            
+            // إخفاء زر الجولة التالية
+            document.getElementById('nextRoundBtn').style.display = 'none';
+        }
+
+        function resetGuessWhoRound() {
+            // إعادة تعيين المؤقت
+            resetGuessTimer();
+            
+            // إعادة تعيين البطاقات
+            selectedCardId = null;
+            document.querySelectorAll('.card-item').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById('selectedCardDisplay').style.display = 'none';
+            
+            // إعادة تعيين الأسئلة
+            questionsAsked = [];
+            updateQuestionsHistory();
+            document.getElementById('questionInput').value = '';
+            document.getElementById('questionInput').disabled = true;
+            document.querySelector('.ask-btn').disabled = false;
+            document.getElementById('answerButtons').style.display = 'none';
+            
+            // إعادة تعيين التخمين
+            document.getElementById('finalGuessInput').value = '';
+            document.getElementById('finalGuessInput').disabled = false;
+            document.querySelector('.final-guess-btn').disabled = false;
+            document.getElementById('guessResult').style.display = 'none';
+        }
+
+        function showFinalGameResults() {
+            const resultsDiv = document.getElementById('gameResults');
+            let winnerText = '';
+            
+            if (gameScores.teamA > gameScores.teamB) {
+                winnerText = `
+                    <div class="final-winner">
+                        <div class="winner-icon">🏆</div>
+                        <div class="winner-info">
+                            <h3>${teamAName} هو الفائز!</h3>
+                            <p>بنتيجة ${gameScores.teamA} - ${gameScores.teamB}</p>
+                        </div>
+                    </div>
+                `;
+            } else if (gameScores.teamB > gameScores.teamA) {
+                winnerText = `
+                    <div class="final-winner">
+                        <div class="winner-icon">🏆</div>
+                        <div class="winner-info">
+                            <h3>${teamBName} هو الفائز!</h3>
+                            <p>بنتيجة ${gameScores.teamB} - ${gameScores.teamA}</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                winnerText = `
+                    <div class="final-tie">
+                        <div class="tie-icon">🤝</div>
+                        <div class="tie-info">
+                            <h3>تعادل!</h3>
+                            <p>كلا الفريقين حصل على ${gameScores.teamA} نقطة</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('finalScores').innerHTML = `
+                <div class="scores-summary">
+                    <div class="team-score">
+                        <div class="team-name">${teamAName}</div>
+                        <div class="score">${gameScores.teamA}</div>
+                    </div>
+                    <div class="vs-score">VS</div>
+                    <div class="team-score">
+                        <div class="team-name">${teamBName}</div>
+                        <div class="score">${gameScores.teamB}</div>
+                    </div>
+                </div>
+                ${winnerText}
+            `;
+            
+            resultsDiv.style.display = 'block';
+            
+            // التمرير إلى النتائج
+            setTimeout(() => {
+                resultsDiv.scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
+
+        function resetGuessWhoGame() {
+            // إعادة تعيين جميع المتغيرات
+            currentRound = 1;
+            selectedCardId = null;
+            questionsAsked = [];
+            gameScores = { teamA: 0, teamB: 0 };
+            
+            // إعادة تعيين الجولة
+            resetGuessWhoRound();
+            updateRoundDisplay();
+            
+            // إخفاء النتائج وأزرار التحكم
+            document.getElementById('gameResults').style.display = 'none';
+            document.getElementById('nextRoundBtn').style.display = 'none';
+        }
+
+        function backToGameSetup() {
+            document.getElementById('guessWhoGameArea').style.display = 'none';
+            document.querySelector('.game-setup').style.display = 'block';
+            resetGuessWhoGame();
+        }
+
+        // إضافة مستمع للأحداث لتحديث النتائج أثناء الكتابة
+        document.addEventListener('DOMContentLoaded', function() {
+            for (let i = 1; i <= 3; i++) {
+                const textarea = document.getElementById(`textarea${i}`);
+                if (textarea) {
+                    textarea.addEventListener('input', function() {
+                        if (isTimerRunning) {
+                            updateScores();
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+
+    <style>
+        .role-play-game {
+            direction: rtl;
+        }
+
+        .roles-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .role-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .role-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .role-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .role-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .role-title {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .role-description {
+            margin-bottom: 20px;
+        }
+
+        .role-description ul {
+            margin: 10px 0;
+            padding-right: 20px;
+        }
+
+        .role-description li {
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        .example-scenario {
+            background: #e6f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-right: 4px solid #667eea;
+        }
+
+        .presentation-area {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .presentation-area h5 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .presentation-text {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 2px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+
+        .presentation-text:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .voting-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: space-between;
+        }
+
+        .vote-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .vote-btn:hover:not(:disabled) {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .vote-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .vote-count {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .results-section {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .results-section h4 {
+            margin-top: 0;
+            color: #2d3748;
+        }
+
+        .ranking {
+            margin: 20px 0;
+        }
+
+        .rank-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .rank-item.winner {
+            border-color: #ffd700;
+            background: linear-gradient(135deg, #fff9e6, #fffbf0);
+        }
+
+        .medal {
+            font-size: 1.5rem;
+        }
+
+        .role-name {
+            flex-grow: 1;
+            text-align: center;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .vote-number {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .reset-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #c82333;
+        }
+
+        .tips-section {
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 4px solid #28a745;
+        }
+
+        .tips-section h5 {
+            margin-top: 0;
+            color: #2d3748;
+        }
+
+        .tips-section ul {
+            margin: 0;
+            padding-right: 20px;
+        }
+
+        .tips-section li {
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        /* تنسيقات لعبة التعليقات */
+        .meme-game {
+            direction: rtl;
+        }
+
+        .images-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .image-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .image-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .image-display {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .ai-image {
+            border-radius: 10px;
+            background: white;
+            padding: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin: 15px 0 0 0;
+        }
+
+        .comment-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .comment-section h5 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .comment-input {
+            width: 100%;
+            min-height: 80px;
+            padding: 15px;
+            border: 2px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .comment-input:disabled {
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .comment-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .submit-comment-btn, .vote-comment-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .submit-comment-btn:hover:not(:disabled), 
+        .vote-comment-btn:hover:not(:disabled) {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .submit-comment-btn:disabled, 
+        .vote-comment-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .comment-votes {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1rem;
+        }
+
+        .submitted-comment {
+            margin-top: 15px;
+            padding: 15px;
+            background: #e6f3ff;
+            border-radius: 8px;
+            border-right: 4px solid #667eea;
+        }
+
+        .comment-display strong {
+            color: #2d3748;
+        }
+
+        .comment-display p {
+            margin: 10px 0 0 0;
+            color: #4a5568;
+            font-style: italic;
+        }
+
+        .meme-results {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .meme-results h4 {
+            margin-top: 0;
+            color: #2d3748;
+        }
+
+        .comments-ranking {
+            margin: 20px 0;
+        }
+
+        .top-comment-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px solid #e2e8f0;
+            text-align: right;
+        }
+
+        .top-comment-item.winner-comment {
+            border-color: #ffd700;
+            background: linear-gradient(135deg, #fff9e6, #fffbf0);
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .comment-medal {
+            font-size: 1.5rem;
+        }
+
+        .comment-image-name {
+            font-weight: bold;
+            color: #2d3748;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .comment-vote-count {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .comment-text {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            font-style: italic;
+            color: #2d3748;
+            line-height: 1.5;
+        }
+
+        .reset-meme-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .reset-meme-btn:hover {
+            background: #c82333;
+        }
+
+        .meme-tips {
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 4px solid #28a745;
+        }
+
+        .meme-tips h5 {
+            margin-top: 0;
+            color: #2d3748;
+        }
+
+        .meme-tips ul {
+            margin: 0;
+            padding-right: 20px;
+        }
+
+        .meme-tips li {
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        /* تنسيقات لعبة المحاكمة */
+        .debate-game {
+            direction: rtl;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .topic-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .topic-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .topic-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .topic-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .topic-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .debate-header {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .current-topic h4 {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin: 0 0 10px 0;
+        }
+
+        .current-topic p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin: 0 0 25px 0;
+        }
+
+        .debate-timer {
+            margin: 25px 0;
+        }
+
+        .timer-display-debate {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .timer-text-debate {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .timer-label-debate {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .timer-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timer-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .current-speaker {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            border: 2px solid #667eea;
+        }
+
+        .speaker-indicator {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .speaker-indicator span {
+            color: #667eea;
+        }
+
+        .teams-debate-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            margin: 30px 0;
+            align-items: start;
+        }
+
+        .team-debate-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            border: 3px solid #e2e8f0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-debate-section.active-team {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            transform: scale(1.02);
+        }
+
+        .pro-team.active-team {
+            border-color: #27ae60;
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.2);
+        }
+
+        .con-team.active-team {
+            border-color: #e74c3c;
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.2);
+        }
+
+        .team-debate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #edf2f7;
+        }
+
+        .team-icon {
+            font-size: 2rem;
+        }
+
+        .team-debate-header h5 {
+            margin: 0;
+            color: #2d3748;
+            font-size: 1.4rem;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .team-time {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            background: #f7fafc;
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+
+        .vs-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vs-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .arguments-section {
+            margin-bottom: 20px;
+        }
+
+        .arguments-section h6 {
+            margin: 0 0 15px 0;
+            color: #2d3748;
+            font-size: 1.1rem;
+        }
+
+        .arguments-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .arguments-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .team-score-section {
+            text-align: center;
+        }
+
+        .score-display {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .score-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .score-label {
+            font-size: 1rem;
+            color: #718096;
+        }
+
+        .judges-section {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .judges-section h4 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        .judges-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .judge-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .judge-info {
+            margin-bottom: 15px;
+        }
+
+        .judge-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .judge-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .judge-voting {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .vote-pro-btn, .vote-con-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vote-pro-btn {
+            background: #27ae60;
+            color: white;
+        }
+
+        .vote-pro-btn:hover:not(:disabled) {
+            background: #229954;
+        }
+
+        .vote-con-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .vote-con-btn:hover:not(:disabled) {
+            background: #dc3545;
+        }
+
+        .vote-pro-btn:disabled, .vote-con-btn:disabled {
+            cursor: not-allowed;
+        }
+
+        .judge-vote-status {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .voting-results {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .voting-results h5 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        .result-bar {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            gap: 15px;
+        }
+
+        .result-label {
+            min-width: 120px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .result-progress {
+            flex-grow: 1;
+            height: 25px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            transition: width 0.5s ease;
+            border-radius: 12px;
+        }
+
+        .pro-progress {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+
+        .con-progress {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .result-count {
+            min-width: 80px;
+            font-weight: bold;
+            color: #667eea;
+            text-align: left;
+        }
+
+        .winner-announcement {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .winner-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .winner-content.pro-winner {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border: 2px solid #27ae60;
+        }
+
+        .winner-content.con-winner {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border: 2px solid #e74c3c;
+        }
+
+        .winner-content.tie {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #f39c12;
+        }
+
+        .winner-icon {
+            font-size: 3rem;
+            animation: bounce 1s infinite;
+        }
+
+        .winner-text h3 {
+            margin: 0 0 10px 0;
+            color: #2d3748;
+        }
+
+        .winner-text p {
+            margin: 0;
+            color: #4a5568;
+        }
+
+        .debate-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .reset-debate-btn, .back-to-topics-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reset-debate-btn {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+        }
+
+        .reset-debate-btn:hover {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            transform: translateY(-2px);
+        }
+
+        .back-to-topics-btn {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            color: white;
+        }
+
+        .back-to-topics-btn:hover {
+            background: linear-gradient(135deg, #5a6268, #343a40);
+            transform: translateY(-2px);
+        }
+
+        .debate-tips {
+            background: #f0fff4;
+            padding: 25px;
+            border-radius: 15px;
+            border-right: 4px solid #28a745;
+            margin-top: 30px;
+        }
+
+        .debate-tips h5 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tip-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .tip-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .tip-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .tip-card ul {
+            text-align: right;
+            margin: 0;
+            padding-right: 20px;
+        }
+
+        .tip-card li {
+            margin-bottom: 8px;
+            color: #4a5568;
+            line-height: 1.4;
+        }
+
+        /* تنسيقات لعبة تحدي 60 ثانية */
+        .speed-challenge-game {
+            direction: rtl;
+        }
+
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .challenge-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .challenge-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .challenge-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .challenge-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .challenge-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .challenge-header {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .timer-display {
+            margin-bottom: 25px;
+        }
+
+        .timer-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+        }
+
+        .timer-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .timer-label {
+            font-size: 1.1rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .challenge-question h4 {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin: 20px 0;
+            line-height: 1.4;
+        }
+
+        .challenge-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .start-btn, .stop-btn, .reset-btn, .back-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(135deg, #229954, #27ae60);
+            transform: translateY(-2px);
+        }
+
+        .stop-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .stop-btn:hover {
+            background: linear-gradient(135deg, #dc3545, #e74c3c);
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+        }
+
+        .reset-btn:hover {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            color: white;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #5a6268, #343a40);
+        }
+
+        .teams-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .team-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #edf2f7;
+        }
+
+        .team-header h5 {
+            margin: 0;
+            color: #2d3748;
+            font-size: 1.3rem;
+        }
+
+        .team-score {
+            text-align: center;
+        }
+
+        .score-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .team-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        .team-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .team-textarea:disabled {
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .answers-display {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .answer-item {
+            padding: 5px 10px;
+            margin: 3px 0;
+            background: white;
+            border-radius: 5px;
+            border-right: 3px solid #667eea;
+            font-size: 0.9rem;
+        }
+
+        .final-ranking {
+            margin: 20px 0;
+        }
+
+        .final-rank-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            margin: 15px 0;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .final-rank-item.winner-team {
+            border-color: #ffd700;
+            background: linear-gradient(135deg, #fff9e6, #fffbf0);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .final-medal {
+            font-size: 2rem;
+        }
+
+        .final-team-name {
+            flex-grow: 1;
+            text-align: center;
+            font-weight: bold;
+            color: #2d3748;
+            font-size: 1.2rem;
+        }
+
+        .final-score {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .all-teams-answers {
+            margin-top: 30px;
+        }
+
+        .team-answers-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #e2e8f0;
+        }
+
+        .team-answers-section h6 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-size: 1.1rem;
+        }
+
+        .team-answers-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .answer-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .challenge-tips {
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 4px solid #28a745;
+            margin-top: 20px;
+        }
+
+        .challenge-tips h5 {
+            margin-top: 0;
+            color: #2d3748;
+        }
+
+        .challenge-tips ul {
+            margin: 0;
+            padding-right: 20px;
+        }
+
+        .challenge-tips li {
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* تنسيقات لعبة من أنا؟ */
+        .guess-who-game {
+            direction: rtl;
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .team-setup-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-name {
+            margin-bottom: 20px;
+        }
+
+        .team-name h5 {
+            margin: 0 0 10px 0;
+            color: #2d3748;
+            font-size: 1.3rem;
+        }
+
+        .team-name-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .team-name-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .team-role {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .role-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .role-option:hover {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+
+        .role-option input[type="radio"] {
+            margin: 0;
+        }
+
+        .role-option span {
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .vs-separator {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .start-game-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .start-guess-game-btn {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .start-guess-game-btn:hover {
+            background: linear-gradient(135deg, #229954, #27ae60);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+        }
+
+        .game-header {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .current-round h4 {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin: 0 0 10px 0;
+        }
+
+        .current-round p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin: 0 0 25px 0;
+        }
+
+        .timer-display-guess {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .timer-text-guess {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .timer-label-guess {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .timer-controls-guess {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cards-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cards-section h4 {
+            margin-top: 0;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        .cards-instruction {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            border-right: 4px solid #f39c12;
+            margin-bottom: 25px;
+            color: #856404;
+            font-weight: 500;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .card-item.selected {
+            border-color: #27ae60;
+            background: #d4edda;
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.3);
+        }
+
+        .card-front {
+            display: block;
+        }
+
+        .card-item.selected .card-front {
+            display: none;
+        }
+
+        .card-back {
+            display: none;
+        }
+
+        .card-item.selected .card-back {
+            display: block;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .card-term {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .card-english {
+            font-size: 1rem;
+            color: #4a5568;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .card-hint {
+            font-size: 0.9rem;
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .selected-card-display {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #27ae60;
+            margin-top: 25px;
+        }
+
+        .selected-card-display h5 {
+            margin-top: 0;
+            color: #155724;
+        }
+
+        .selected-card-content {
+            text-align: center;
+        }
+
+        .selected-term {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #155724;
+            margin-bottom: 10px;
+        }
+
+        .selected-english {
+            font-size: 1.1rem;
+            color: #155724;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .selected-warning {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .game-play-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .questions-section, .guess-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .questions-section h4, .guess-section h4 {
+            margin-top: 0;
+            color: #2d3748;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .question-input {
+            flex-grow: 1;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .question-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .question-input:disabled {
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .ask-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .ask-btn:hover:not(:disabled) {
+            background: #5a67d8;
+        }
+
+        .ask-btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+        }
+
+        .answer-buttons {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .current-question {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .answer-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .answer-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .yes-btn {
+            background: #27ae60;
+            color: white;
+        }
+
+        .yes-btn:hover {
+            background: #229954;
+        }
+
+        .no-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .no-btn:hover {
+            background: #dc3545;
+        }
+
+        .maybe-btn {
+            background: #f39c12;
+            color: white;
+        }
+
+        .maybe-btn:hover {
+            background: #e67e22;
+        }
+
+        .questions-history {
+            margin-top: 20px;
+        }
+
+        .questions-history h5 {
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .history-list {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .no-questions {
+            color: #718096;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 8px;
+            border-right: 3px solid #e2e8f0;
+        }
+
+        .history-question {
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+
+        .question-number {
+            font-weight: bold;
+            color: #667eea;
+            margin-left: 8px;
+        }
+
+        .question-text {
+            color: #2d3748;
+        }
+
+        .history-answer {
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .history-answer.answer-yes {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .history-answer.answer-no {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .history-answer.answer-maybe {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .guess-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .final-guess-input {
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .final-guess-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .final-guess-input:disabled {
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .final-guess-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .final-guess-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #5a67d8, #667eea);
+            transform: translateY(-2px);
+        }
+
+        .final-guess-btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .guess-result {
+            margin-top: 20px;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .guess-result.correct-result {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border: 2px solid #27ae60;
+        }
+
+        .guess-result.incorrect-result {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border: 2px solid #e74c3c;
+        }
+
+        .guess-correct, .guess-incorrect {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .result-icon {
+            font-size: 3rem;
+        }
+
+        .result-text h5 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+        }
+
+        .result-text p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .correct-answer {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .next-round-btn, .reset-game-btn, .back-to-setup-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .next-round-btn {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+        }
+
+        .next-round-btn:hover {
+            background: linear-gradient(135deg, #229954, #27ae60);
+            transform: translateY(-2px);
+        }
+
+        .reset-game-btn {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+        }
+
+        .reset-game-btn:hover {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            transform: translateY(-2px);
+        }
+
+        .back-to-setup-btn {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            color: white;
+        }
+
+        .back-to-setup-btn:hover {
+            background: linear-gradient(135deg, #5a6268, #343a40);
+            transform: translateY(-2px);
+        }
+
+        .game-results {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .game-results h4 {
+            margin-top: 0;
+            color: #2d3748;
+        }
+
+        .scores-summary {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .team-score {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .team-score .team-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .team-score .score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .vs-score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .final-winner, .final-tie {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .final-winner {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border: 2px solid #27ae60;
+        }
+
+        .final-tie {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #f39c12;
+        }
+
+        .winner-icon, .tie-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .winner-info h3, .tie-info h3 {
+            margin: 0 0 10px 0;
+            color: #2d3748;
+        }
+
+        .winner-info p, .tie-info p {
+            margin: 0;
+            color: #4a5568;
+        }
+
+        .game-tips {
+            background: #f0fff4;
+            padding: 25px;
+            border-radius: 15px;
+            border-right: 4px solid #28a745;
+            margin-top: 30px;
+        }
+
+        .game-tips h5 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        .tips-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .tip-column {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .tip-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .tip-header .tip-icon {
+            font-size: 2rem;
+        }
+
+        .tip-header h6 {
+            margin: 0;
+            color: #2d3748;
+            font-size: 1.2rem;
+        }
+
+        .tip-column ul {
+            margin: 0;
+            padding-right: 20px;
+        }
+
+        .tip-column li {
+            margin-bottom: 8px;
+            color: #4a5568;
+            line-height: 1.4;
+        }
+
+        .example-questions {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .example-questions h6 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        .questions-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .example-q {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .teams-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .vs-separator {
+                order: 2;
+                margin: 15px auto;
+            }
+
+            .game-play-area {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            .answer-options {
+                flex-direction: column;
+            }
+
+            .history-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .history-answer {
+                align-self: flex-start;
+            }
+
+            .scores-summary {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .guess-correct, .guess-incorrect {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tips-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .game-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cards-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .timer-controls-guess {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .role-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .voting-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .rank-item {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .images-container {
+                grid-template-columns: 1fr;
+            }
+
+            .comment-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .comment-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .challenges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .teams-container {
+                grid-template-columns: 1fr;
+            }
+
+            .challenge-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .final-rank-item {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .timer-circle {
+                width: 100px;
+                height: 100px;
+            }
+
+            .timer-text {
+                font-size: 2rem;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .teams-debate-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .vs-divider {
+                order: 2;
+                margin: 15px 0;
+            }
+
+            .pro-team {
+                order: 1;
+            }
+
+            .con-team {
+                order: 3;
+            }
+
+            .judges-container {
+                grid-template-columns: 1fr;
+            }
+
+            .debate-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timer-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .result-bar {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .result-label, .result-count {
+                min-width: auto;
+            }
+
+            .winner-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9acbef22b732ce14',t:'MTc2NTUyOTAwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
