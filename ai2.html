@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الذكاء الاصطناعي - الوظائف والتطبيقات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .ai-icon {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .job-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .application-item {
+            transition: all 0.3s ease;
+            cursor: grab;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+        
+        .application-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .application-item.dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+            cursor: grabbing;
+        }
+        
+        .category-zone {
+            transition: all 0.3s ease;
+            min-height: 120px;
+            border: 2px dashed #d1d5db;
+        }
+        
+        .category-zone.drag-over {
+            border-color: #4f46e5;
+            background-color: #eef2ff;
+            transform: scale(1.02);
+        }
+        
+        .category-zone.has-items {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+        
+        .star {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .star:hover {
+            transform: scale(1.2);
+        }
+        
+        .star.filled {
+            color: #fbbf24;
+        }
+        
+        .star.empty {
+            color: #d1d5db;
+        }
+        
+        .popup {
+            animation: popupAnimation 0.5s ease-out;
+        }
+        
+        @keyframes popupAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .celebration {
+            animation: bounce 0.6s ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .strategy-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .nav-button {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .page-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 300px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .flip-card-back {
+            transform: rotateY(180deg);
+            padding: 20px;
+        }
+        
+        .concept-card {
+            transition: all 0.3s ease;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-question {
+            display: none;
+        }
+        
+        .quiz-question.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .question-indicator {
+            transition: all 0.3s ease;
+        }
+        
+        .question-indicator.active {
+            background-color: #3b82f6 !important;
+        }
+        
+        .draggable-item {
+            transition: all 0.3s ease;
+        }
+        
+        .draggable-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .drop-zone {
+            transition: all 0.3s ease;
+        }
+        
+        .drop-zone.drag-over {
+            border-color: #8b5cf6;
+            background-color: #f3f4f6;
+        }
+        
+        .rating-animation {
+            animation: ratingPop 0.6s ease-out;
+        }
+        
+        @keyframes ratingPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-8 mb-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="ai-icon text-6xl mb-4">🤖</div>
+            <h1 class="text-4xl font-bold mb-2">الذكاء الاصطناعي</h1>
+            <p class="text-xl opacity-90">الوظائف المستقبلية والتطبيقات في الحياة</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <div class="container mx-auto px-6 max-w-4xl mb-8">
+        <div class="bg-white rounded-2xl shadow-lg p-4">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                    onclick="showPage('jobs')" 
+                    class="nav-button active bg-gray-100 text-gray-700 px-6 py-3 rounded-xl font-semibold text-lg hover:bg-gray-200"
+                >
+                    🎯 الوظائف المستقبلية
+                </button>
+                <button 
+                    onclick="showPage('applications')" 
+                    class="nav-button bg-gray-100 text-gray-700 px-6 py-3 rounded-xl font-semibold text-lg hover:bg-gray-200"
+                >
+                    🌟 التطبيقات في الحياة
+                </button>
+                <button 
+                    onclick="showPage('machine-learning')" 
+                    class="nav-button bg-gray-100 text-gray-700 px-6 py-3 rounded-xl font-semibold text-lg hover:bg-gray-200"
+                >
+                    🧠 تعلم الآلة
+                </button>
+                <button 
+                    onclick="showPage('final-activity')" 
+                    class="nav-button bg-gray-100 text-gray-700 px-6 py-3 rounded-xl font-semibold text-lg hover:bg-gray-200"
+                >
+                    🎯 النشاط الختامي
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jobs Page Content -->
+    <div id="jobsPage" class="page-content active">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <!-- Jobs Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Data Scientist -->
+                <div class="job-card rounded-2xl p-6 text-white shadow-lg cursor-pointer" data-job="عالم بيانات" onclick="toggleJobDescription(this)">
+                    <div class="text-4xl mb-4 text-center">📊</div>
+                    <h3 class="text-2xl font-bold mb-3 text-center">عالم بيانات</h3>
+                    <p class="job-description text-sm opacity-90 mb-4 leading-relaxed hidden">
+                        يحلل البيانات الضخمة لاستخراج رؤى قيمة تساعد في اتخاذ القرارات الذكية
+                    </p>
+                    <button onclick="selectJob('عالم بيانات'); event.stopPropagation();" class="w-full bg-white text-purple-600 py-2 px-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        اختر هذه الوظيفة
+                    </button>
+                </div>
+
+                <!-- Data Engineer -->
+                <div class="job-card rounded-2xl p-6 text-white shadow-lg cursor-pointer" data-job="مهندس بيانات" onclick="toggleJobDescription(this)">
+                    <div class="text-4xl mb-4 text-center">🔧</div>
+                    <h3 class="text-2xl font-bold mb-3 text-center">مهندس بيانات</h3>
+                    <p class="job-description text-sm opacity-90 mb-4 leading-relaxed hidden">
+                        يبني وينظم أنظمة البيانات لضمان تدفق المعلومات بكفاءة وأمان
+                    </p>
+                    <button onclick="selectJob('مهندس بيانات'); event.stopPropagation();" class="w-full bg-white text-purple-600 py-2 px-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        اختر هذه الوظيفة
+                    </button>
+                </div>
+
+                <!-- ML Engineer -->
+                <div class="job-card rounded-2xl p-6 text-white shadow-lg cursor-pointer" data-job="مهندس تعلم آلي" onclick="toggleJobDescription(this)">
+                    <div class="text-4xl mb-4 text-center">🧠</div>
+                    <h3 class="text-2xl font-bold mb-3 text-center">مهندس تعلم آلي</h3>
+                    <p class="job-description text-sm opacity-90 mb-4 leading-relaxed hidden">
+                        يطور نماذج الذكاء الاصطناعي التي تتعلم وتتحسن تلقائياً
+                    </p>
+                    <button onclick="selectJob('مهندس تعلم آلي'); event.stopPropagation();" class="w-full bg-white text-purple-600 py-2 px-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        اختر هذه الوظيفة
+                    </button>
+                </div>
+
+                <!-- Data Operations Engineer -->
+                <div class="job-card rounded-2xl p-6 text-white shadow-lg cursor-pointer" data-job="مهندس عمليات بيانات" onclick="toggleJobDescription(this)">
+                    <div class="text-4xl mb-4 text-center">⚙️</div>
+                    <h3 class="text-2xl font-bold mb-3 text-center">مهندس عمليات بيانات</h3>
+                    <p class="job-description text-sm opacity-90 mb-4 leading-relaxed hidden">
+                        يدير ويراقب أنظمة البيانات لضمان عملها بسلاسة على مدار الساعة
+                    </p>
+                    <button onclick="selectJob('مهندس عمليات بيانات'); event.stopPropagation();" class="w-full bg-white text-purple-600 py-2 px-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        اختر هذه الوظيفة
+                    </button>
+                </div>
+
+                <!-- MLOps Engineer -->
+                <div class="job-card rounded-2xl p-6 text-white shadow-lg cursor-pointer" data-job="مهندس عمليات التعلم الآلي" onclick="toggleJobDescription(this)">
+                    <div class="text-4xl mb-4 text-center">🚀</div>
+                    <h3 class="text-2xl font-bold mb-3 text-center">مهندس عمليات التعلم الآلي</h3>
+                    <p class="job-description text-sm opacity-90 mb-4 leading-relaxed hidden">
+                        يربط بين تطوير نماذج الذكاء الاصطناعي وتطبيقها في الواقع
+                    </p>
+                    <button onclick="selectJob('مهندس عمليات التعلم الآلي'); event.stopPropagation();" class="w-full bg-white text-purple-600 py-2 px-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        اختر هذه الوظيفة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Strategy Section for Jobs -->
+            <div class="strategy-card rounded-2xl p-6 text-white shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-center">📚 الاستراتيجية المستخدمة</h2>
+                <div class="bg-white bg-opacity-20 rounded-xl p-4">
+                    <h3 class="text-xl font-semibold mb-2">استراتيجية التعلم القائم على المشاريع والتفكير النقدي</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                        هذه الاستراتيجية تعتمد على إشراك الطلاب في تحليل الوظائف المستقبلية وربطها بالواقع المجتمعي. 
+                        تساعد على تطوير مهارات التفكير النقدي والابتكاري من خلال تقييم تأثير التقنيات على المجتمع، 
+                        مما يعزز فهم الطلاب لدور التكنولوجيا في حل المشكلات الحقيقية.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Thinking Skills for Jobs -->
+            <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl p-6 text-white shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-center">🧠 مهارة التفكير المطلوبة</h2>
+                <div class="bg-white bg-opacity-20 rounded-xl p-4">
+                    <h3 class="text-xl font-semibold mb-2">💡 الابتكار والتقويم</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                        تطوير القدرة على التفكير الإبداعي لإيجاد حلول مبتكرة للمشكلات المجتمعية، 
+                        وتقويم تأثير الوظائف التقنية على المجتمع من خلال تحليل الفوائد والتحديات المحتملة.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Jobs Activity Section -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">🎯 النشاط الجماعي</h2>
+                
+                <div class="bg-blue-50 rounded-xl p-6 mb-6">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">الوظيفة المختارة:</h3>
+                    <p id="selectedJob" class="text-lg text-blue-600 font-medium">لم يتم اختيار وظيفة بعد</p>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-lg font-semibold text-gray-700 mb-3">
+                        كيف يمكن لهذه الوظيفة أن تفيد المجتمع؟
+                    </label>
+                    <textarea 
+                        id="benefitText" 
+                        rows="5" 
+                        class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none resize-none text-lg"
+                        placeholder="اكتب هنا كيف يمكن لهذه الوظيفة أن تساهم في تطوير المجتمع وحل مشاكله..."
+                    ></textarea>
+                </div>
+
+                <div class="text-center mb-6">
+                    <button 
+                        onclick="submitJobsActivity()" 
+                        class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-blue-700 transition-all transform hover:scale-105"
+                    >
+                        إرسال الإجابة ✨
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Jobs Rating Section -->
+            <div id="jobsRatingSection" class="bg-white rounded-2xl shadow-lg p-8 hidden">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">⭐ تقييم الأداء</h2>
+                
+                <div class="text-center mb-6">
+                    <p class="text-lg text-gray-600 mb-4">قيم أداء مجموعتك:</p>
+                    <div class="flex justify-center gap-2 mb-6">
+                        <span class="star text-4xl" data-rating="1" onclick="setJobsRating(1)">⭐</span>
+                        <span class="star text-4xl" data-rating="2" onclick="setJobsRating(2)">⭐</span>
+                        <span class="star text-4xl" data-rating="3" onclick="setJobsRating(3)">⭐</span>
+                        <span class="star text-4xl" data-rating="4" onclick="setJobsRating(4)">⭐</span>
+                        <span class="star text-4xl" data-rating="5" onclick="setJobsRating(5)">⭐</span>
+                    </div>
+                </div>
+
+                <div id="jobsRatingMessage" class="text-center hidden">
+                    <div class="celebration text-6xl mb-4">🎉</div>
+                    <h3 id="jobsRatingText" class="text-3xl font-bold mb-4"></h3>
+                    <p class="text-lg text-gray-600">عمل رائع! استمروا في الإبداع والابتكار</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Machine Learning Page Content -->
+    <div id="machineLearningPage" class="page-content">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <!-- Strategy Section -->
+            <div class="strategy-card rounded-2xl p-6 text-white shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-center">📚 الاستراتيجية المستخدمة</h2>
+                <div class="bg-white bg-opacity-20 rounded-xl p-4">
+                    <h3 class="text-xl font-semibold mb-2">استراتيجية التعلم التفاعلي بقلب البطاقات</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                        هذه الاستراتيجية تعتمد على التعلم النشط والاستكشاف التفاعلي. تساعد الطلاب على اكتشاف المحتوى بأنفسهم 
+                        من خلال قلب البطاقات، مما يعزز الفضول والتعلم الذاتي ويجعل المعلومات أكثر تأثيراً وبقاءً في الذاكرة.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Thinking Skills -->
+            <div class="bg-gradient-to-r from-purple-400 to-pink-500 rounded-2xl p-6 text-white shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-center">🧠 مهارات التفكير المطلوبة</h2>
+                <div class="bg-white bg-opacity-20 rounded-xl p-4">
+                    <h3 class="text-xl font-semibold mb-2">🔍 التحليل والتقويم والإبداع</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                        تنمية القدرة على تحليل المفاهيم التقنية، تقويم التطبيقات المختلفة، والإبداع في إيجاد حلول مبتكرة 
+                        للمشكلات الحقيقية باستخدام تقنيات تعلم الآلة.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Machine Learning Concepts -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">🧠 مفاهيم تعلم الآلة</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Machine Learning -->
+                    <div class="concept-card bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl p-6 text-white">
+                        <div class="text-4xl mb-3 text-center">🤖</div>
+                        <h3 class="text-xl font-bold mb-3 text-center">تعلم الآلة</h3>
+                        <p class="text-sm opacity-90 leading-relaxed">
+                            تقنية تمكن الحاسوب من التعلم والتحسن تلقائياً من خلال الخبرة والبيانات دون برمجة صريحة
+                        </p>
+                    </div>
+
+                    <!-- Deep Learning -->
+                    <div class="concept-card bg-gradient-to-br from-green-500 to-teal-600 rounded-xl p-6 text-white">
+                        <div class="text-4xl mb-3 text-center">🧠</div>
+                        <h3 class="text-xl font-bold mb-3 text-center">التعلم العميق</h3>
+                        <p class="text-sm opacity-90 leading-relaxed">
+                            نوع متقدم من تعلم الآلة يحاكي عمل الدماغ البشري باستخدام شبكات عصبية معقدة
+                        </p>
+                    </div>
+
+                    <!-- Dataset -->
+                    <div class="concept-card bg-gradient-to-br from-orange-500 to-red-600 rounded-xl p-6 text-white">
+                        <div class="text-4xl mb-3 text-center">📊</div>
+                        <h3 class="text-xl font-bold mb-3 text-center">مجموعة البيانات</h3>
+                        <p class="text-sm opacity-90 leading-relaxed">
+                            مجموعة كبيرة من المعلومات المنظمة التي يستخدمها النظام للتعلم واتخاذ القرارات
+                        </p>
+                    </div>
+
+                    <!-- Algorithm -->
+                    <div class="concept-card bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl p-6 text-white">
+                        <div class="text-4xl mb-3 text-center">⚙️</div>
+                        <h3 class="text-xl font-bold mb-3 text-center">الخوارزمية</h3>
+                        <p class="text-sm opacity-90 leading-relaxed">
+                            مجموعة من القواعد والتعليمات التي توجه الحاسوب لحل مشكلة معينة أو اتخاذ قرار
+                        </p>
+                    </div>
+
+                    <!-- Function -->
+                    <div class="concept-card bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl p-6 text-white">
+                        <div class="text-4xl mb-3 text-center">📈</div>
+                        <h3 class="text-xl font-bold mb-3 text-center">الدالة</h3>
+                        <p class="text-sm opacity-90 leading-relaxed">
+                            علاقة رياضية تربط بين المدخلات والمخرجات لتحويل البيانات إلى نتائج مفيدة
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Flip Activity -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">🎴 نشاط قلب البطاقات</h2>
+                <p class="text-gray-600 text-center mb-8">اضغط على البطاقات لاكتشاف تطبيقات تعلم الآلة في مجالات مختلفة</p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Business Intelligence Card -->
+                    <div class="flip-card" onclick="flipCard(this)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl p-6 text-white">
+                                <div class="text-4xl mb-4 text-center">💼</div>
+                                <h3 class="text-xl font-bold text-center">ذكاء الأعمال</h3>
+                                <p class="text-center text-sm opacity-90 mt-2">اضغط للاكتشاف</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-to-br from-indigo-600 to-blue-500 rounded-xl p-6 text-white">
+                                <h3 class="text-lg font-bold mb-3">تطبيقات تعلم الآلة في ذكاء الأعمال</h3>
+                                <p class="text-sm mb-4">اتخاذ قرارات استراتيجية مبنية على البيانات</p>
+                                <div class="activity-section bg-white bg-opacity-20 rounded-lg p-3 mb-3">
+                                    <p class="text-xs font-semibold mb-2">النشاط:</p>
+                                    <p class="text-xs">إذا كنتِ مديرة شركة، ما القرار الذي ستتخذينه بناءً على بيانات المبيعات؟</p>
+                                </div>
+                                <div class="text-center">
+                                    <button onclick="showRating('business', 'قرار حكيم!'); event.stopPropagation();" class="bg-white text-indigo-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100">
+                                        تقييم الأداء
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Government Card -->
+                    <div class="flip-card" onclick="flipCard(this)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white">
+                                <div class="text-4xl mb-4 text-center">🏛️</div>
+                                <h3 class="text-xl font-bold text-center">الحكومة</h3>
+                                <p class="text-center text-sm opacity-90 mt-2">اضغط للاكتشاف</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-to-br from-emerald-600 to-green-500 rounded-xl p-6 text-white">
+                                <h3 class="text-lg font-bold mb-3">تطبيقات تعلم الآلة في الحكومة</h3>
+                                <p class="text-sm mb-4">تحليل أنماط المواطنين لتوزيع الموارد</p>
+                                <div class="activity-section bg-white bg-opacity-20 rounded-lg p-3 mb-3">
+                                    <p class="text-xs font-semibold mb-2">النشاط:</p>
+                                    <p class="text-xs">اذكري 3 موارد يمكن للحكومة توزيعها بشكل عادل باستخدام تعلم الآلة</p>
+                                </div>
+                                <div class="text-center">
+                                    <button onclick="showRating('government', 'تحليل ممتاز!'); event.stopPropagation();" class="bg-white text-emerald-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100">
+                                        تقييم الأداء
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Biotechnology Card -->
+                    <div class="flip-card" onclick="flipCard(this)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-6 text-white">
+                                <div class="text-4xl mb-4 text-center">🧬</div>
+                                <h3 class="text-xl font-bold text-center">التقنية الحيوية</h3>
+                                <p class="text-center text-sm opacity-90 mt-2">اضغط للاكتشاف</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-to-br from-pink-600 to-purple-500 rounded-xl p-6 text-white">
+                                <h3 class="text-lg font-bold mb-3">التطبيقات في التقنية الحيوية</h3>
+                                <p class="text-sm mb-4">التطوير السريع للأدوية والعلاجات</p>
+                                <div class="activity-section bg-white bg-opacity-20 rounded-lg p-3 mb-3">
+                                    <p class="text-xs font-semibold mb-2">النشاط:</p>
+                                    <p class="text-xs">اكتبي مثالاً لدواء أو علاج يمكن أن يستفيد من الذكاء الاصطناعي</p>
+                                </div>
+                                <div class="text-center">
+                                    <button onclick="showRating('biotech', 'ابتكار رائع!'); event.stopPropagation();" class="bg-white text-pink-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100">
+                                        تقييم الأداء
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Energy Card -->
+                    <div class="flip-card" onclick="flipCard(this)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-6 text-white">
+                                <div class="text-4xl mb-4 text-center">⚡</div>
+                                <h3 class="text-xl font-bold text-center">الطاقة</h3>
+                                <p class="text-center text-sm opacity-90 mt-2">اضغط للاكتشاف</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-to-br from-orange-600 to-yellow-500 rounded-xl p-6 text-white">
+                                <h3 class="text-lg font-bold mb-3">التطبيقات في الطاقة</h3>
+                                <p class="text-sm mb-4">خفض تكاليف استخدام الطاقة</p>
+                                <div class="activity-section bg-white bg-opacity-20 rounded-lg p-3 mb-3">
+                                    <p class="text-xs font-semibold mb-2">النشاط:</p>
+                                    <p class="text-xs">اقترحي طريقة ذكية لترشيد استهلاك الكهرباء في المدرسة باستخدام AI</p>
+                                </div>
+                                <div class="text-center">
+                                    <button onclick="showRating('energy', 'فكرة مبتكرة!'); event.stopPropagation();" class="bg-white text-orange-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100">
+                                        تقييم الأداء
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transportation Card -->
+                    <div class="flip-card" onclick="flipCard(this)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl p-6 text-white">
+                                <div class="text-4xl mb-4 text-center">🚗</div>
+                                <h3 class="text-xl font-bold text-center">النقل</h3>
+                                <p class="text-center text-sm opacity-90 mt-2">اضغط للاكتشاف</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-to-br from-cyan-600 to-teal-500 rounded-xl p-6 text-white">
+                                <h3 class="text-lg font-bold mb-3">التطبيقات في النقل</h3>
+                                <p class="text-sm mb-4">سيارات ذاتية القيادة وحل مشكلة الازدحام المروري</p>
+                                <div class="activity-section bg-white bg-opacity-20 rounded-lg p-3 mb-3">
+                                    <p class="text-xs font-semibold mb-2">النشاط:</p>
+                                    <p class="text-xs">ارسموا خريطة صغيرة توضح كيف يمكن للمدن الذكية تقليل الزحام</p>
+                                </div>
+                                <div class="text-center">
+                                    <button onclick="showRating('transport', 'تصميم ذكي!'); event.stopPropagation();" class="bg-white text-cyan-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100">
+                                        تقييم الأداء
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advertising Card -->
+                    <div class="flip-card" onclick="flipCard(this)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-gradient-to-br from-red-500 to-pink-600 rounded-xl p-6 text-white">
+                                <div class="text-4xl mb-4 text-center">📢</div>
+                                <h3 class="text-xl font-bold text-center">الإعلان</h3>
+                                <p class="text-center text-sm opacity-90 mt-2">اضغط للاكتشاف</p>
+                            </div>
+                            <div class="flip-card-back bg-gradient-to-br from-pink-600 to-red-500 rounded-xl p-6 text-white">
+                                <h3 class="text-lg font-bold mb-3">التطبيقات في الإعلان</h3>
+                                <p class="text-sm mb-4">الإعلان المخصص للوصول إلى العملاء المحتملين</p>
+                                <div class="activity-section bg-white bg-opacity-20 rounded-lg p-3 mb-3">
+                                    <p class="text-xs font-semibold mb-2">النشاط:</p>
+                                    <p class="text-xs">ابتكري إعلاناً قصيراً لمنتج مفضل لديك باستخدام AI</p>
+                                </div>
+                                <div class="text-center">
+                                    <button onclick="showRating('advertising', 'إبداع متميز!'); event.stopPropagation();" class="bg-white text-pink-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100">
+                                        تقييم الأداء
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Applications Page Content -->
+    <div id="applicationsPage" class="page-content">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <!-- Strategy Section -->
+            <div class="strategy-card rounded-2xl p-6 text-white shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-center">📚 الاستراتيجية المستخدمة</h2>
+                <div class="bg-white bg-opacity-20 rounded-xl p-4">
+                    <h3 class="text-xl font-semibold mb-2">استراتيجية التعلم التفاعلي بالسحب والإفلات</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                        هذه الاستراتيجية تعتمد على التعلم النشط حيث يتفاعل الطلاب مع المحتوى بصرياً وحركياً. 
+                        تساعد على تطوير مهارات التحليل والتصنيف من خلال ربط التطبيقات بمجالاتها المناسبة، 
+                        مما يعزز الفهم العميق ويجعل التعلم أكثر متعة وفعالية.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Thinking Skills for Applications -->
+            <div class="bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl p-6 text-white shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-center">🧠 مهارة التفكير المطلوبة</h2>
+                <div class="bg-white bg-opacity-20 rounded-xl p-4">
+                    <h3 class="text-xl font-semibold mb-2">🔍 التحليل والتصنيف</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                        تنمية القدرة على تحليل التطبيقات التقنية وفهم خصائصها، ثم تصنيفها حسب مجالات الاستخدام المناسبة. 
+                        هذه المهارة تساعد على فهم العلاقات بين التقنيات والمجالات المختلفة في الحياة العملية.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Applications Pool -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">🎯 تطبيقات الذكاء الاصطناعي</h2>
+                <p class="text-gray-600 text-center mb-6">اسحب التطبيقات وضعها في المجال المناسب</p>
+                
+                <div id="applicationsPool" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Applications will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Categories Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Smart Cities -->
+                <div class="category-zone bg-white rounded-2xl p-6 shadow-lg" data-category="المدن الذكية">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">🏙️</div>
+                        <h3 class="text-xl font-bold text-gray-800">المدن الذكية</h3>
+                    </div>
+                    <div class="applications-container min-h-[80px]">
+                        <!-- Dropped applications will appear here -->
+                    </div>
+                </div>
+
+                <!-- Health -->
+                <div class="category-zone bg-white rounded-2xl p-6 shadow-lg" data-category="الصحة">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">🏥</div>
+                        <h3 class="text-xl font-bold text-gray-800">الصحة</h3>
+                    </div>
+                    <div class="applications-container min-h-[80px]">
+                        <!-- Dropped applications will appear here -->
+                    </div>
+                </div>
+
+                <!-- Manufacturing -->
+                <div class="category-zone bg-white rounded-2xl p-6 shadow-lg" data-category="التصنيع">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">🏭</div>
+                        <h3 class="text-xl font-bold text-gray-800">التصنيع</h3>
+                    </div>
+                    <div class="applications-container min-h-[80px]">
+                        <!-- Dropped applications will appear here -->
+                    </div>
+                </div>
+
+                <!-- Transportation -->
+                <div class="category-zone bg-white rounded-2xl p-6 shadow-lg" data-category="النقل">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">🚗</div>
+                        <h3 class="text-xl font-bold text-gray-800">النقل</h3>
+                    </div>
+                    <div class="applications-container min-h-[80px]">
+                        <!-- Dropped applications will appear here -->
+                    </div>
+                </div>
+
+                <!-- Retail -->
+                <div class="category-zone bg-white rounded-2xl p-6 shadow-lg" data-category="التجزئة">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">🛒</div>
+                        <h3 class="text-xl font-bold text-gray-800">التجزئة</h3>
+                    </div>
+                    <div class="applications-container min-h-[80px]">
+                        <!-- Dropped applications will appear here -->
+                    </div>
+                </div>
+
+                <!-- Banking -->
+                <div class="category-zone bg-white rounded-2xl p-6 shadow-lg" data-category="الخدمات المصرفية">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-2">🏦</div>
+                        <h3 class="text-xl font-bold text-gray-800">الخدمات المصرفية</h3>
+                    </div>
+                    <div class="applications-container min-h-[80px]">
+                        <!-- Dropped applications will appear here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applications Activity Section -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">🎯 النشاط الجماعي</h2>
+                
+                <div class="bg-blue-50 rounded-xl p-6 mb-6">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">التقدم:</h3>
+                    <div class="flex items-center gap-4">
+                        <div class="flex-1 bg-gray-200 rounded-full h-3">
+                            <div id="progressBar" class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                        <span id="progressText" class="text-blue-600 font-semibold">0/18</span>
+                    </div>
+                </div>
+
+                <div class="text-center mb-6">
+                    <button 
+                        id="checkAnswers"
+                        onclick="checkAnswers()" 
+                        class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-blue-700 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled
+                    >
+                        فحص الإجابات ✨
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Applications Rating Section -->
+            <div id="applicationsRatingSection" class="bg-white rounded-2xl shadow-lg p-8 hidden">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">⭐ تقييم الأداء</h2>
+                
+                <div class="text-center mb-6">
+                    <p class="text-lg text-gray-600 mb-4">قيم أداء مجموعتك:</p>
+                    <div class="flex justify-center gap-2 mb-6">
+                        <span class="star text-4xl" data-rating="1" onclick="setApplicationsRating(1)">⭐</span>
+                        <span class="star text-4xl" data-rating="2" onclick="setApplicationsRating(2)">⭐</span>
+                        <span class="star text-4xl" data-rating="3" onclick="setApplicationsRating(3)">⭐</span>
+                        <span class="star text-4xl" data-rating="4" onclick="setApplicationsRating(4)">⭐</span>
+                        <span class="star text-4xl" data-rating="5" onclick="setApplicationsRating(5)">⭐</span>
+                    </div>
+                </div>
+
+                <div id="applicationsRatingMessage" class="text-center hidden">
+                    <div class="celebration text-6xl mb-4">🎉</div>
+                    <h3 id="applicationsRatingText" class="text-3xl font-bold mb-4"></h3>
+                    <p class="text-lg text-gray-600">عمل رائع! استمروا في الإبداع والابتكار</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Activity Page Content -->
+    <div id="finalActivityPage" class="page-content">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <!-- Strategy Section -->
+            <div class="strategy-card rounded-2xl p-6 text-white shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-center">📚 الاستراتيجية المستخدمة</h2>
+                <div class="bg-white bg-opacity-20 rounded-xl p-4">
+                    <h3 class="text-xl font-semibold mb-2">استراتيجية التعلم التكاملي والتقييم الشامل</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                        هذه الاستراتيجية تجمع بين جميع المفاهيم المتعلمة في نشاط ختامي شامل. تساعد على ربط المعرفة النظرية 
+                        بالتطبيق العملي، وتقييم مدى فهم الطلاب للمحتوى بشكل متكامل ومترابط.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Thinking Skills -->
+            <div class="bg-gradient-to-r from-indigo-400 to-purple-500 rounded-2xl p-6 text-white shadow-lg mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-center">🧠 مهارة التفكير المطلوبة</h2>
+                <div class="bg-white bg-opacity-20 rounded-xl p-4">
+                    <h3 class="text-xl font-semibold mb-2">🔗 التركيب والتقييم الشامل</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                        تنمية القدرة على ربط المفاهيم المختلفة وتكوين فهم شامل ومتكامل للذكاء الاصطناعي وتطبيقاته، 
+                        مع تقييم الأثر الإيجابي والسلبي لهذه التقنيات على المجتمع.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Final Comprehensive Activity -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">🎯 النشاط الختامي الشامل</h2>
+                <p class="text-gray-600 text-center mb-8">اختبر معرفتك الشاملة بالذكاء الاصطناعي وتطبيقاته</p>
+                
+                <!-- Quiz Section -->
+                <div class="quiz-container">
+                    <div class="quiz-question active" data-question="1">
+                        <div class="bg-blue-50 rounded-xl p-6 mb-6">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-4">السؤال 1 من 5</h3>
+                            <p class="text-lg text-gray-700 mb-6">ما هو الفرق بين تعلم الآلة والتعلم العميق؟</p>
+                            <div class="space-y-3">
+                                <label class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-blue-50 transition-colors">
+                                    <input type="radio" name="q1" value="a" class="ml-3">
+                                    <span>تعلم الآلة أبسط من التعلم العميق ويستخدم خوارزميات أقل تعقيداً</span>
+                                </label>
+                                <label class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-blue-50 transition-colors">
+                                    <input type="radio" name="q1" value="b" class="ml-3">
+                                    <span>التعلم العميق نوع متقدم من تعلم الآلة يحاكي الدماغ البشري</span>
+                                </label>
+                                <label class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-blue-50 transition-colors">
+                                    <input type="radio" name="q1" value="c" class="ml-3">
+                                    <span>لا يوجد فرق بينهما</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question" data-question="2">
+                        <div class="bg-green-50 rounded-xl p-6 mb-6">
+                            <h3 class="text-xl font-semibold text-green-800 mb-4">السؤال 2 من 5</h3>
+                            <p class="text-lg text-gray-700 mb-6">أي من الوظائف التالية تتطلب مهارات في الذكاء الاصطناعي؟</p>
+                            <div class="space-y-3">
+                                <label class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-green-50 transition-colors">
+                                    <input type="checkbox" name="q2" value="a" class="ml-3">
+                                    <span>عالم بيانات</span>
+                                </label>
+                                <label class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-green-50 transition-colors">
+                                    <input type="checkbox" name="q2" value="b" class="ml-3">
+                                    <span>مهندس تعلم آلي</span>
+                                </label>
+                                <label class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-green-50 transition-colors">
+                                    <input type="checkbox" name="q2" value="c" class="ml-3">
+                                    <span>مهندس عمليات البيانات</span>
+                                </label>
+                                <label class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-green-50 transition-colors">
+                                    <input type="checkbox" name="q2" value="d" class="ml-3">
+                                    <span>جميع ما سبق</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question" data-question="3">
+                        <div class="bg-purple-50 rounded-xl p-6 mb-6">
+                            <h3 class="text-xl font-semibold text-purple-800 mb-4">السؤال 3 من 5</h3>
+                            <p class="text-lg text-gray-700 mb-6">اربط التطبيق بالمجال المناسب:</p>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="space-y-2">
+                                    <h4 class="font-semibold text-purple-700">التطبيقات:</h4>
+                                    <div class="draggable-item bg-white p-2 rounded cursor-move" draggable="true" data-app="autonomous-cars">🚗 السيارات ذاتية القيادة</div>
+                                    <div class="draggable-item bg-white p-2 rounded cursor-move" draggable="true" data-app="medical-diagnosis">🔬 تشخيص الأمراض</div>
+                                    <div class="draggable-item bg-white p-2 rounded cursor-move" draggable="true" data-app="smart-lighting">💡 الإضاءة الذكية</div>
+                                </div>
+                                <div class="space-y-2">
+                                    <h4 class="font-semibold text-purple-700">المجالات:</h4>
+                                    <div class="drop-zone border-2 border-dashed border-purple-300 p-4 rounded min-h-[50px]" data-field="transport">النقل</div>
+                                    <div class="drop-zone border-2 border-dashed border-purple-300 p-4 rounded min-h-[50px]" data-field="health">الصحة</div>
+                                    <div class="drop-zone border-2 border-dashed border-purple-300 p-4 rounded min-h-[50px]" data-field="smart-cities">المدن الذكية</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question" data-question="4">
+                        <div class="bg-orange-50 rounded-xl p-6 mb-6">
+                            <h3 class="text-xl font-semibold text-orange-800 mb-4">السؤال 4 من 5</h3>
+                            <p class="text-lg text-gray-700 mb-6">اكتب مثالاً واحداً لكيفية استخدام الذكاء الاصطناعي في حل مشكلة في مجتمعك:</p>
+                            <textarea 
+                                id="communityProblem" 
+                                rows="4" 
+                                class="w-full p-4 border-2 border-orange-200 rounded-xl focus:border-orange-500 focus:outline-none resize-none"
+                                placeholder="مثال: استخدام الذكاء الاصطناعي لتحليل أنماط المرور وتقليل الازدحام في الشوارع..."
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question" data-question="5">
+                        <div class="bg-red-50 rounded-xl p-6 mb-6">
+                            <h3 class="text-xl font-semibold text-red-800 mb-4">السؤال 5 من 5</h3>
+                            <p class="text-lg text-gray-700 mb-6">ما رأيك في تأثير الذكاء الاصطناعي على المستقبل؟</p>
+                            <div class="space-y-3">
+                                <label class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-red-50 transition-colors">
+                                    <input type="radio" name="q5" value="positive" class="ml-3">
+                                    <span>إيجابي جداً - سيحل الكثير من المشاكل</span>
+                                </label>
+                                <label class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-red-50 transition-colors">
+                                    <input type="radio" name="q5" value="mixed" class="ml-3">
+                                    <span>مختلط - له فوائد ومخاطر</span>
+                                </label>
+                                <label class="flex items-center p-3 bg-white rounded-lg cursor-pointer hover:bg-red-50 transition-colors">
+                                    <input type="radio" name="q5" value="concerned" class="ml-3">
+                                    <span>قلق - قد يسبب مشاكل أكثر من الفوائد</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between items-center mt-8">
+                    <button 
+                        id="prevBtn" 
+                        onclick="changeQuestion(-1)" 
+                        class="bg-gray-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled
+                    >
+                        السابق
+                    </button>
+                    
+                    <div class="flex space-x-2">
+                        <span class="question-indicator active bg-blue-500 w-3 h-3 rounded-full"></span>
+                        <span class="question-indicator bg-gray-300 w-3 h-3 rounded-full"></span>
+                        <span class="question-indicator bg-gray-300 w-3 h-3 rounded-full"></span>
+                        <span class="question-indicator bg-gray-300 w-3 h-3 rounded-full"></span>
+                        <span class="question-indicator bg-gray-300 w-3 h-3 rounded-full"></span>
+                    </div>
+                    
+                    <button 
+                        id="nextBtn" 
+                        onclick="changeQuestion(1)" 
+                        class="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors"
+                    >
+                        التالي
+                    </button>
+                </div>
+            </div>
+
+            <!-- Final Results Section -->
+            <div id="finalResults" class="bg-white rounded-2xl shadow-lg p-8 mb-8 hidden">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">🎉 النتائج النهائية</h2>
+                
+                <div class="text-center mb-8">
+                    <div id="finalScore" class="text-6xl font-bold text-green-600 mb-4">0/5</div>
+                    <p id="finalMessage" class="text-xl text-gray-600"></p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="text-center p-6 bg-blue-50 rounded-xl">
+                        <div class="text-3xl mb-2">🧠</div>
+                        <h3 class="font-semibold text-blue-800">تعلم الآلة</h3>
+                        <p class="text-sm text-blue-600">فهم المفاهيم الأساسية</p>
+                    </div>
+                    <div class="text-center p-6 bg-green-50 rounded-xl">
+                        <div class="text-3xl mb-2">💼</div>
+                        <h3 class="font-semibold text-green-800">الوظائف المستقبلية</h3>
+                        <p class="text-sm text-green-600">معرفة الفرص الوظيفية</p>
+                    </div>
+                    <div class="text-center p-6 bg-purple-50 rounded-xl">
+                        <div class="text-3xl mb-2">🌟</div>
+                        <h3 class="font-semibold text-purple-800">التطبيقات العملية</h3>
+                        <p class="text-sm text-purple-600">ربط النظرية بالواقع</p>
+                    </div>
+                </div>
+
+                <!-- Final Rating -->
+                <div class="text-center">
+                    <p class="text-lg text-gray-600 mb-4">قيم تجربتك التعليمية الشاملة:</p>
+                    <div class="flex justify-center gap-2 mb-6">
+                        <span class="star text-4xl cursor-pointer" data-rating="1" onclick="setFinalRating(1)">⭐</span>
+                        <span class="star text-4xl cursor-pointer" data-rating="2" onclick="setFinalRating(2)">⭐</span>
+                        <span class="star text-4xl cursor-pointer" data-rating="3" onclick="setFinalRating(3)">⭐</span>
+                        <span class="star text-4xl cursor-pointer" data-rating="4" onclick="setFinalRating(4)">⭐</span>
+                        <span class="star text-4xl cursor-pointer" data-rating="5" onclick="setFinalRating(5)">⭐</span>
+                    </div>
+                    
+                    <div id="finalRatingMessage" class="hidden">
+                        <div class="celebration text-6xl mb-4">🎊</div>
+                        <h3 id="finalRatingText" class="text-3xl font-bold mb-4"></h3>
+                        <p class="text-lg text-gray-600">تهانينا على إكمال رحلة التعلم في عالم الذكاء الاصطناعي!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="popup bg-white rounded-2xl p-8 max-w-md mx-4 text-center">
+            <div id="popupIcon" class="text-6xl mb-4">🎉</div>
+            <h3 id="popupTitle" class="text-2xl font-bold mb-4 text-gray-800"></h3>
+            <p id="popupMessage" class="text-gray-600 mb-6"></p>
+            <button onclick="closePopup()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                متابعة
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Applications data with correct categories
+        const applications = [
+            { name: 'إدارة المرور الذكية', category: 'المدن الذكية', icon: '🚦' },
+            { name: 'أنظمة الإضاءة التلقائية', category: 'المدن الذكية', icon: '💡' },
+            { name: 'مراقبة جودة الهواء', category: 'المدن الذكية', icon: '🌬️' },
+            
+            { name: 'تشخيص الأمراض بالصور', category: 'الصحة', icon: '🔬' },
+            { name: 'المساعدات الطبية الذكية', category: 'الصحة', icon: '🩺' },
+            { name: 'تطوير الأدوية', category: 'الصحة', icon: '💊' },
+            
+            { name: 'الروبوتات الصناعية', category: 'التصنيع', icon: '🤖' },
+            { name: 'مراقبة الجودة التلقائية', category: 'التصنيع', icon: '🔍' },
+            { name: 'الصيانة التنبؤية', category: 'التصنيع', icon: '⚙️' },
+            
+            { name: 'السيارات ذاتية القيادة', category: 'النقل', icon: '🚗' },
+            { name: 'تحسين مسارات الطيران', category: 'النقل', icon: '✈️' },
+            { name: 'أنظمة النقل الذكية', category: 'النقل', icon: '🚌' },
+            
+            { name: 'التوصيات الشخصية', category: 'التجزئة', icon: '🎯' },
+            { name: 'إدارة المخزون الذكية', category: 'التجزئة', icon: '📦' },
+            { name: 'تحليل سلوك العملاء', category: 'التجزئة', icon: '📊' },
+            
+            { name: 'كشف الاحتيال', category: 'الخدمات المصرفية', icon: '🛡️' },
+            { name: 'المساعدات المصرفية الذكية', category: 'الخدمات المصرفية', icon: '💬' },
+            { name: 'تقييم المخاطر الائتمانية', category: 'الخدمات المصرفية', icon: '📈' }
+        ];
+
+        let draggedElement = null;
+        let selectedJobName = '';
+        let currentPage = 'jobs';
+
+        // Page Navigation
+        function showPage(page) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(p => {
+                p.classList.remove('active');
+            });
+            
+            // Show selected page
+            if (page === 'jobs') {
+                document.getElementById('jobsPage').classList.add('active');
+                currentPage = 'jobs';
+            } else if (page === 'applications') {
+                document.getElementById('applicationsPage').classList.add('active');
+                currentPage = 'applications';
+                // Initialize applications page
+                populateApplications();
+                setupDragAndDrop();
+            } else if (page === 'machine-learning') {
+                document.getElementById('machineLearningPage').classList.add('active');
+                currentPage = 'machine-learning';
+            } else if (page === 'final-activity') {
+                document.getElementById('finalActivityPage').classList.add('active');
+                currentPage = 'final-activity';
+                initializeFinalActivity();
+            }
+            
+            // Update navigation buttons
+            document.querySelectorAll('.nav-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Jobs Page Functions
+        function selectJob(jobName) {
+            selectedJobName = jobName;
+            document.getElementById('selectedJob').textContent = jobName;
+            
+            // Visual feedback
+            const jobCards = document.querySelectorAll('.job-card');
+            jobCards.forEach(card => {
+                if (card.dataset.job === jobName) {
+                    card.style.transform = 'scale(1.05)';
+                    card.style.boxShadow = '0 25px 50px rgba(0,0,0,0.2)';
+                } else {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
+                }
+            });
+        }
+
+        function toggleJobDescription(card) {
+            const description = card.querySelector('.job-description');
+            
+            if (description.classList.contains('hidden')) {
+                description.classList.remove('hidden');
+                description.style.animation = 'fadeIn 0.3s ease-in-out';
+            } else {
+                description.classList.add('hidden');
+            }
+        }
+
+        function submitJobsActivity() {
+            const benefitText = document.getElementById('benefitText').value.trim();
+            
+            if (!selectedJobName) {
+                alert('يرجى اختيار وظيفة أولاً! 🎯');
+                return;
+            }
+            
+            if (benefitText.length < 20) {
+                alert('يرجى كتابة إجابة أكثر تفصيلاً (على الأقل 20 حرف) 📝');
+                return;
+            }
+            
+            // Show rating section
+            document.getElementById('jobsRatingSection').classList.remove('hidden');
+            document.getElementById('jobsRatingSection').scrollIntoView({ behavior: 'smooth' });
+            
+            // Success feedback
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'تم الإرسال بنجاح! ✅';
+            button.classList.add('bg-green-500');
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('bg-green-500');
+            }, 2000);
+        }
+
+        function setJobsRating(rating) {
+            setRating(rating, 'jobs');
+        }
+
+        // Applications Page Functions
+        function populateApplications() {
+            const pool = document.getElementById('applicationsPool');
+            if (pool) {
+                // Clear existing content first
+                pool.innerHTML = '';
+                
+                applications.forEach((app, index) => {
+                    const appElement = document.createElement('div');
+                    appElement.className = 'application-item text-white p-3 rounded-lg text-center cursor-grab';
+                    appElement.draggable = true;
+                    appElement.dataset.category = app.category;
+                    appElement.dataset.index = index;
+                    appElement.innerHTML = `
+                        <div class="text-2xl mb-1">${app.icon}</div>
+                        <div class="text-sm font-medium">${app.name}</div>
+                    `;
+                    pool.appendChild(appElement);
+                });
+            }
+        }
+
+        function setupDragAndDrop() {
+            // Add drag event listeners to applications
+            document.querySelectorAll('.application-item').forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragend', handleDragEnd);
+            });
+
+            // Add drop event listeners to category zones
+            document.querySelectorAll('.category-zone').forEach(zone => {
+                zone.addEventListener('dragover', handleDragOver);
+                zone.addEventListener('drop', handleDrop);
+                zone.addEventListener('dragenter', handleDragEnter);
+                zone.addEventListener('dragleave', handleDragLeave);
+            });
+        }
+
+        function handleDragStart(e) {
+            draggedElement = e.target;
+            e.target.classList.add('dragging');
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+            draggedElement = null;
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+        }
+
+        function handleDragEnter(e) {
+            e.preventDefault();
+            if (e.target.classList.contains('category-zone') || e.target.closest('.category-zone')) {
+                const zone = e.target.classList.contains('category-zone') ? e.target : e.target.closest('.category-zone');
+                zone.classList.add('drag-over');
+            }
+        }
+
+        function handleDragLeave(e) {
+            if (e.target.classList.contains('category-zone') || e.target.closest('.category-zone')) {
+                const zone = e.target.classList.contains('category-zone') ? e.target : e.target.closest('.category-zone');
+                zone.classList.remove('drag-over');
+            }
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const zone = e.target.classList.contains('category-zone') ? e.target : e.target.closest('.category-zone');
+            
+            if (zone && draggedElement) {
+                zone.classList.remove('drag-over');
+                const container = zone.querySelector('.applications-container');
+                
+                // Clone the dragged element
+                const clonedElement = draggedElement.cloneNode(true);
+                clonedElement.classList.remove('dragging');
+                clonedElement.draggable = false;
+                clonedElement.classList.add('mb-2');
+                
+                // Add remove button
+                const removeBtn = document.createElement('button');
+                removeBtn.innerHTML = '❌';
+                removeBtn.className = 'absolute top-1 left-1 text-xs opacity-70 hover:opacity-100';
+                removeBtn.onclick = () => {
+                    container.removeChild(clonedElement);
+                    draggedElement.style.visibility = 'visible';
+                    updateProgress();
+                    updateCategoryStatus(zone);
+                };
+                
+                clonedElement.style.position = 'relative';
+                clonedElement.appendChild(removeBtn);
+                
+                container.appendChild(clonedElement);
+                
+                // Hide original element
+                draggedElement.style.visibility = 'hidden';
+                
+                updateProgress();
+                updateCategoryStatus(zone);
+            }
+        }
+
+        function updateCategoryStatus(zone) {
+            const container = zone.querySelector('.applications-container');
+            if (container.children.length > 0) {
+                zone.classList.add('has-items');
+            } else {
+                zone.classList.remove('has-items');
+            }
+        }
+
+        function updateProgress() {
+            const totalApplications = applications.length;
+            const placedApplications = document.querySelectorAll('.applications-container > div').length;
+            const percentage = (placedApplications / totalApplications) * 100;
+            
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = `${placedApplications}/${totalApplications}`;
+            
+            // Enable check button when all applications are placed
+            const checkButton = document.getElementById('checkAnswers');
+            if (placedApplications === totalApplications) {
+                checkButton.disabled = false;
+            } else {
+                checkButton.disabled = true;
+            }
+        }
+
+        function checkAnswers() {
+            let correctPlacements = 0;
+            let totalPlacements = 0;
+            let results = [];
+            
+            // Clear any previous styling
+            document.querySelectorAll('.applications-container > div').forEach(item => {
+                item.classList.remove('border-2', 'border-green-500', 'bg-green-50', 'border-red-500', 'bg-red-50');
+                // Remove any existing icons or hints
+                const existingIcons = item.querySelectorAll('.result-icon, .correct-hint');
+                existingIcons.forEach(icon => icon.remove());
+            });
+            
+            document.querySelectorAll('.category-zone').forEach(zone => {
+                const categoryName = zone.dataset.category;
+                const container = zone.querySelector('.applications-container');
+                const placedItems = container.querySelectorAll('div');
+                
+                placedItems.forEach(item => {
+                    totalPlacements++;
+                    const correctCategory = item.dataset.category;
+                    const appNameElement = item.querySelector('div:last-child');
+                    const appName = appNameElement ? appNameElement.textContent : 'غير محدد';
+                    
+                    if (correctCategory === categoryName) {
+                        correctPlacements++;
+                        item.classList.add('border-2', 'border-green-500', 'bg-green-50');
+                        
+                        // Add correct icon
+                        const correctIcon = document.createElement('div');
+                        correctIcon.innerHTML = '✅';
+                        correctIcon.className = 'result-icon absolute top-1 right-1 text-lg z-10';
+                        item.style.position = 'relative';
+                        item.appendChild(correctIcon);
+                        
+                        results.push({
+                            app: appName,
+                            category: categoryName,
+                            status: 'correct'
+                        });
+                    } else {
+                        item.classList.add('border-2', 'border-red-500', 'bg-red-50');
+                        
+                        // Add wrong icon
+                        const wrongIcon = document.createElement('div');
+                        wrongIcon.innerHTML = '❌';
+                        wrongIcon.className = 'result-icon absolute top-1 right-1 text-lg z-10';
+                        item.style.position = 'relative';
+                        item.appendChild(wrongIcon);
+                        
+                        // Add correct category hint
+                        const correctHint = document.createElement('div');
+                        correctHint.innerHTML = `الصحيح: ${correctCategory}`;
+                        correctHint.className = 'correct-hint text-xs text-red-600 font-semibold mt-1 bg-white bg-opacity-90 rounded px-2 py-1';
+                        item.appendChild(correctHint);
+                        
+                        results.push({
+                            app: appName,
+                            currentCategory: categoryName,
+                            correctCategory: correctCategory,
+                            status: 'wrong'
+                        });
+                    }
+                });
+            });
+            
+            // Disable the check button to prevent multiple clicks
+            const checkButton = document.getElementById('checkAnswers');
+            checkButton.disabled = true;
+            checkButton.textContent = 'تم فحص الإجابات ✅';
+            
+            // Show detailed popup with results
+            if (totalPlacements > 0) {
+                showDetailedResults(correctPlacements, totalPlacements, results);
+                
+                // Show rating section
+                setTimeout(() => {
+                    document.getElementById('applicationsRatingSection').classList.remove('hidden');
+                    document.getElementById('applicationsRatingSection').scrollIntoView({ behavior: 'smooth' });
+                }, 3000);
+            } else {
+                alert('يرجى وضع التطبيقات في المجالات المناسبة أولاً! 🎯');
+                checkButton.disabled = false;
+                checkButton.textContent = 'فحص الإجابات ✨';
+            }
+        }
+
+        function setApplicationsRating(rating) {
+            setRating(rating, 'applications');
+        }
+
+        // Common Functions
+        function showPopup(correct, total) {
+            const popup = document.getElementById('popup');
+            const icon = document.getElementById('popupIcon');
+            const title = document.getElementById('popupTitle');
+            const message = document.getElementById('popupMessage');
+            
+            const percentage = (correct / total) * 100;
+            
+            if (percentage >= 80) {
+                icon.textContent = '🎉';
+                title.textContent = 'ممتاز!';
+                title.className = 'text-2xl font-bold mb-4 text-green-600';
+                message.textContent = `أحسنتم! حصلتم على ${correct} من ${total} إجابة صحيحة`;
+            } else if (percentage >= 60) {
+                icon.textContent = '👍';
+                title.textContent = 'جيد جداً!';
+                title.className = 'text-2xl font-bold mb-4 text-blue-600';
+                message.textContent = `عمل جيد! حصلتم على ${correct} من ${total} إجابة صحيحة`;
+            } else {
+                icon.textContent = '💪';
+                title.textContent = 'يمكنكم التحسن!';
+                title.className = 'text-2xl font-bold mb-4 text-orange-600';
+                message.textContent = `حصلتم على ${correct} من ${total} إجابة صحيحة. حاولوا مرة أخرى!`;
+            }
+            
+            popup.classList.remove('hidden');
+        }
+
+        function showDetailedResults(correct, total, results) {
+            const popup = document.getElementById('popup');
+            const percentage = (correct / total) * 100;
+            
+            let icon = '🎉';
+            let titleText = 'ممتاز!';
+            let titleClass = 'text-2xl font-bold mb-4 text-green-600';
+            
+            if (percentage >= 80) {
+                icon = '🎉';
+                titleText = 'ممتاز!';
+                titleClass = 'text-2xl font-bold mb-4 text-green-600';
+            } else if (percentage >= 60) {
+                icon = '👍';
+                titleText = 'جيد جداً!';
+                titleClass = 'text-2xl font-bold mb-4 text-blue-600';
+            } else {
+                icon = '💪';
+                titleText = 'يمكنكم التحسن!';
+                titleClass = 'text-2xl font-bold mb-4 text-orange-600';
+            }
+            
+            // Create detailed results HTML
+            let resultsHTML = `
+                <div class="popup bg-white rounded-2xl p-6 max-w-2xl mx-4 text-center max-h-96 overflow-y-auto">
+                    <div class="text-6xl mb-4">${icon}</div>
+                    <h3 class="${titleClass}">${titleText}</h3>
+                    <p class="text-lg text-gray-600 mb-4">النتيجة: ${correct} من ${total} (${Math.round(percentage)}%)</p>
+                    
+                    <div class="text-right mb-4">
+                        <h4 class="text-lg font-bold text-green-600 mb-2">✅ الإجابات الصحيحة:</h4>
+                        <div class="space-y-1">
+            `;
+            
+            // Add correct answers
+            const correctAnswers = results.filter(r => r.status === 'correct');
+            if (correctAnswers.length > 0) {
+                correctAnswers.forEach(result => {
+                    resultsHTML += `
+                        <div class="bg-green-50 border border-green-200 rounded p-2 text-sm">
+                            <span class="font-semibold">${result.app}</span> → ${result.category}
+                        </div>
+                    `;
+                });
+            } else {
+                resultsHTML += '<p class="text-gray-500 text-sm">لا توجد إجابات صحيحة</p>';
+            }
+            
+            resultsHTML += `
+                        </div>
+                    </div>
+                    
+                    <div class="text-right mb-6">
+                        <h4 class="text-lg font-bold text-red-600 mb-2">❌ الإجابات الخاطئة:</h4>
+                        <div class="space-y-1">
+            `;
+            
+            // Add wrong answers
+            const wrongAnswers = results.filter(r => r.status === 'wrong');
+            if (wrongAnswers.length > 0) {
+                wrongAnswers.forEach(result => {
+                    resultsHTML += `
+                        <div class="bg-red-50 border border-red-200 rounded p-2 text-sm">
+                            <span class="font-semibold">${result.app}</span><br>
+                            <span class="text-red-600">وضعت في: ${result.currentCategory}</span><br>
+                            <span class="text-green-600">الصحيح: ${result.correctCategory}</span>
+                        </div>
+                    `;
+                });
+            } else {
+                resultsHTML += '<p class="text-gray-500 text-sm">جميع الإجابات صحيحة! 🎉</p>';
+            }
+            
+            resultsHTML += `
+                        </div>
+                    </div>
+                    
+                    <button onclick="closePopup()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        متابعة
+                    </button>
+                </div>
+            `;
+            
+            popup.innerHTML = resultsHTML;
+            popup.classList.remove('hidden');
+        }
+
+        function closePopup() {
+            document.getElementById('popup').classList.add('hidden');
+        }
+
+        function setRating(rating, pageType) {
+            const prefix = pageType === 'jobs' ? 'jobs' : 'applications';
+            const stars = document.querySelectorAll(`#${prefix}RatingSection .star`);
+            
+            // Update star display
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('filled');
+                    star.classList.remove('empty');
+                } else {
+                    star.classList.add('empty');
+                    star.classList.remove('filled');
+                }
+            });
+            
+            // Show rating message
+            const ratingMessage = document.getElementById(`${prefix}RatingMessage`);
+            const ratingText = document.getElementById(`${prefix}RatingText`);
+            
+            let message = '';
+            let color = '';
+            
+            if (rating >= 4) {
+                message = 'مبدعون';
+                color = 'text-green-600';
+            } else if (rating >= 3) {
+                message = 'مبتكرون';
+                color = 'text-blue-600';
+            } else {
+                message = 'رائعون';
+                color = 'text-purple-600';
+            }
+            
+            ratingText.textContent = message;
+            ratingText.className = `text-3xl font-bold mb-4 ${color}`;
+            ratingMessage.classList.remove('hidden');
+            
+            // Celebration animation
+            ratingMessage.classList.add('celebration');
+            setTimeout(() => {
+                ratingMessage.classList.remove('celebration');
+            }, 600);
+        }
+
+        function initializeStars() {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach(star => {
+                star.classList.add('empty');
+            });
+        }
+
+        // Machine Learning Page Functions
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        function showRating(category, message) {
+            const ratingModal = document.createElement('div');
+            ratingModal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            ratingModal.innerHTML = `
+                <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center">
+                    <div class="text-6xl mb-4">⭐</div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">تقييم الأداء</h3>
+                    <p class="text-gray-600 mb-6">قيم أداء مجموعتك في هذا النشاط:</p>
+                    <div class="flex justify-center gap-2 mb-6">
+                        <span class="star text-4xl cursor-pointer" onclick="setCardRating(1, '${message}', this.parentElement.parentElement.parentElement.parentElement)">⭐</span>
+                        <span class="star text-4xl cursor-pointer" onclick="setCardRating(2, '${message}', this.parentElement.parentElement.parentElement.parentElement)">⭐</span>
+                        <span class="star text-4xl cursor-pointer" onclick="setCardRating(3, '${message}', this.parentElement.parentElement.parentElement.parentElement)">⭐</span>
+                        <span class="star text-4xl cursor-pointer" onclick="setCardRating(4, '${message}', this.parentElement.parentElement.parentElement.parentElement)">⭐</span>
+                        <span class="star text-4xl cursor-pointer" onclick="setCardRating(5, '${message}', this.parentElement.parentElement.parentElement.parentElement)">⭐</span>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(ratingModal);
+        }
+
+        function setCardRating(rating, message, modal) {
+            // Add animation effect
+            const stars = modal.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('filled', 'rating-animation');
+                    star.classList.remove('empty');
+                } else {
+                    star.classList.add('empty');
+                    star.classList.remove('filled');
+                }
+            });
+
+            // Show success message
+            setTimeout(() => {
+                modal.innerHTML = `
+                    <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center">
+                        <div class="celebration text-6xl mb-4">🎉</div>
+                        <h3 class="text-3xl font-bold mb-4 text-green-600">${message}</h3>
+                        <p class="text-lg text-gray-600 mb-6">عمل رائع! استمروا في الإبداع</p>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            متابعة
+                        </button>
+                    </div>
+                `;
+            }, 1000);
+        }
+
+        // Final Activity Functions
+        let currentQuestionIndex = 1;
+        let quizAnswers = {};
+        let draggedItem = null;
+
+        function initializeFinalActivity() {
+            currentQuestionIndex = 1;
+            quizAnswers = {};
+            updateQuestionDisplay();
+            setupFinalDragAndDrop();
+        }
+
+        function changeQuestion(direction) {
+            const newIndex = currentQuestionIndex + direction;
+            
+            if (newIndex >= 1 && newIndex <= 5) {
+                // Hide current question
+                document.querySelector(`[data-question="${currentQuestionIndex}"]`).classList.remove('active');
+                
+                // Update index
+                currentQuestionIndex = newIndex;
+                
+                // Show new question
+                document.querySelector(`[data-question="${currentQuestionIndex}"]`).classList.add('active');
+                
+                // Update indicators
+                updateQuestionDisplay();
+                
+                // Update buttons
+                document.getElementById('prevBtn').disabled = currentQuestionIndex === 1;
+                
+                if (currentQuestionIndex === 5) {
+                    document.getElementById('nextBtn').textContent = 'إنهاء الاختبار';
+                    document.getElementById('nextBtn').onclick = finishQuiz;
+                } else {
+                    document.getElementById('nextBtn').textContent = 'التالي';
+                    document.getElementById('nextBtn').onclick = () => changeQuestion(1);
+                }
+            }
+        }
+
+        function updateQuestionDisplay() {
+            const indicators = document.querySelectorAll('.question-indicator');
+            indicators.forEach((indicator, index) => {
+                if (index < currentQuestionIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        function setupFinalDragAndDrop() {
+            const draggableItems = document.querySelectorAll('.draggable-item');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            draggableItems.forEach(item => {
+                item.addEventListener('dragstart', (e) => {
+                    draggedItem = e.target;
+                });
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    zone.classList.add('drag-over');
+                });
+
+                zone.addEventListener('dragleave', () => {
+                    zone.classList.remove('drag-over');
+                });
+
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    zone.classList.remove('drag-over');
+                    
+                    if (draggedItem) {
+                        const clonedItem = draggedItem.cloneNode(true);
+                        clonedItem.draggable = false;
+                        clonedItem.classList.add('mb-2');
+                        zone.appendChild(clonedItem);
+                        
+                        // Store answer
+                        const app = draggedItem.dataset.app;
+                        const field = zone.dataset.field;
+                        if (!quizAnswers.q3) quizAnswers.q3 = {};
+                        quizAnswers.q3[app] = field;
+                        
+                        draggedItem.style.opacity = '0.5';
+                        draggedItem.draggable = false;
+                    }
+                });
+            });
+        }
+
+        function finishQuiz() {
+            // Collect all answers
+            collectAnswers();
+            
+            // Calculate score
+            const score = calculateScore();
+            
+            // Show results
+            showFinalResults(score);
+        }
+
+        function collectAnswers() {
+            // Question 1
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            if (q1) quizAnswers.q1 = q1.value;
+            
+            // Question 2
+            const q2Checkboxes = document.querySelectorAll('input[name="q2"]:checked');
+            quizAnswers.q2 = Array.from(q2Checkboxes).map(cb => cb.value);
+            
+            // Question 4
+            quizAnswers.q4 = document.getElementById('communityProblem').value;
+            
+            // Question 5
+            const q5 = document.querySelector('input[name="q5"]:checked');
+            if (q5) quizAnswers.q5 = q5.value;
+        }
+
+        function calculateScore() {
+            let score = 0;
+            
+            // Q1: Correct answer is 'b'
+            if (quizAnswers.q1 === 'b') score++;
+            
+            // Q2: Correct answer includes all options or 'd'
+            if (quizAnswers.q2 && (quizAnswers.q2.includes('d') || quizAnswers.q2.length >= 3)) score++;
+            
+            // Q3: Check drag and drop answers
+            if (quizAnswers.q3) {
+                const correctMappings = {
+                    'autonomous-cars': 'transport',
+                    'medical-diagnosis': 'health',
+                    'smart-lighting': 'smart-cities'
+                };
+                
+                let q3Score = 0;
+                Object.keys(correctMappings).forEach(app => {
+                    if (quizAnswers.q3[app] === correctMappings[app]) {
+                        q3Score++;
+                    }
+                });
+                
+                if (q3Score >= 2) score++; // At least 2 correct mappings
+            }
+            
+            // Q4: Check if answer is provided and meaningful
+            if (quizAnswers.q4 && quizAnswers.q4.trim().length > 20) score++;
+            
+            // Q5: Any answer is acceptable
+            if (quizAnswers.q5) score++;
+            
+            return score;
+        }
+
+        function showFinalResults(score) {
+            // Hide quiz container
+            document.querySelector('.quiz-container').style.display = 'none';
+            document.querySelector('.flex.justify-between').style.display = 'none';
+            
+            // Show results
+            const resultsSection = document.getElementById('finalResults');
+            resultsSection.classList.remove('hidden');
+            
+            // Update score display
+            document.getElementById('finalScore').textContent = `${score}/5`;
+            
+            // Update message based on score
+            const messageElement = document.getElementById('finalMessage');
+            if (score >= 4) {
+                messageElement.textContent = 'ممتاز! لديك فهم عميق للذكاء الاصطناعي';
+                messageElement.className = 'text-xl text-green-600';
+            } else if (score >= 3) {
+                messageElement.textContent = 'جيد جداً! تحتاج لمراجعة بعض المفاهيم';
+                messageElement.className = 'text-xl text-blue-600';
+            } else {
+                messageElement.textContent = 'يمكنك التحسن! راجع المحتوى مرة أخرى';
+                messageElement.className = 'text-xl text-orange-600';
+            }
+            
+            // Scroll to results
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function setFinalRating(rating) {
+            const stars = document.querySelectorAll('#finalResults .star');
+            
+            // Update star display
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('filled');
+                    star.classList.remove('empty');
+                } else {
+                    star.classList.add('empty');
+                    star.classList.remove('filled');
+                }
+            });
+            
+            // Show rating message
+            const ratingMessage = document.getElementById('finalRatingMessage');
+            const ratingText = document.getElementById('finalRatingText');
+            
+            let message = '';
+            let color = '';
+            
+            if (rating >= 4) {
+                message = 'متميزون في التعلم!';
+                color = 'text-green-600';
+            } else if (rating >= 3) {
+                message = 'مبدعون ومتفوقون!';
+                color = 'text-blue-600';
+            } else {
+                message = 'رائعون ومجتهدون!';
+                color = 'text-purple-600';
+            }
+            
+            ratingText.textContent = message;
+            ratingText.className = `text-3xl font-bold mb-4 ${color}`;
+            ratingMessage.classList.remove('hidden');
+            
+            // Celebration animation
+            ratingMessage.classList.add('celebration');
+            setTimeout(() => {
+                ratingMessage.classList.remove('celebration');
+            }, 600);
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeStars();
+            // Initialize applications on page load
+            populateApplications();
+            setupDragAndDrop();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9acbf6590469cdf4',t:'MTc2NTUyOTMwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
