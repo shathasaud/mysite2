@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الذكاء الاصطناعي: المفاهيم والتطبيقات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 3s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: 0 0 60px rgba(59, 130, 246, 0.8); }
+        }
+        
+        .brain-network {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .bounce-gentle {
+            animation: bounceGentle 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounceGentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .slide-up {
+            animation: slideUp 1.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(80px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .zoom-in {
+            animation: zoomIn 1.2s ease-out;
+        }
+        
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.3); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .card-hover {
+            transition: all 0.4s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            50% { transform: translateY(-5px) rotate(0deg); }
+            75% { transform: translateY(-15px) rotate(-1deg); }
+        }
+        
+        .sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        
+        .reveal-animation {
+            animation: revealCard 1s ease-out;
+        }
+        
+        @keyframes revealCard {
+            from { 
+                opacity: 0; 
+                transform: rotateY(-90deg) scale(0.8); 
+            }
+            to { 
+                opacity: 1; 
+                transform: rotateY(0deg) scale(1); 
+            }
+        }
+        
+        .hint-glow {
+            animation: hintGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes hintGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+                border-color: rgba(251, 191, 36, 0.5);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(251, 191, 36, 0.6);
+                border-color: rgba(251, 191, 36, 0.8);
+            }
+        }
+        
+        .button-appear {
+            animation: buttonAppear 1s ease-out;
+        }
+        
+        @keyframes buttonAppear {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.8); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+        
+        .concept-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .concept-description {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        
+        .concept-description.show {
+            max-height: 200px;
+            opacity: 1;
+        }
+        
+        .wave-animation {
+            animation: wave 3s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .circuit-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100 min-h-screen circuit-pattern">
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg p-4 fixed top-0 w-full z-50">
+        <div class="flex justify-between items-center max-w-6xl mx-auto">
+            <h1 class="text-xl font-bold text-gray-800">عرض الذكاء الاصطناعي</h1>
+            <div class="flex gap-2">
+                <button onclick="showSlide('cover')" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">الغلاف</button>
+                <button onclick="showSlide('concepts')" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">المفاهيم</button>
+                <button onclick="showSlide('ml-types')" class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">أنواع التعلم</button>
+                <button onclick="showSlide('ethics')" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">الأخلاقيات</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- صفحة الغلاف -->
+    <div id="cover-page" class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="text-center max-w-5xl mx-auto">
+            
+            <!-- أيقونة مقدمة الدرس -->
+            <div class="mb-8 flex justify-center">
+                <div class="brain-network rounded-full p-8 pulse-glow zoom-in">
+                    <svg class="w-32 h-32 text-white floating" fill="currentColor" viewBox="0 0 120 120">
+                        <!-- دماغ رقمي متطور -->
+                        <path d="M60 20 C40 20, 25 35, 25 55 C25 65, 30 74, 37 80 L37 85 C37 90, 42 95, 47 95 L73 95 C78 95, 83 90, 83 85 L83 80 C90 74, 95 65, 95 55 C95 35, 80 20, 60 20 Z" fill="white" opacity="0.9"/>
+                        
+                        <!-- شبكة عصبية داخلية -->
+                        <circle cx="45" cy="45" r="3" fill="#3B82F6" class="sparkle"/>
+                        <circle cx="60" cy="40" r="3" fill="#8B5CF6" class="sparkle" style="animation-delay: 0.5s;"/>
+                        <circle cx="75" cy="50" r="3" fill="#06B6D4" class="sparkle" style="animation-delay: 1s;"/>
+                        <circle cx="50" cy="60" r="3" fill="#10B981" class="sparkle" style="animation-delay: 1.5s;"/>
+                        <circle cx="70" cy="65" r="3" fill="#F59E0B" class="sparkle" style="animation-delay: 2s;"/>
+                        
+                        <!-- خطوط الاتصال -->
+                        <line x1="45" y1="45" x2="60" y2="40" stroke="#3B82F6" stroke-width="2" opacity="0.6"/>
+                        <line x1="60" y1="40" x2="75" y2="50" stroke="#8B5CF6" stroke-width="2" opacity="0.6"/>
+                        <line x1="45" y1="45" x2="50" y2="60" stroke="#06B6D4" stroke-width="2" opacity="0.6"/>
+                        <line x1="75" y1="50" x2="70" y2="65" stroke="#10B981" stroke-width="2" opacity="0.6"/>
+                        <line x1="50" y1="60" x2="70" y2="65" stroke="#F59E0B" stroke-width="2" opacity="0.6"/>
+                        
+                        <!-- دوائر خارجية للتأثير -->
+                        <circle cx="60" cy="55" r="45" fill="none" stroke="white" stroke-width="1" opacity="0.3"/>
+                        <circle cx="60" cy="55" r="50" fill="none" stroke="white" stroke-width="1" opacity="0.2"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- عنوان الدرس -->
+            <div class="mb-8">
+                <h1 class="text-6xl font-bold mb-4 fade-in gradient-text">
+                    الذكاء الاصطناعي
+                </h1>
+                <h2 class="text-4xl font-semibold text-indigo-600 mb-2 fade-in" style="animation-delay: 0.5s;">
+                    المفاهيم والتطبيقات
+                </h2>
+                <p class="text-xl text-gray-600 fade-in" style="animation-delay: 1s;">
+                    رحلة استكشافية في عالم التكنولوجيا المستقبلية
+                </p>
+            </div>
+            
+            <!-- بطاقة نشاط التهيئة -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-8 slide-up card-hover" style="animation-delay: 1.5s;">
+                <div class="mb-6">
+                    <div class="flex items-center justify-center gap-3 mb-4">
+                        <span class="text-3xl bounce-gentle">🤔</span>
+                        <h3 class="text-2xl font-bold text-gray-800">نشاط التهيئة</h3>
+                        <span class="text-3xl bounce-gentle" style="animation-delay: 0.5s;">💭</span>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 rounded-xl p-6 mb-6">
+                        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                            🌟 تخيل أنك تفتح تطبيق يوتيوب الآن... كيف يعرف التطبيق بالضبط 
+                            <span class="font-bold text-blue-600">الفيديوهات التي ستحبها</span> 
+                            من بين ملايين الفيديوهات المتاحة؟
+                        </p>
+                        
+                        <div class="text-center">
+                            <button 
+                                onclick="revealHint()" 
+                                id="hint-button" 
+                                class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-yellow-500 hover:to-orange-600 transition-all transform hover:scale-105 hint-glow">
+                                🔍 اكتشف السر المذهل!
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- التلميحة المخفية -->
+                    <div id="hint-content" class="hidden">
+                        <div class="bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl p-6 border-2 border-green-300 reveal-animation">
+                            <div class="text-center mb-4">
+                                <span class="text-4xl">✨</span>
+                                <h4 class="text-xl font-bold text-green-800 mt-2">السر المذهل!</h4>
+                            </div>
+                            
+                            <div class="space-y-4 text-green-700">
+                                <p class="text-lg font-semibold text-center">
+                                    🧠 <span class="text-green-800">الذكاء الاصطناعي</span> هو السر!
+                                </p>
+                                
+                                <div class="bg-white bg-opacity-70 rounded-lg p-4">
+                                    <p class="text-sm leading-relaxed">
+                                        يحلل يوتيوب <span class="font-bold">سلوكك</span> ويتعلم من:
+                                    </p>
+                                    <ul class="text-sm mt-2 space-y-1">
+                                        <li>📺 الفيديوهات التي تشاهدها</li>
+                                        <li>⏱️ مدة مشاهدتك لكل فيديو</li>
+                                        <li>👍 الفيديوهات التي تعجبك</li>
+                                        <li>🔍 ما تبحث عنه</li>
+                                    </ul>
+                                    <p class="text-sm mt-3 font-semibold text-green-800">
+                                        ثم يستخدم هذه المعلومات ليقترح عليك محتوى مشابه! 🎯
+                                    </p>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <p class="text-lg font-bold text-green-800">
+                                        🚀 هذا مجرد مثال واحد من آلاف التطبيقات المذهلة للذكاء الاصطناعي!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- زر بدء الرحلة -->
+            <div id="start-journey" class="hidden text-center">
+                <button 
+                    onclick="showSlide('concepts')" 
+                    class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-12 py-4 rounded-full text-xl font-bold hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all transform hover:scale-110 shadow-2xl button-appear">
+                    🚀 ابدأ رحلة الاستكشاف
+                </button>
+                <p class="text-gray-600 mt-4 text-lg">
+                    استعد لاكتشاف عالم مليء بالإبداع والتكنولوجيا! ✨
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة المفاهيم -->
+    <div id="concepts-page" class="hidden min-h-screen pt-20 pb-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-12 slide-in-right gradient-text">
+                مفاهيم الذكاء الاصطناعي
+            </h1>
+            
+            <!-- المفاهيم الأساسية -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                
+                <!-- تعلم الآلة -->
+                <div class="concept-card bg-white rounded-xl shadow-lg p-6 border-r-4 border-blue-500 slide-up card-hover" 
+                     style="animation-delay: 0.2s;" 
+                     onclick="toggleDescription('ml-desc')"
+                     onmouseenter="showDescription('ml-desc')">
+                    <div class="text-center mb-4">
+                        <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow">
+                            <span class="text-3xl bounce-gentle">🤖</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-600 mb-3 gradient-text">تعلم الآلة</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            اضغط أو مرر الماوس لمعرفة المزيد
+                        </p>
+                        
+                        <!-- الوصف المخفي -->
+                        <div id="ml-desc" class="concept-description mt-4">
+                            <div class="bg-blue-50 p-4 rounded-lg text-right">
+                                <p class="text-blue-800 font-semibold mb-2">📚 التعريف:</p>
+                                <p class="text-blue-700 text-sm mb-3">
+                                    قدرة الحاسوب على التعلم من البيانات وتحسين أدائه تلقائياً دون برمجة صريحة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- الشبكة العصبية -->
+                <div class="concept-card bg-white rounded-xl shadow-lg p-6 border-r-4 border-green-500 zoom-in card-hover" 
+                     style="animation-delay: 0.4s;"
+                     onclick="toggleDescription('nn-desc')"
+                     onmouseenter="showDescription('nn-desc')">
+                    <div class="text-center mb-4">
+                        <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow" style="animation-delay: 0.5s;">
+                            <span class="text-3xl bounce-gentle">🧠</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-green-600 mb-3 gradient-text">الشبكة العصبية</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            اضغط أو مرر الماوس لمعرفة المزيد
+                        </p>
+                        
+                        <!-- الوصف المخفي -->
+                        <div id="nn-desc" class="concept-description mt-4">
+                            <div class="bg-green-50 p-4 rounded-lg text-right">
+                                <p class="text-green-800 font-semibold mb-2">📚 التعريف:</p>
+                                <p class="text-green-700 text-sm mb-3">
+                                    نظام محاكاة للدماغ البشري يتكون من عقد مترابطة لمعالجة المعلومات المعقدة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- معالجة اللغة الطبيعية -->
+                <div class="concept-card bg-white rounded-xl shadow-lg p-6 border-r-4 border-purple-500 slide-up card-hover" 
+                     style="animation-delay: 0.6s;"
+                     onclick="toggleDescription('nlp-desc')"
+                     onmouseenter="showDescription('nlp-desc')">
+                    <div class="text-center mb-4">
+                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow" style="animation-delay: 1s;">
+                            <span class="text-3xl bounce-gentle">💬</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-purple-600 mb-3 gradient-text">معالجة اللغة الطبيعية</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            اضغط أو مرر الماوس لمعرفة المزيد
+                        </p>
+                        
+                        <!-- الوصف المخفي -->
+                        <div id="nlp-desc" class="concept-description mt-4">
+                            <div class="bg-purple-50 p-4 rounded-lg text-right">
+                                <p class="text-purple-800 font-semibold mb-2">📚 التعريف:</p>
+                                <p class="text-purple-700 text-sm mb-3">
+                                    قدرة الحاسوب على فهم وتحليل ومعالجة اللغة البشرية والتفاعل معها بشكل طبيعي
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- النشاط التفاعلي -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-8 slide-up" style="animation-delay: 0.8s;">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 gradient-text">🎮 نشاط التصنيف التفاعلي</h3>
+                    <p class="text-gray-600">اسحب الأمثلة وأفلتها في المكان المناسب لكل مفهوم</p>
+                </div>
+
+                <!-- الأمثلة للسحب -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-700 mb-4 text-center">📦 الأمثلة المتاحة</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 p-4 bg-gray-50 rounded-xl">
+                        <div class="example-card bg-blue-100 p-3 rounded-lg cursor-move hover:bg-blue-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="ml">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🛒</span>
+                                <p class="text-sm font-semibold text-blue-800">توصيات أمازون</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-green-100 p-3 rounded-lg cursor-move hover:bg-green-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="nn">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">👤</span>
+                                <p class="text-sm font-semibold text-green-800">التعرف على الوجوه</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-purple-100 p-3 rounded-lg cursor-move hover:bg-purple-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="nlp">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🗣️</span>
+                                <p class="text-sm font-semibold text-purple-800">مساعد سيري</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-blue-100 p-3 rounded-lg cursor-move hover:bg-blue-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="ml">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">📈</span>
+                                <p class="text-sm font-semibold text-blue-800">التنبؤ بالأسعار</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-green-100 p-3 rounded-lg cursor-move hover:bg-green-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="nn">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🚗</span>
+                                <p class="text-sm font-semibold text-green-800">السيارات الذكية</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-purple-100 p-3 rounded-lg cursor-move hover:bg-purple-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="nlp">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🌐</span>
+                                <p class="text-sm font-semibold text-purple-800">ترجمة جوجل</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-blue-100 p-3 rounded-lg cursor-move hover:bg-blue-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="ml">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🏥</span>
+                                <p class="text-sm font-semibold text-blue-800">تشخيص الأمراض</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-green-100 p-3 rounded-lg cursor-move hover:bg-green-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="nn">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🔐</span>
+                                <p class="text-sm font-semibold text-green-800">بصمة الوجه</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مناطق الإسقاط -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="drop-zone bg-blue-50 border-2 border-dashed border-blue-300 rounded-xl p-6 min-h-48 transition-all" 
+                         data-category="ml" 
+                         ondrop="drop(event)" 
+                         ondragover="allowDrop(event)"
+                         ondragleave="this.style.borderColor=''; this.style.backgroundColor=''">
+                        <div class="text-center mb-4">
+                            <div class="bg-blue-200 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 pulse-glow">
+                                <span class="text-2xl">🤖</span>
+                            </div>
+                            <h4 class="font-bold text-blue-600">تعلم الآلة</h4>
+                        </div>
+                        <div class="dropped-items space-y-2"></div>
+                    </div>
+                    
+                    <div class="drop-zone bg-green-50 border-2 border-dashed border-green-300 rounded-xl p-6 min-h-48 transition-all" 
+                         data-category="nn" 
+                         ondrop="drop(event)" 
+                         ondragover="allowDrop(event)"
+                         ondragleave="this.style.borderColor=''; this.style.backgroundColor=''">
+                        <div class="text-center mb-4">
+                            <div class="bg-green-200 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 pulse-glow">
+                                <span class="text-2xl">🧠</span>
+                            </div>
+                            <h4 class="font-bold text-green-600">الشبكة العصبية</h4>
+                        </div>
+                        <div class="dropped-items space-y-2"></div>
+                    </div>
+                    
+                    <div class="drop-zone bg-purple-50 border-2 border-dashed border-purple-300 rounded-xl p-6 min-h-48 transition-all" 
+                         data-category="nlp" 
+                         ondrop="drop(event)" 
+                         ondragover="allowDrop(event)"
+                         ondragleave="this.style.borderColor=''; this.style.backgroundColor=''">
+                        <div class="text-center mb-4">
+                            <div class="bg-purple-200 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 pulse-glow">
+                                <span class="text-2xl">💬</span>
+                            </div>
+                            <h4 class="font-bold text-purple-600">معالجة اللغة الطبيعية</h4>
+                        </div>
+                        <div class="dropped-items space-y-2"></div>
+                    </div>
+                </div>
+
+                <!-- زر التحقق من الإجابة -->
+                <div class="text-center mb-6">
+                    <button onclick="checkAnswers()" 
+                            class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-3 rounded-full text-lg font-bold hover:from-green-600 hover:to-emerald-700 transition-all transform hover:scale-105 shadow-lg pulse-glow">
+                        ✅ تحقق من الإجابة
+                    </button>
+                </div>
+
+                <!-- منطقة النتائج -->
+                <div id="results" class="hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة أنواع تعلم الآلة -->
+    <div id="ml-types-page" class="hidden min-h-screen pt-20 pb-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-12 slide-in-right gradient-text">
+                أنواع تعلم الآلة
+            </h1>
+            
+            <!-- الأنواع الثلاثة -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                
+                <!-- التعلم المُراقب -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-green-500 slide-up card-hover" style="animation-delay: 0.2s;">
+                    <div class="text-center mb-6">
+                        <div class="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow">
+                            <span class="text-4xl bounce-gentle">👨‍🏫</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-green-600 mb-3 gradient-text">التعلم المُراقب</h3>
+                        <p class="text-gray-600 text-sm mb-4">Supervised Learning</p>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg mb-4">
+                        <h4 class="font-bold text-green-800 mb-2">📚 كيف يعمل؟</h4>
+                        <p class="text-green-700 text-sm mb-3">
+                            مثل المعلم الذي يعطي الطالب أسئلة مع الإجابات الصحيحة للتعلم منها
+                        </p>
+                        <div class="bg-white p-3 rounded-lg">
+                            <p class="text-green-800 font-semibold text-sm">مثال بسيط:</p>
+                            <p class="text-green-700 text-xs">
+                                نعطي الحاسوب 1000 صورة قطة مكتوب عليها "قطة" و1000 صورة كلب مكتوب عليها "كلب"
+                                ثم نعرض عليه صورة جديدة ليخمن ما هي!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- التعلم غير المُراقب -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-blue-500 zoom-in card-hover" style="animation-delay: 0.4s;">
+                    <div class="text-center mb-6">
+                        <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow" style="animation-delay: 0.5s;">
+                            <span class="text-4xl bounce-gentle">🔍</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-600 mb-3 gradient-text">التعلم غير المُراقب</h3>
+                        <p class="text-gray-600 text-sm mb-4">Unsupervised Learning</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h4 class="font-bold text-blue-800 mb-2">🔍 كيف يعمل؟</h4>
+                        <p class="text-blue-700 text-sm mb-3">
+                            مثل المحقق الذي يبحث عن الأنماط والعلاقات المخفية في البيانات بدون مساعدة
+                        </p>
+                        <div class="bg-white p-3 rounded-lg">
+                            <p class="text-blue-800 font-semibold text-sm">مثال بسيط:</p>
+                            <p class="text-blue-700 text-xs">
+                                نعطي الحاسوب بيانات عملاء المتجر ليكتشف بنفسه أن هناك مجموعات مختلفة:
+                                شباب يحبون الألعاب، كبار السن يحبون الكتب!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- التعلم المعزز -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-purple-500 slide-up card-hover" style="animation-delay: 0.6s;">
+                    <div class="text-center mb-6">
+                        <div class="bg-purple-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow" style="animation-delay: 1s;">
+                            <span class="text-4xl bounce-gentle">🎮</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-600 mb-3 gradient-text">التعلم المعزز</h3>
+                        <p class="text-gray-600 text-sm mb-4">Reinforcement Learning</p>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                        <h4 class="font-bold text-purple-800 mb-2">🎮 كيف يعمل؟</h4>
+                        <p class="text-purple-700 text-sm mb-3">
+                            مثل لعبة فيديو: يحصل على نقاط عند الفوز وينقص منه نقاط عند الخسارة
+                        </p>
+                        <div class="bg-white p-3 rounded-lg">
+                            <p class="text-purple-800 font-semibold text-sm">مثال بسيط:</p>
+                            <p class="text-purple-700 text-xs">
+                                روبوت يتعلم لعب الشطرنج: يحصل على +10 نقاط عند الفوز، 
+                                -10 عند الخسارة، ويحاول تحسين استراتيجيته!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة أخلاقيات البيانات -->
+    <div id="ethics-page" class="hidden min-h-screen pt-20 pb-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-8 slide-in-right gradient-text">
+                أخلاقيات البيانات في الذكاء الاصطناعي
+            </h1>
+            
+            <!-- مقدمة عن أهمية الأخلاقيات -->
+            <div class="bg-gradient-to-r from-red-100 via-orange-100 to-yellow-100 rounded-2xl shadow-xl p-8 mb-12 slide-up">
+                <div class="text-center mb-6">
+                    <div class="bg-red-200 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                        <span class="text-4xl bounce-gentle">⚠️</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">لماذا نهتم بأخلاقيات الذكاء الاصطناعي؟</h2>
+                </div>
+                
+                <div class="bg-white bg-opacity-80 rounded-xl p-6">
+                    <p class="text-lg text-gray-700 leading-relaxed text-center mb-4">
+                        الذكاء الاصطناعي قوة عظيمة يمكنها تحسين حياتنا، لكن استخدامها بطريقة خاطئة قد يضر بالمجتمع
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed text-center mb-4">
+                        من المهم أن نفهم المخاطر والمشاكل الأخلاقية لنتجنبها ونبني مستقبلاً أفضل
+                    </p>
+                </div>
+            </div>
+
+            <!-- المشاكل الأخلاقية الرئيسية -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                
+                <!-- التحيز والتمييز -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-red-500 slide-up card-hover" style="animation-delay: 0.2s;">
+                    <div class="text-center mb-4">
+                        <div class="bg-red-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                            <span class="text-3xl">⚖️</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-red-600 mb-3">التحيز والتمييز</h3>
+                    </div>
+                    
+                    <div class="bg-red-50 p-4 rounded-lg">
+                        <p class="text-red-700 text-sm mb-3">
+                            عندما تكون البيانات المستخدمة في التدريب متحيزة، يصبح النظام غير عادل
+                        </p>
+                        <div class="bg-white p-3 rounded-lg">
+                            <p class="text-red-800 font-semibold text-sm">مثال:</p>
+                            <p class="text-red-700 text-xs">
+                                أنظمة التوظيف التي ترفض النساء أو الأقليات تلقائياً
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- انتهاك الخصوصية -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-blue-500 zoom-in card-hover" style="animation-delay: 0.4s;">
+                    <div class="text-center mb-4">
+                        <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                            <span class="text-3xl">🔍</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-600 mb-3">انتهاك الخصوصية</h3>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="text-blue-700 text-sm mb-3">
+                            جمع واستخدام البيانات الشخصية بدون إذن أو علم المستخدمين
+                        </p>
+                        <div class="bg-white p-3 rounded-lg">
+                            <p class="text-blue-800 font-semibold text-sm">مثال:</p>
+                            <p class="text-blue-700 text-xs">
+                                تطبيقات تجمع بياناتك وتبيعها للشركات بدون إذنك
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- مسؤولية القرار -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-green-500 slide-up card-hover" style="animation-delay: 0.6s;">
+                    <div class="text-center mb-4">
+                        <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                            <span class="text-3xl">❓</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-green-600 mb-3">مسؤولية القرار</h3>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <p class="text-green-700 text-sm mb-3">
+                            من المسؤول عندما يتخذ الذكاء الاصطناعي قراراً خاطئاً؟
+                        </p>
+                        <div class="bg-white p-3 rounded-lg">
+                            <p class="text-green-800 font-semibold text-sm">مثال:</p>
+                            <p class="text-green-700 text-xs">
+                                عندما تصدم سيارة ذاتية شخصاً، من المسؤول؟
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- النتائج غير المبررة -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-purple-500 zoom-in card-hover" style="animation-delay: 0.8s;">
+                    <div class="text-center mb-4">
+                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                            <span class="text-3xl">🔒</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-purple-600 mb-3">النتائج غير المبررة</h3>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <p class="text-purple-700 text-sm mb-3">
+                            عندما لا نفهم كيف وصل النظام لقراره
+                        </p>
+                        <div class="bg-white p-3 rounded-lg">
+                            <p class="text-purple-800 font-semibold text-sm">مثال:</p>
+                            <p class="text-purple-700 text-xs">
+                                البنك يرفض قرضك بدون تفسير واضح للسبب
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- العزلة الاجتماعية -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-yellow-500 slide-up card-hover" style="animation-delay: 1s;">
+                    <div class="text-center mb-4">
+                        <div class="bg-yellow-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                            <span class="text-3xl">😔</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-yellow-600 mb-3">العزلة الاجتماعية</h3>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <p class="text-yellow-700 text-sm mb-3">
+                            الاعتماد المفرط على التكنولوجيا يقلل التفاعل البشري
+                        </p>
+                        <div class="bg-white p-3 rounded-lg">
+                            <p class="text-yellow-800 font-semibold text-sm">مثال:</p>
+                            <p class="text-yellow-700 text-xs">
+                                تفضيل التحدث مع الروبوتات بدلاً من البشر
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- النتائج غير الموثوقة -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-orange-500 zoom-in card-hover" style="animation-delay: 1.2s;">
+                    <div class="text-center mb-4">
+                        <div class="bg-orange-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                            <span class="text-3xl">⚠️</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-orange-600 mb-3">النتائج غير الموثوقة</h3>
+                    </div>
+                    
+                    <div class="bg-orange-50 p-4 rounded-lg">
+                        <p class="text-orange-700 text-sm mb-3">
+                            عدم الثبات في النتائج أو إعطاء نتائج خاطئة
+                        </p>
+                        <div class="bg-white p-3 rounded-lg">
+                            <p class="text-orange-800 font-semibold text-sm">مثال:</p>
+                            <p class="text-orange-700 text-xs">
+                                نظام طبي يعطي تشخيصات مختلفة لنفس الأعراض
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الحلول والتوصيات -->
+            <div class="bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 rounded-2xl shadow-xl p-8 slide-up" style="animation-delay: 1.4s;">
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">💡 كيف نبني ذكاء اصطناعي أخلاقي؟</h3>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6 text-center card-hover">
+                        <div class="text-3xl mb-4">🎯</div>
+                        <h4 class="font-bold text-green-800 mb-2">بيانات متنوعة</h4>
+                        <p class="text-green-700 text-sm">استخدام بيانات تمثل جميع فئات المجتمع بعدالة</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6 text-center card-hover">
+                        <div class="text-3xl mb-4">🔒</div>
+                        <h4 class="font-bold text-blue-800 mb-2">حماية الخصوصية</h4>
+                        <p class="text-blue-700 text-sm">احترام خصوصية الأفراد وحماية بياناتهم الشخصية</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6 text-center card-hover">
+                        <div class="text-3xl mb-4">⚖️</div>
+                        <h4 class="font-bold text-purple-800 mb-2">الشفافية والعدالة</h4>
+                        <p class="text-purple-700 text-sm">وضوح في كيفية عمل الأنظمة وضمان العدالة للجميع</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="bg-white bg-opacity-90 rounded-xl p-6">
+                        <h4 class="font-bold text-gray-800 mb-3">🌟 رسالة مهمة</h4>
+                        <p class="text-gray-700 leading-relaxed">
+                            أنتم جيل المستقبل! عندما تصبحون مطورين أو مستخدمين للذكاء الاصطناعي، 
+                            تذكروا دائماً أن التكنولوجيا يجب أن تخدم الإنسانية وتحقق العدالة للجميع 💙
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // إظهار الصفحات
+        function showSlide(slideId) {
+            // إخفاء جميع الصفحات
+            const pages = ['cover-page', 'concepts-page', 'ethics-page', 'ml-types-page'];
+            pages.forEach(page => {
+                document.getElementById(page).classList.add('hidden');
+            });
+            
+            // إظهار الصفحة المطلوبة
+            document.getElementById(slideId + '-page').classList.remove('hidden');
+        }
+
+        // كشف التلميحة في صفحة الغلاف
+        function revealHint() {
+            const hintContent = document.getElementById('hint-content');
+            const hintButton = document.getElementById('hint-button');
+            const startJourney = document.getElementById('start-journey');
+            
+            hintContent.classList.remove('hidden');
+            hintButton.style.display = 'none';
+            
+            setTimeout(() => {
+                startJourney.classList.remove('hidden');
+            }, 2000);
+        }
+
+        // إظهار وإخفاء أوصاف المفاهيم
+        function toggleDescription(descId) {
+            const desc = document.getElementById(descId);
+            desc.classList.toggle('show');
+        }
+
+        function showDescription(descId) {
+            const desc = document.getElementById(descId);
+            desc.classList.add('show');
+        }
+
+        // وظائف السحب والإفلات
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.target.closest('.drop-zone').style.borderColor = '#3B82F6';
+            ev.target.closest('.drop-zone').style.backgroundColor = '#EBF8FF';
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.outerHTML);
+            ev.dataTransfer.setData("category", ev.target.dataset.category);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text");
+            const category = ev.dataTransfer.getData("category");
+            const dropZone = ev.target.closest('.drop-zone');
+            
+            if (dropZone && dropZone.dataset.category === category) {
+                const droppedItems = dropZone.querySelector('.dropped-items');
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data;
+                const newItem = tempDiv.firstChild;
+                newItem.draggable = false;
+                newItem.classList.add('opacity-75');
+                droppedItems.appendChild(newItem);
+                
+                // إزالة العنصر من المصدر
+                const originalElements = document.querySelectorAll(`[data-category="${category}"]`);
+                originalElements.forEach(el => {
+                    if (el.innerHTML === newItem.innerHTML && el.draggable) {
+                        el.remove();
+                    }
+                });
+            }
+            
+            // إعادة تعيين الألوان
+            dropZone.style.borderColor = '';
+            dropZone.style.backgroundColor = '';
+        }
+
+        // التحقق من الإجابات
+        function checkAnswers() {
+            const dropZones = document.querySelectorAll('.drop-zone');
+            let correctAnswers = 0;
+            let totalAnswers = 0;
+            
+            dropZones.forEach(zone => {
+                const items = zone.querySelectorAll('.dropped-items .example-card');
+                items.forEach(item => {
+                    totalAnswers++;
+                    if (item.dataset.category === zone.dataset.category) {
+                        correctAnswers++;
+                        item.classList.add('border-2', 'border-green-500');
+                    } else {
+                        item.classList.add('border-2', 'border-red-500');
+                    }
+                });
+            });
+            
+            const percentage = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0;
+            const resultsDiv = document.getElementById('results');
+            
+            let message = '';
+            let bgColor = '';
+            
+            if (percentage >= 80) {
+                message = '🎉 ممتاز! لديكم فهم رائع لمفاهيم الذكاء الاصطناعي!';
+                bgColor = 'bg-green-100 border-green-500';
+            } else if (percentage >= 60) {
+                message = '👍 جيد جداً! تحتاجون لمراجعة بسيطة لبعض المفاهيم.';
+                bgColor = 'bg-yellow-100 border-yellow-500';
+            } else {
+                message = '💪 لا بأس! راجعوا المفاهيم مرة أخرى وحاولوا مجدداً.';
+                bgColor = 'bg-red-100 border-red-500';
+            }
+            
+            resultsDiv.innerHTML = `
+                <div class="p-6 rounded-xl border-2 ${bgColor} text-center">
+                    <h4 class="text-xl font-bold mb-3">النتيجة: ${correctAnswers}/${totalAnswers} (${percentage}%)</h4>
+                    <p class="text-lg">${message}</p>
+                </div>
+            `;
+            resultsDiv.classList.remove('hidden');
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9acbf8aee288ce18',t:'MTc2NTUyOTM5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
