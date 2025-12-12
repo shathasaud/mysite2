@@ -1,0 +1,1129 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مقرر تقنية رقمية 2 وتقنية رقمية 3 - المعلمة شذا الردادي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #f8fafc 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #7c3aed;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            right: 0;
+            background-color: #7c3aed;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.8); }
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100%) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translate3d(0,0,0);
+            }
+            40%, 43% {
+                transform: translate3d(0,-30px,0);
+            }
+            70% {
+                transform: translate3d(0,-15px,0);
+            }
+            90% {
+                transform: translate3d(0,-4px,0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 20px 10px rgba(124, 58, 237, 0);
+            }
+        }
+        
+        @keyframes rotate-slow {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes scale-pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        @keyframes slide-in-right {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slide-in-left {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes text-glow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
+            }
+        }
+        
+        @keyframes bounce-in {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .icon-container {
+            transition: all 0.3s ease;
+        }
+        
+        .icon-container:hover {
+            animation: float 2s ease-in-out infinite;
+        }
+        
+        .icon-glow:hover {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .icon-rotate:hover svg {
+            animation: rotate-slow 3s linear infinite;
+        }
+        
+        .icon-scale:hover {
+            animation: scale-pulse 1s ease-in-out infinite;
+        }
+        
+        .animate-slide-in-right {
+            animation: slide-in-right 0.8s ease-out;
+        }
+        
+        .animate-slide-in-left {
+            animation: slide-in-left 0.8s ease-out;
+        }
+        
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out;
+        }
+        
+        .animate-bounce-in {
+            animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .text-animate-glow {
+            animation: text-glow 3s ease-in-out infinite;
+        }
+        
+        .stagger-1 {
+            animation-delay: 0.1s;
+        }
+        
+        .stagger-2 {
+            animation-delay: 0.2s;
+        }
+        
+        .stagger-3 {
+            animation-delay: 0.3s;
+        }
+        
+        .stagger-4 {
+            animation-delay: 0.4s;
+        }
+        
+        .stagger-5 {
+            animation-delay: 0.5s;
+        }
+        
+        .stagger-6 {
+            animation-delay: 0.6s;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="bg-gray-50"><!-- Navigation -->
+  <nav class="bg-white shadow-lg sticky top-0 z-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+     <div class="flex items-center space-x-reverse space-x-4">
+      <div class="flex items-center">
+       <div class="w-10 h-10 bg-gradient-to-r from-blue-800 to-purple-600 rounded-lg flex items-center justify-center ml-3">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+       </div>
+       <div class="mr-3">
+        <h1 id="main-title" class="text-lg font-bold text-gray-800">التقنية الرقمية</h1>
+        <p id="teacher-name" class="text-sm text-gray-600">المعلمة شذا الردادي</p>
+       </div>
+      </div>
+     </div>
+     <div class="hidden md:block">
+      <div class="flex items-baseline space-x-reverse space-x-4"><a href="#" class="nav-link text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium" data-section="home" id="nav-home">الصفحة الرئيسية</a> <a href="#" class="nav-link text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium" data-section="courses" id="nav-courses">المقررات</a> <a href="#" class="nav-link text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium" data-section="resources" id="nav-resources">النمو المهني</a> <a href="#" class="nav-link text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium" data-section="contact" id="nav-contact">التواصل</a>
+      </div>
+     </div><!-- Mobile menu button -->
+     <div class="md:hidden"><button id="mobile-menu-btn" class="text-gray-700 hover:text-purple-600 focus:outline-none">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+       </svg></button>
+     </div>
+    </div>
+   </div><!-- Mobile menu -->
+   <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+    <div class="px-2 pt-2 pb-3 space-y-1"><a href="#" class="nav-link block px-3 py-2 text-gray-700 hover:text-purple-600" data-section="home">الصفحة الرئيسية</a> <a href="#" class="nav-link block px-3 py-2 text-gray-700 hover:text-purple-600" data-section="courses">المقررات</a> <a href="#" class="nav-link block px-3 py-2 text-gray-700 hover:text-purple-600" data-section="resources">النمو المهني</a> <a href="#" class="nav-link block px-3 py-2 text-gray-700 hover:text-purple-600" data-section="contact">التواصل</a>
+    </div>
+   </div>
+  </nav><!-- Hero Section -->
+  <section id="home-section" class="section active">
+   <div class="gradient-bg text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+     <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-slide-in-right text-animate-glow">مرحباً بكم في صفحة مقرر التقنية الرقمية</h2>
+     <p class="text-xl md:text-2xl mb-8 animate-slide-in-left stagger-2 leading-relaxed">نستكشف عالم التقنية الرقمية، حيث نبني معًا مهارات المستقبل ونطور القدرات في التفكير النقدي والإبداع التقني</p><button class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 shadow-lg">ابدئي رحلتك الرقمية 🚀</button>
+    </div>
+   </div><!-- About Section -->
+   <div class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4 animate-fade-in-up">عن المقرر</h2>
+      <div class="w-24 h-1 bg-purple-600 mx-auto animate-fade-in-up stagger-1"></div>
+     </div>
+     <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+       <p class="text-lg text-gray-700 leading-relaxed mb-6 animate-slide-in-right stagger-2">يهدف مقرر التقنية الرقمية إلى إعداد طالبات واعيات ومبدعات في مجال التقنية، قادرات على مواكبة التطورات الرقمية المتسارعة والمساهمة في بناء مجتمع رقمي متقدم.</p>
+       <p class="text-lg text-gray-700 leading-relaxed animate-slide-in-right stagger-3">نركز على تنمية مهارات التفكير النقدي وحل المشكلات والإبداع من خلال مشاريع عملية وتطبيقات حديثة تواكب احتياجات سوق العمل المستقبلي.</p>
+      </div>
+      <div class="text-center">
+       <div class="w-64 h-64 mx-auto bg-gradient-to-br from-blue-800 to-purple-600 rounded-full flex items-center justify-center animate-bounce-in stagger-4" style="animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s backwards, float 3s ease-in-out 1s infinite, pulse-glow 2s ease-in-out 1s infinite;">
+        <svg class="w-32 h-32 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Saudi Education Goals -->
+   <div class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">أهداف التعليم في المملكة العربية السعودية</h2>
+      <div class="w-24 h-1 bg-green-600 mx-auto"></div>
+     </div>
+     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-8 border border-green-200">
+      <div class="grid md:grid-cols-2 gap-8">
+       <div>
+        <ul class="space-y-4">
+         <li class="flex items-start animate-fade-in-up stagger-1"><span class="text-green-600 ml-3 mt-1 inline-block" style="animation: scale-pulse 2s ease-in-out 0.5s infinite, float 3s ease-in-out 0.5s infinite;">🇸🇦</span> <span class="text-gray-700">تعزيز الهوية الوطنية والقيم الإسلامية في التعليم التقني</span></li>
+         <li class="flex items-start animate-fade-in-up stagger-2"><span class="text-green-600 ml-3 mt-1 inline-block" style="animation: scale-pulse 2.2s ease-in-out 0.6s infinite;">🎯</span> <span class="text-gray-700">إعداد جيل مؤهل لمواكبة رؤية المملكة 2030</span></li>
+         <li class="flex items-start animate-fade-in-up stagger-3"><span class="text-green-600 ml-3 mt-1 inline-block" style="animation: float 2.5s ease-in-out 0.7s infinite, pulse-glow 2.5s ease-in-out 0.7s infinite;">💼</span> <span class="text-gray-700">تطوير المهارات المطلوبة لسوق العمل المستقبلي</span></li>
+         <li class="flex items-start animate-fade-in-up stagger-4"><span class="text-green-600 ml-3 mt-1 inline-block" style="animation: scale-pulse 2.8s ease-in-out 0.8s infinite, float 3.2s ease-in-out 0.8s infinite;">🌟</span> <span class="text-gray-700">بناء شخصية متوازنة قادرة على الإبداع والابتكار</span></li>
+        </ul>
+       </div>
+       <div>
+        <ul class="space-y-4">
+         <li class="flex items-start animate-fade-in-up stagger-1"><span class="text-green-600 ml-3 mt-1 inline-block" style="animation: float 2.3s ease-in-out 0.9s infinite, pulse-glow 2.3s ease-in-out 0.9s infinite;">🏛️</span> <span class="text-gray-700">تنمية روح المواطنة الصالحة والمسؤولية الاجتماعية</span></li>
+         <li class="flex items-start animate-fade-in-up stagger-2"><span class="text-green-600 ml-3 mt-1 inline-block" style="animation: rotate-slow 8s linear infinite;">🌍</span> <span class="text-gray-700">إعداد كوادر قادرة على المنافسة عالمياً</span></li>
+         <li class="flex items-start animate-fade-in-up stagger-3"><span class="text-green-600 ml-3 mt-1 inline-block" style="animation: scale-pulse 2.4s ease-in-out 1s infinite;">📚</span> <span class="text-gray-700">تطوير مهارات التعلم الذاتي والتعلم مدى الحياة</span></li>
+         <li class="flex items-start animate-fade-in-up stagger-4"><span class="text-green-600 ml-3 mt-1 inline-block" style="animation: float 2.7s ease-in-out 1.1s infinite, pulse-glow 2.7s ease-in-out 1.1s infinite;">🤝</span> <span class="text-gray-700">تعزيز قيم التعاون والعمل الجماعي</span></li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Educational Goals -->
+   <div class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4 animate-fade-in-up">الأهداف التعليمية</h2>
+      <div class="w-24 h-1 bg-purple-600 mx-auto animate-fade-in-up stagger-1"></div>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-purple-600 animate-fade-in-up stagger-1">
+       <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4" style="animation: fade-in-up 0.8s ease-out 0.1s backwards, float 2s ease-in-out 1s infinite, pulse-glow 2s ease-in-out 1s infinite;"><span class="text-3xl">🧠</span>
+       </div>
+       <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">التفكير النقدي</h3>
+       <p class="text-gray-600 text-center leading-relaxed">تنمية مهارات التفكير التحليلي والنقدي لحل المشكلات التقنية المعقدة</p>
+      </div>
+      <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-blue-600 animate-fade-in-up stagger-2">
+       <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4" style="animation: fade-in-up 0.8s ease-out 0.2s backwards, scale-pulse 1.5s ease-in-out 1s infinite;"><span class="text-3xl">💻</span>
+       </div>
+       <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">المهارات التقنية</h3>
+       <p class="text-gray-600 text-center leading-relaxed">إتقان البرمجة وتطوير التطبيقات والتعامل مع التقنيات الحديثة</p>
+      </div>
+      <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-green-600 animate-fade-in-up stagger-3">
+       <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4" style="animation: fade-in-up 0.8s ease-out 0.3s backwards, float 2.5s ease-in-out 1s infinite, pulse-glow 2.5s ease-in-out 1s infinite;"><span class="text-3xl">🎨</span>
+       </div>
+       <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">الإبداع والابتكار</h3>
+       <p class="text-gray-600 text-center leading-relaxed">تشجيع التفكير الإبداعي وتطوير حلول تقنية مبتكرة</p>
+      </div>
+      <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-yellow-600 animate-fade-in-up stagger-4">
+       <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4" style="animation: fade-in-up 0.8s ease-out 0.4s backwards, scale-pulse 1.8s ease-in-out 1s infinite;"><span class="text-3xl">🤝</span>
+       </div>
+       <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">العمل الجماعي</h3>
+       <p class="text-gray-600 text-center leading-relaxed">تعزيز مهارات التعاون والعمل ضمن فريق في المشاريع التقنية</p>
+      </div>
+      <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-red-600 animate-fade-in-up stagger-5">
+       <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4" style="animation: fade-in-up 0.8s ease-out 0.5s backwards, float 2.2s ease-in-out 1s infinite, pulse-glow 2.2s ease-in-out 1s infinite;"><span class="text-3xl">🔒</span>
+       </div>
+       <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">الأمن الرقمي</h3>
+       <p class="text-gray-600 text-center leading-relaxed">فهم أساسيات الأمن السيبراني وحماية البيانات والخصوصية</p>
+      </div>
+      <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-pink-600 animate-fade-in-up stagger-6">
+       <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4" style="animation: fade-in-up 0.8s ease-out 0.6s backwards, scale-pulse 2s ease-in-out 1s infinite;"><span class="text-3xl">📈</span>
+       </div>
+       <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">التطوير المستمر</h3>
+       <p class="text-gray-600 text-center leading-relaxed">بناء عادة التعلم الذاتي ومواكبة التطورات التقنية المتسارعة</p>
+      </div>
+     </div>
+    </div>
+   </div><!-- Course Topics -->
+   <div class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4 animate-fade-in-up">محاور الدروس</h2>
+      <div class="w-24 h-1 bg-purple-600 mx-auto animate-fade-in-up stagger-1"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl card-hover border border-blue-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: scale-pulse 1.5s ease-in-out infinite;"><span class="text-2xl">📋</span>
+        </div>
+        <h3 class="text-lg font-semibold text-blue-800 mb-2">أساسيات تخطيط المشروع</h3>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl card-hover border border-purple-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: rotate-slow 8s linear infinite;"><span class="text-2xl">🔄</span>
+        </div>
+        <h3 class="text-lg font-semibold text-purple-800 mb-2">دورة حياة النظام</h3>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl card-hover border border-green-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: float 2s ease-in-out infinite, pulse-glow 2s ease-in-out infinite;"><span class="text-2xl">📱</span>
+        </div>
+        <h3 class="text-lg font-semibold text-green-800 mb-2">تطبيقات الهواتف الذكية</h3>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl card-hover border border-yellow-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-yellow-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: scale-pulse 1.8s ease-in-out infinite;"><span class="text-2xl">🤖</span>
+        </div>
+        <h3 class="text-lg font-semibold text-yellow-800 mb-2">الذكاء الاصطناعي</h3>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-rose-50 to-rose-100 p-6 rounded-xl card-hover border border-rose-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-rose-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: float 2.3s ease-in-out infinite, pulse-glow 2.3s ease-in-out infinite;"><span class="text-2xl">📊</span>
+        </div>
+        <h3 class="text-lg font-semibold text-rose-800 mb-2">علم البيانات</h3>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-xl card-hover border border-indigo-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: scale-pulse 2s ease-in-out infinite;"><span class="text-2xl">💻</span>
+        </div>
+        <h3 class="text-lg font-semibold text-indigo-800 mb-2">البرمجة بلغة HTML</h3>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-xl card-hover border border-pink-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-pink-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: float 2.5s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;"><span class="text-2xl">🎨</span>
+        </div>
+        <h3 class="text-lg font-semibold text-pink-800 mb-2">التصميم الرسومي</h3>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl card-hover border border-teal-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-teal-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: scale-pulse 1.6s ease-in-out infinite;"><span class="text-2xl">📈</span>
+        </div>
+        <h3 class="text-lg font-semibold text-teal-800 mb-2">التسويق الإلكتروني</h3>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-6 rounded-xl card-hover border border-cyan-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-cyan-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: float 2.8s ease-in-out infinite, pulse-glow 2.8s ease-in-out infinite;"><span class="text-2xl">🖥️</span>
+        </div>
+        <h3 class="text-lg font-semibold text-cyan-800 mb-2">أساسيات علم أجهزة الحاسب</h3>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl card-hover border border-amber-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: rotate-slow 10s linear infinite;"><span class="text-2xl">🌐</span>
+        </div>
+        <h3 class="text-lg font-semibold text-amber-800 mb-2">العمل عبر الانترنت</h3>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-lime-50 to-lime-100 p-6 rounded-xl card-hover border border-lime-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-lime-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: scale-pulse 2.2s ease-in-out infinite;"><span class="text-2xl">🌟</span>
+        </div>
+        <h3 class="text-lg font-semibold text-lime-800 mb-2">التقنية والحياة</h3>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-violet-50 to-violet-100 p-6 rounded-xl card-hover border border-violet-200">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-violet-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: float 2.6s ease-in-out infinite, pulse-glow 2.6s ease-in-out infinite;"><span class="text-2xl">🖼️</span>
+        </div>
+        <h3 class="text-lg font-semibold text-violet-800 mb-2">معالجة الصور المتقدمة</h3>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Higher Order Thinking Skills -->
+   <div class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">مهارات التفكير العليا</h2>
+      <div class="w-24 h-1 bg-orange-600 mx-auto"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl card-hover border border-orange-200 animate-fade-in-up stagger-1">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 mx-auto icon-container" style="animation: scale-pulse 2s ease-in-out infinite, pulse-glow 2s ease-in-out infinite;">
+         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+         </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-orange-800 mb-2">التحليل</h3>
+        <p class="text-orange-700 text-sm">تفكيك المعلومات وفهم العلاقات بين الأجزاء</p>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl card-hover border border-red-200 animate-fade-in-up stagger-2">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4 mx-auto icon-container" style="animation: float 2.5s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;">
+         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+         </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-red-800 mb-2">التقييم</h3>
+        <p class="text-red-700 text-sm">إصدار أحكام مدروسة على المعلومات والحلول</p>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl card-hover border border-purple-200 animate-fade-in-up stagger-3">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mb-4 mx-auto icon-container" style="animation: rotate-slow 6s linear infinite, pulse-glow 2s ease-in-out infinite;">
+         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+         </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-purple-800 mb-2">التركيب</h3>
+        <p class="text-purple-700 text-sm">دمج العناصر لإنتاج أفكار وحلول جديدة</p>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-xl card-hover border border-pink-200 animate-fade-in-up stagger-4">
+       <div class="text-center">
+        <div class="w-16 h-16 bg-pink-600 rounded-full flex items-center justify-center mb-4 mx-auto icon-container" style="animation: scale-pulse 2.2s ease-in-out infinite, float 3s ease-in-out infinite, pulse-glow 2.2s ease-in-out infinite;">
+         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+         </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-pink-800 mb-2">الإبداع</h3>
+        <p class="text-pink-700 text-sm">توليد أفكار أصيلة ومبتكرة لحل المشكلات</p>
+       </div>
+      </div>
+     </div>
+     <div class="mt-12 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8">
+      <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">تطبيق مهارات التفكير العليا في المقرر</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+       <div>
+        <h4 class="text-lg font-semibold text-gray-800 mb-4">في تقنية رقمية 1:</h4>
+        <ul class="space-y-2">
+         <li class="flex items-start"><span class="text-green-600 ml-2 mt-1">•</span> <span class="text-gray-700">تحليل مكونات أجهزة الحاسب ووظائفها</span></li>
+         <li class="flex items-start"><span class="text-green-600 ml-2 mt-1">•</span> <span class="text-gray-700">تقييم أدوات العمل عبر الإنترنت</span></li>
+         <li class="flex items-start"><span class="text-green-600 ml-2 mt-1">•</span> <span class="text-gray-700">تركيب حلول تقنية للحياة اليومية</span></li>
+         <li class="flex items-start"><span class="text-green-600 ml-2 mt-1">•</span> <span class="text-gray-700">إبداع تصاميم بمعالجة الصور المتقدمة</span></li>
+        </ul>
+       </div>
+       <div>
+        <h4 class="text-lg font-semibold text-gray-800 mb-4">في تقنية رقمية 2:</h4>
+        <ul class="space-y-2">
+         <li class="flex items-start"><span class="text-blue-600 ml-2 mt-1">•</span> <span class="text-gray-700">تحليل خوارزميات الذكاء الاصطناعي</span></li>
+         <li class="flex items-start"><span class="text-blue-600 ml-2 mt-1">•</span> <span class="text-gray-700">تقييم نماذج علم البيانات</span></li>
+         <li class="flex items-start"><span class="text-blue-600 ml-2 mt-1">•</span> <span class="text-gray-700">تركيب صفحات ويب بلغة HTML</span></li>
+         <li class="flex items-start"><span class="text-blue-600 ml-2 mt-1">•</span> <span class="text-gray-700">إبداع تصاميم رسومية احترافية</span></li>
+         <li class="flex items-start"><span class="text-blue-600 ml-2 mt-1">•</span> <span class="text-gray-700">تقييم استراتيجيات التسويق الإلكتروني</span></li>
+        </ul>
+       </div>
+       <div>
+        <h4 class="text-lg font-semibold text-gray-800 mb-4">في تقنية رقمية 3:</h4>
+        <ul class="space-y-2">
+         <li class="flex items-start"><span class="text-purple-600 ml-2 mt-1">•</span> <span class="text-gray-700">تحليل متطلبات المشاريع التقنية</span></li>
+         <li class="flex items-start"><span class="text-purple-600 ml-2 mt-1">•</span> <span class="text-gray-700">تقييم مراحل دورة حياة النظام</span></li>
+         <li class="flex items-start"><span class="text-purple-600 ml-2 mt-1">•</span> <span class="text-gray-700">تركيب وتطوير تطبيقات الهواتف الذكية</span></li>
+         <li class="flex items-start"><span class="text-purple-600 ml-2 mt-1">•</span> <span class="text-gray-700">إبداع حلول تطبيقية مبتكرة</span></li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- 21st Century Skills -->
+   <div class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">أهمية المقرر في تنمية مهارات القرن 21</h2>
+      <div class="w-24 h-1 bg-purple-600 mx-auto"></div>
+     </div>
+     <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+      <div class="grid md:grid-cols-3 gap-8">
+       <div class="text-center">
+        <div class="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: rotate-slow 10s linear infinite;"><span class="text-3xl">🌐</span>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-3">المواطنة الرقمية</h3>
+        <p class="text-gray-600">تعزيز الوعي بالاستخدام الآمن والمسؤول للتقنية</p>
+       </div>
+       <div class="text-center">
+        <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: float 2.5s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;"><span class="text-3xl">💡</span>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-3">الإبداع والابتكار</h3>
+        <p class="text-gray-600">تطوير القدرة على إيجاد حلول إبداعية للمشكلات</p>
+       </div>
+       <div class="text-center">
+        <div class="w-20 h-20 bg-gradient-to-r from-green-600 to-blue-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: scale-pulse 2s ease-in-out infinite;"><span class="text-3xl">🤝</span>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-3">التعاون والتواصل</h3>
+        <p class="text-gray-600">بناء مهارات العمل الجماعي والتواصل الفعال</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Features -->
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div class="bg-white p-6 rounded-lg shadow-md card-hover text-center">
+      <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+       <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+       </svg>
+      </div>
+      <h3 class="text-xl font-bold text-gray-800 mb-2">محتوى تعليمي شامل</h3>
+      <p class="text-gray-600">دروس مفصلة وشروحات واضحة لجميع وحدات المقرر</p>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-md card-hover text-center">
+      <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+       <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+       </svg>
+      </div>
+      <h3 class="text-xl font-bold text-gray-800 mb-2">تمارين وأنشطة</h3>
+      <p class="text-gray-600">تطبيقات عملية وتمارين تفاعلية لتعزيز الفهم</p>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-md card-hover text-center">
+      <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+       <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+       </svg>
+      </div>
+      <h3 class="text-xl font-bold text-gray-800 mb-2">اختبارات تقييمية</h3>
+      <p class="text-gray-600">اختبارات دورية لقياس مستوى التقدم والفهم</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Subjects Section -->
+  <section id="courses-section" class="section">
+   <div class="py-16 bg-gray-50 min-h-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-800 mb-4 animate-fade-in-up text-animate-glow">المواد الدراسية</h1>
+      <div class="w-24 h-1 bg-purple-600 mx-auto mb-6 animate-fade-in-up stagger-1"></div>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto animate-slide-in-left stagger-2">استكشفي محتوى المقررات الدراسية وتعرفي على المهارات والمعارف التي ستكتسبينها</p>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-8"><!-- Digital Technology 3 -->
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover animate-fade-in-up stagger-1">
+       <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-6 text-white">
+        <h2 class="text-2xl font-bold mb-2 animate-slide-in-right">تقنية رقمية 3</h2>
+        <p class="opacity-90 animate-slide-in-left stagger-1">المرحلة الثانوية - الفصل الأول</p>
+       </div>
+       <div class="p-6">
+        <div class="mb-6">
+         <h3 class="text-xl font-semibold text-gray-800 mb-4 animate-fade-in-up stagger-2">وحدات المقرر:</h3>
+         <div class="space-y-3">
+          <div class="flex items-center p-3 bg-blue-50 rounded-lg animate-slide-in-right stagger-3"><span class="text-blue-600 ml-3 text-2xl" style="animation: scale-pulse 2s ease-in-out infinite, float 3s ease-in-out infinite;">📋</span>
+           <div class="text-gray-700">
+            أساسيات تخطيط المشروع <span class="text-sm text-blue-600"> ( اضغط على الرابط لمشاهدة الدروس ) <a href="https://shathaedu.com/timeline" target="_blank" rel="noopener noreferrer" class="hover:text-blue-800 underline">الدرس 2</a> , <a href="https://shathaedu.com/taskmanagement" target="_blank" rel="noopener noreferrer" class="hover:text-blue-800 underline">الدرس 3</a> </span>
+           </div>
+          </div>
+          <div class="flex items-center p-3 bg-blue-50 rounded-lg animate-slide-in-right stagger-4"><span class="text-blue-600 ml-3 text-2xl" style="animation: rotate-slow 8s linear infinite, pulse-glow 2s ease-in-out infinite;">🔄</span>
+           <div class="text-gray-700">
+            دورة حياة النظام <span class="text-sm text-blue-600"> ( اضغط على الرابط لمشاهدة الدروس ) <a href="https://shathaedu.com/mysite-lesson3-slc1" target="_blank" rel="noopener noreferrer" class="hover:text-blue-800 underline">دورة حياة النظام 1</a> , <a href="https://shathaedu.com/mysite-lesson3-slc2" target="_blank" rel="noopener noreferrer" class="hover:text-blue-800 underline">دورة حياة النظام 2</a> , <a href="https://shathaedu.com/mysite-lesson3-cd" target="_blank" rel="noopener noreferrer" class="hover:text-blue-800 underline">إنشاء المخطط</a> , <a href="https://shathaedu.com/mysite-lesson3-sc" target="_blank" rel="noopener noreferrer" class="hover:text-blue-800 underline">الأمن السيبراني 1</a> , <a href="https://shathaedu.com/mysite-lesson3-dfa" target="_blank" rel="noopener noreferrer" class="hover:text-blue-800 underline">الأمن السيبراني 2</a> , <a href="https://shathaedu.com/mysite-lesson3-dfa1" target="_blank" rel="noopener noreferrer" class="hover:text-blue-800 underline">الأمن السيبراني 3</a> </span>
+           </div>
+          </div>
+          <div class="flex items-center p-3 bg-blue-50 rounded-lg animate-slide-in-right stagger-5"><span class="text-blue-600 ml-3 text-2xl" style="animation: float 2.5s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;">📱</span> <span class="text-gray-700">تطبيقات الهواتف الذكية</span>
+          </div>
+         </div>
+        </div>
+        <div class="border-t pt-6">
+         <h4 class="font-semibold text-gray-800 mb-3 animate-fade-in-up stagger-6">المهارات المكتسبة:</h4>
+         <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm animate-bounce-in stagger-1">إدارة المشاريع</span> <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm animate-bounce-in stagger-2">تحليل النظم</span> <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm animate-bounce-in stagger-3">تطوير التطبيقات</span>
+         </div>
+        </div>
+       </div>
+      </div><!-- Digital Technology 2 -->
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover animate-fade-in-up stagger-2">
+       <div class="bg-gradient-to-r from-purple-600 to-purple-800 p-6 text-white">
+        <h2 class="text-2xl font-bold mb-2 animate-slide-in-right">تقنية رقمية 2</h2>
+        <p class="opacity-90 animate-slide-in-left stagger-1">المرحلة الثانوية - الفصل الثاني</p>
+       </div>
+       <div class="p-6">
+        <div class="mb-6">
+         <h3 class="text-xl font-semibold text-gray-800 mb-4 animate-fade-in-up stagger-2">وحدات المقرر:</h3>
+         <div class="space-y-3">
+          <div class="flex items-center p-3 bg-purple-50 rounded-lg animate-slide-in-right stagger-3"><span class="text-purple-600 ml-3 text-2xl" style="animation: scale-pulse 2.2s ease-in-out infinite, float 3.2s ease-in-out infinite;">🤖</span> <span class="text-gray-700">الذكاء الاصطناعي</span>
+          </div>
+          <div class="flex items-center p-3 bg-purple-50 rounded-lg animate-slide-in-right stagger-4"><span class="text-purple-600 ml-3 text-2xl" style="animation: float 2.8s ease-in-out infinite, pulse-glow 2.8s ease-in-out infinite;">📊</span> <span class="text-gray-700">علم البيانات</span>
+          </div>
+          <div class="flex items-center p-3 bg-purple-50 rounded-lg animate-slide-in-right stagger-5"><span class="text-purple-600 ml-3 text-2xl" style="animation: scale-pulse 2.5s ease-in-out infinite;">💻</span> <span class="text-gray-700">البرمجة بلغة HTML</span>
+          </div>
+          <div class="flex items-center p-3 bg-purple-50 rounded-lg animate-slide-in-right stagger-6"><span class="text-purple-600 ml-3 text-2xl" style="animation: float 3s ease-in-out infinite, pulse-glow 3s ease-in-out infinite;">🎨</span> <span class="text-gray-700">التصميم الرسومي</span>
+          </div>
+          <div class="flex items-center p-3 bg-purple-50 rounded-lg animate-slide-in-right stagger-1"><span class="text-purple-600 ml-3 text-2xl" style="animation: scale-pulse 2.7s ease-in-out infinite, float 3.5s ease-in-out infinite;">📈</span> <span class="text-gray-700">التسويق الإلكتروني</span>
+          </div>
+         </div>
+        </div>
+        <div class="border-t pt-6">
+         <h4 class="font-semibold text-gray-800 mb-3 animate-fade-in-up stagger-2">المهارات المكتسبة:</h4>
+         <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm animate-bounce-in stagger-1">الذكاء الاصطناعي</span> <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm animate-bounce-in stagger-2">تحليل البيانات</span> <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm animate-bounce-in stagger-3">تطوير الويب</span> <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm animate-bounce-in stagger-4">التصميم</span>
+         </div>
+        </div>
+       </div>
+      </div><!-- Digital Technology 1 -->
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover animate-fade-in-up stagger-3">
+       <div class="bg-gradient-to-r from-green-600 to-green-800 p-6 text-white">
+        <h2 class="text-2xl font-bold mb-2 animate-slide-in-right">تقنية رقمية 1</h2>
+        <p class="opacity-90 animate-slide-in-left stagger-1">المرحلة الثانوية</p>
+       </div>
+       <div class="p-6">
+        <div class="mb-6">
+         <h3 class="text-xl font-semibold text-gray-800 mb-4 animate-fade-in-up stagger-2">وحدات المقرر:</h3>
+         <div class="space-y-3">
+          <div class="flex items-center p-3 bg-green-50 rounded-lg animate-slide-in-right stagger-3"><span class="text-green-600 ml-3 text-2xl" style="animation: scale-pulse 2.3s ease-in-out infinite, float 3.3s ease-in-out infinite;">🖥️</span> <span class="text-gray-700">أساسيات علم أجهزة الحاسب</span>
+          </div>
+          <div class="flex items-center p-3 bg-green-50 rounded-lg animate-slide-in-right stagger-4"><span class="text-green-600 ml-3 text-2xl" style="animation: rotate-slow 10s linear infinite, pulse-glow 2.5s ease-in-out infinite;">🌐</span> <span class="text-gray-700">العمل عبر الانترنت</span>
+          </div>
+          <div class="flex items-center p-3 bg-green-50 rounded-lg animate-slide-in-right stagger-5"><span class="text-green-600 ml-3 text-2xl" style="animation: float 2.6s ease-in-out infinite, pulse-glow 2.6s ease-in-out infinite;">🌟</span> <span class="text-gray-700">التقنية والحياة</span>
+          </div>
+          <div class="flex items-center p-3 bg-green-50 rounded-lg animate-slide-in-right stagger-6"><span class="text-green-600 ml-3 text-2xl" style="animation: scale-pulse 2.4s ease-in-out infinite;">🖼️</span> <span class="text-gray-700">معالجة الصور المتقدمة</span>
+          </div>
+          <div class="flex items-center p-3 bg-green-50 rounded-lg animate-slide-in-right stagger-1"><span class="text-green-600 ml-3 text-2xl" style="animation: float 3.1s ease-in-out infinite, pulse-glow 3.1s ease-in-out infinite;">💻</span> <span class="text-gray-700">البرمجة بلغة HTML</span>
+          </div>
+          <div class="flex items-center p-3 bg-green-50 rounded-lg animate-slide-in-right stagger-2"><span class="text-green-600 ml-3 text-2xl" style="animation: scale-pulse 2.6s ease-in-out infinite, float 3.4s ease-in-out infinite;">📄</span> <span class="text-gray-700">مستندات ونماذج وتقارير الأعمال</span>
+          </div>
+          <div class="flex items-center p-3 bg-green-50 rounded-lg animate-slide-in-right stagger-3"><span class="text-green-600 ml-3 text-2xl" style="animation: float 2.9s ease-in-out infinite, pulse-glow 2.9s ease-in-out infinite;">🔗</span> <span class="text-gray-700">الشبكات</span>
+          </div>
+          <div class="flex items-center p-3 bg-green-50 rounded-lg animate-slide-in-right stagger-4"><span class="text-green-600 ml-3 text-2xl" style="animation: scale-pulse 2.8s ease-in-out infinite, float 3.6s ease-in-out infinite;">🤖</span> <span class="text-gray-700">البرمجة بواسطة MicroBit</span>
+          </div>
+         </div>
+        </div>
+        <div class="border-t pt-6">
+         <h4 class="font-semibold text-gray-800 mb-3 animate-fade-in-up stagger-5">المهارات المكتسبة:</h4>
+         <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm animate-bounce-in stagger-1">أساسيات الحاسب</span> <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm animate-bounce-in stagger-2">الشبكات</span> <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm animate-bounce-in stagger-3">البرمجة</span> <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm animate-bounce-in stagger-4">معالجة الصور</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Assessment Section -->
+     <div class="mt-12 animate-fade-in-up stagger-4">
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+       <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center animate-bounce-in">المتابعة والتقييم</h2>
+       <div class="grid md:grid-cols-2 gap-6">
+        <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl card-hover animate-slide-in-right stagger-1">
+         <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: scale-pulse 2s ease-in-out infinite, pulse-glow 2s ease-in-out infinite;"><span class="text-2xl">⭐</span>
+         </div>
+         <h3 class="text-lg font-semibold text-blue-800 mb-2">تقييم الإجابات الفردية المميزة</h3>
+         <p class="text-blue-700 text-sm mb-4">تقييم الطالبات المتميزات في الإجابات الفردية</p><button onclick="showIndividualAssessment()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 shadow-md hover:shadow-lg"> ابدأ التقييم الفردي </button>
+        </div>
+        <div class="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl card-hover animate-slide-in-left stagger-2">
+         <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: float 2.5s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;"><span class="text-2xl">👥</span>
+         </div>
+         <h3 class="text-lg font-semibold text-purple-800 mb-2">تقييم المجموعات</h3>
+         <p class="text-purple-700 text-sm mb-4">تقييم أداء المجموعات والعمل الجماعي</p><button onclick="showGroupAssessment()" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 shadow-md hover:shadow-lg"> ابدأ تقييم المجموعات </button>
+        </div>
+        <div class="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl card-hover animate-slide-in-right stagger-3">
+         <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: rotate-slow 8s linear infinite, pulse-glow 2.5s ease-in-out infinite;"><span class="text-2xl">🎯</span>
+         </div>
+         <h3 class="text-lg font-semibold text-green-800 mb-2">عجلة اتجاهات الأسئلة الستة</h3>
+         <p class="text-green-700 text-sm mb-4">أدوار التفاعل والأسئلة التعليمية</p><button onclick="showQuestionWheel()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 shadow-md hover:shadow-lg"> فتح عجلة الأسئلة </button>
+        </div>
+        <div class="text-center p-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl card-hover animate-slide-in-left stagger-4">
+         <div class="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 mx-auto" style="animation: rotate-slow 6s linear infinite, pulse-glow 2.5s ease-in-out infinite;"><span class="text-2xl">🎲</span>
+         </div>
+         <h3 class="text-lg font-semibold text-orange-800 mb-2">عجلة اختيار الطالبات</h3>
+         <p class="text-orange-700 text-sm mb-4">اختيار عشوائي عادل للطالبات</p><button onclick="showStudentWheel()" class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 shadow-md hover:shadow-lg"> فتح عجلة الاختيار </button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Resources Section -->
+  <section id="resources-section" class="section">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">النمو المهني</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+     <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center ml-3">
+        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-gray-800">عروض تقديمية</h3>
+      </div>
+      <p class="text-gray-600 mb-4">شرائح تقديمية شاملة لجميع الدروس</p><button class="text-red-600 hover:text-red-700 font-semibold">تصفح العروض ←</button>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center ml-3">
+        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-gray-800">فيديوهات تعليمية</h3>
+      </div>
+      <p class="text-gray-600 mb-4">شروحات مرئية مفصلة للمفاهيم</p><button class="text-blue-600 hover:text-blue-700 font-semibold">مشاهدة الفيديوهات ←</button>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center ml-3">
+        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-gray-800">ملفات PDF</h3>
+      </div>
+      <p class="text-gray-600 mb-4">ملخصات وأوراق عمل قابلة للتحميل</p><button class="text-green-600 hover:text-green-700 font-semibold">تحميل الملفات ←</button>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center ml-3">
+        <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-gray-800">أمثلة برمجية</h3>
+      </div>
+      <p class="text-gray-600 mb-4">أكواد جاهزة وأمثلة تطبيقية</p><button class="text-yellow-600 hover:text-yellow-700 font-semibold">استعراض الأكواد ←</button>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center ml-3">
+        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-gray-800">روابط مفيدة</h3>
+      </div>
+      <p class="text-gray-600 mb-4">مواقع وأدوات تعليمية إضافية</p><button class="text-purple-600 hover:text-purple-700 font-semibold">عرض الروابط ←</button>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+      <div class="flex items-center mb-4">
+       <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center ml-3">
+        <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-gray-800">اختبارات تجريبية</h3>
+      </div>
+      <p class="text-gray-600 mb-4">نماذج اختبارات للتدريب والمراجعة</p><button class="text-pink-600 hover:text-pink-700 font-semibold">بدء الاختبار ←</button>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact Section -->
+  <section id="contact-section" class="section">
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">التواصل معنا</h2>
+    <div class="bg-white rounded-lg shadow-lg p-8">
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div class="flex items-start">
+       <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center ml-4 flex-shrink-0">
+        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+       </div>
+       <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">البريد الإلكتروني</h3>
+        <p class="text-gray-600">shatha.alradadi@example.com</p>
+       </div>
+      </div>
+      <div class="flex items-start">
+       <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center ml-4 flex-shrink-0">
+        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+       </div>
+       <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">الهاتف</h3>
+        <p class="text-gray-600">+966 XX XXX XXXX</p>
+       </div>
+      </div>
+     </div>
+     <form id="contact-form" class="space-y-6">
+      <div><label for="name" class="block text-sm font-medium text-gray-700 mb-2">الاسم</label> <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+      </div>
+      <div><label for="email" class="block text-sm font-medium text-gray-700 mb-2">البريد الإلكتروني</label> <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+      </div>
+      <div><label for="message" class="block text-sm font-medium text-gray-700 mb-2">الرسالة</label> <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"></textarea>
+      </div><button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition duration-300 font-semibold">إرسال الرسالة</button>
+     </form>
+     <div id="form-message" class="mt-4 p-4 rounded-lg hidden"></div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+     <p class="text-lg font-semibold mb-2">المعلمة شذا الردادي</p>
+     <p class="text-gray-400 mb-4">مقرر التقنية الرقمية 2 و 3</p>
+     <div class="flex justify-center space-x-reverse space-x-6"><a href="#" class="text-gray-400 hover:text-white transition duration-300">
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+       </svg></a> <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+       </svg></a> <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
+       </svg></a>
+     </div>
+     <p class="text-gray-400 mt-6 text-sm">© 2024 جميع الحقوق محفوظة</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+        const defaultConfig = {
+            main_title: "التقنية الرقمية",
+            teacher_name: "المعلمة شذا الردادي",
+            page_title: "مقرر تقنية رقمية 2 وتقنية رقمية 3",
+            nav_home: "الصفحة الرئيسية",
+            nav_courses: "المقررات",
+            nav_resources: "النمو المهني",
+            nav_contact: "التواصل",
+            background_color: "#f9fafb",
+            card_color: "#ffffff",
+            text_color: "#1f2937",
+            primary_action_color: "#7c3aed",
+            secondary_action_color: "#1e3a8a",
+            font_family: "Cairo",
+            font_size: 16
+        };
+
+        async function onConfigChange(config) {
+            const customFont = config.font_family || defaultConfig.font_family;
+            const baseFontStack = 'sans-serif';
+            const baseSize = config.font_size || defaultConfig.font_size;
+            
+            document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            document.body.style.fontSize = `${baseSize}px`;
+            document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
+            
+            const mainTitle = document.getElementById('main-title');
+            if (mainTitle) {
+                mainTitle.textContent = config.main_title || defaultConfig.main_title;
+                mainTitle.style.color = config.text_color || defaultConfig.text_color;
+                mainTitle.style.fontSize = `${baseSize * 1.125}px`;
+            }
+            
+            const teacherName = document.getElementById('teacher-name');
+            if (teacherName) {
+                teacherName.textContent = config.teacher_name || defaultConfig.teacher_name;
+                teacherName.style.fontSize = `${baseSize * 0.875}px`;
+            }
+            
+            document.title = config.page_title || defaultConfig.page_title;
+            
+            const navHome = document.getElementById('nav-home');
+            if (navHome) {
+                navHome.textContent = config.nav_home || defaultConfig.nav_home;
+                navHome.style.fontSize = `${baseSize * 0.875}px`;
+            }
+            
+            const navCourses = document.getElementById('nav-courses');
+            if (navCourses) {
+                navCourses.textContent = config.nav_courses || defaultConfig.nav_courses;
+                navCourses.style.fontSize = `${baseSize * 0.875}px`;
+            }
+            
+            const navResources = document.getElementById('nav-resources');
+            if (navResources) {
+                navResources.textContent = config.nav_resources || defaultConfig.nav_resources;
+                navResources.style.fontSize = `${baseSize * 0.875}px`;
+            }
+            
+            const navContact = document.getElementById('nav-contact');
+            if (navContact) {
+                navContact.textContent = config.nav_contact || defaultConfig.nav_contact;
+                navContact.style.fontSize = `${baseSize * 0.875}px`;
+            }
+            
+            const cards = document.querySelectorAll('.bg-white');
+            cards.forEach(card => {
+                card.style.backgroundColor = config.card_color || defaultConfig.card_color;
+            });
+            
+            const textElements = document.querySelectorAll('.text-gray-800, .text-gray-700');
+            textElements.forEach(el => {
+                el.style.color = config.text_color || defaultConfig.text_color;
+            });
+            
+            const primaryButtons = document.querySelectorAll('.bg-purple-600, .text-purple-600');
+            primaryButtons.forEach(btn => {
+                if (btn.classList.contains('bg-purple-600')) {
+                    btn.style.backgroundColor = config.primary_action_color || defaultConfig.primary_action_color;
+                } else {
+                    btn.style.color = config.primary_action_color || defaultConfig.primary_action_color;
+                }
+            });
+            
+            const secondaryButtons = document.querySelectorAll('.bg-blue-600, .text-blue-600');
+            secondaryButtons.forEach(btn => {
+                if (btn.classList.contains('bg-blue-600')) {
+                    btn.style.backgroundColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+                } else {
+                    btn.style.color = config.secondary_action_color || defaultConfig.secondary_action_color;
+                }
+            });
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        {
+                            get: () => config.background_color || defaultConfig.background_color,
+                            set: (value) => {
+                                config.background_color = value;
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.card_color || defaultConfig.card_color,
+                            set: (value) => {
+                                config.card_color = value;
+                                window.elementSdk.setConfig({ card_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.text_color || defaultConfig.text_color,
+                            set: (value) => {
+                                config.text_color = value;
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                            set: (value) => {
+                                config.primary_action_color = value;
+                                window.elementSdk.setConfig({ primary_action_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                            set: (value) => {
+                                config.secondary_action_color = value;
+                                window.elementSdk.setConfig({ secondary_action_color: value });
+                            }
+                        }
+                    ],
+                    borderables: [],
+                    fontEditable: {
+                        get: () => config.font_family || defaultConfig.font_family,
+                        set: (value) => {
+                            config.font_family = value;
+                            window.elementSdk.setConfig({ font_family: value });
+                        }
+                    },
+                    fontSizeable: {
+                        get: () => config.font_size || defaultConfig.font_size,
+                        set: (value) => {
+                            config.font_size = value;
+                            window.elementSdk.setConfig({ font_size: value });
+                        }
+                    }
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["main_title", config.main_title || defaultConfig.main_title],
+                    ["teacher_name", config.teacher_name || defaultConfig.teacher_name],
+                    ["page_title", config.page_title || defaultConfig.page_title],
+                    ["nav_home", config.nav_home || defaultConfig.nav_home],
+                    ["nav_courses", config.nav_courses || defaultConfig.nav_courses],
+                    ["nav_resources", config.nav_resources || defaultConfig.nav_resources],
+                    ["nav_contact", config.nav_contact || defaultConfig.nav_contact]
+                ])
+            });
+        }
+
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+        const mobileMenuButton = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetSection = link.getAttribute('data-section');
+                
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                const activeSection = document.getElementById(`${targetSection}-section`);
+                if (activeSection) {
+                    activeSection.classList.add('active');
+                    activeSection.classList.add('animate-fade-in');
+                }
+                
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                if (mobileMenu) {
+                    mobileMenu.classList.toggle('hidden');
+                }
+            });
+        }
+
+        // Contact form functionality
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                if (formMessage) {
+                    formMessage.textContent = 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.';
+                    formMessage.className = 'mt-4 p-4 rounded-lg bg-green-100 text-green-700';
+                    formMessage.classList.remove('hidden');
+                    
+                    contactForm.reset();
+                    
+                    setTimeout(() => {
+                        formMessage.classList.add('hidden');
+                    }, 5000);
+                }
+            });
+        }
+
+        // Assessment functions
+        function showIndividualAssessment() {
+            window.open('https://shathaedu.com/mysite-alone', '_blank', 'noopener,noreferrer');
+        }
+
+        function showGroupAssessment() {
+            window.open('https://shathaedu.com/mysite-group', '_blank', 'noopener,noreferrer');
+        }
+
+        function showQuestionWheel() {
+            window.open('https://shathaedu.com/mysite-qdwir', '_blank', 'noopener,noreferrer');
+        }
+
+        function showStudentWheel() {
+            window.open('https://shathaedu.com/mysite-ssw', '_blank', 'noopener,noreferrer');
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9acc1062628a9355',t:'MTc2NTUzMDM2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
