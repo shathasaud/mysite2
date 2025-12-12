@@ -1,0 +1,2775 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الذكاء الاصطناعي: المفاهيم والتطبيقات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 3s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: 0 0 60px rgba(59, 130, 246, 0.8); }
+        }
+        
+        .brain-network {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .bounce-gentle {
+            animation: bounceGentle 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounceGentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .slide-up {
+            animation: slideUp 1.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(80px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .zoom-in {
+            animation: zoomIn 1.2s ease-out;
+        }
+        
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.3); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .card-hover {
+            transition: all 0.4s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            50% { transform: translateY(-5px) rotate(0deg); }
+            75% { transform: translateY(-15px) rotate(-1deg); }
+        }
+        
+        .sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        
+        .reveal-animation {
+            animation: revealCard 1s ease-out;
+        }
+        
+        @keyframes revealCard {
+            from { 
+                opacity: 0; 
+                transform: rotateY(-90deg) scale(0.8); 
+            }
+            to { 
+                opacity: 1; 
+                transform: rotateY(0deg) scale(1); 
+            }
+        }
+        
+        .hint-glow {
+            animation: hintGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes hintGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+                border-color: rgba(251, 191, 36, 0.5);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(251, 191, 36, 0.6);
+                border-color: rgba(251, 191, 36, 0.8);
+            }
+        }
+        
+        .button-appear {
+            animation: buttonAppear 1s ease-out;
+        }
+        
+        @keyframes buttonAppear {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.8); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+        
+        .concept-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .concept-description {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        
+        .concept-description.show {
+            max-height: 200px;
+            opacity: 1;
+        }
+        
+        .wave-animation {
+            animation: wave 3s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .circuit-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+        }
+
+        .bounce-click {
+            animation: bounceClick 0.3s ease-out;
+        }
+        
+        @keyframes bounceClick {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .star-bounce {
+            animation: starBounce 0.4s ease-out;
+        }
+        
+        @keyframes starBounce {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.3) rotate(5deg); }
+            50% { transform: scale(1.1) rotate(-3deg); }
+            75% { transform: scale(1.2) rotate(2deg); }
+            100% { transform: scale(1.1) rotate(0deg); }
+        }
+        
+        .flip-card {
+            background-color: transparent;
+            perspective: 1000px;
+            height: 200px;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .flip-card-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .flip-card-back {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card:hover .flip-card-inner {
+            transform: scale(1.05);
+        }
+        
+        .flip-card.flipped:hover .flip-card-inner {
+            transform: rotateY(180deg) scale(1.05);
+        }
+        
+        .ethics-rating {
+            transition: all 0.3s ease;
+        }
+        
+        .ethics-rating:hover {
+            transform: scale(1.1);
+        }
+        
+        .ethics-star {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .ethics-star:hover {
+            transform: scale(1.2);
+            filter: brightness(1.3);
+        }
+        
+        .ethics-star.active {
+            color: #fbbf24;
+            filter: drop-shadow(0 0 8px #fbbf24);
+        }
+        
+        .encouragement-message {
+            animation: encouragementPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes encouragementPulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100 min-h-screen circuit-pattern">
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg p-4 fixed top-0 w-full z-50">
+        <div class="flex justify-between items-center max-w-6xl mx-auto">
+            <h1 class="text-xl font-bold text-gray-800">عرض الذكاء الاصطناعي</h1>
+            <div class="flex gap-2">
+                <button onclick="showSlide('cover')" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">مقدمة الدرس</button>
+                <button onclick="showSlide('concepts')" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">مفاهيم الذكاء الاصطناعي</button>
+                <button onclick="showSlide('ml-types')" class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">أنواع تعلم الآلة</button>
+                <button onclick="showSlide('ethics')" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">أخلاقيات البيانات</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- صفحة الغلاف -->
+    <div id="cover-page" class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="text-center max-w-5xl mx-auto">
+            
+            <!-- أيقونة مقدمة الدرس -->
+            <div class="mb-8 flex justify-center">
+                <div class="brain-network rounded-full p-8 pulse-glow zoom-in">
+                    <svg class="w-32 h-32 text-white floating" fill="currentColor" viewBox="0 0 120 120">
+                        <!-- دماغ رقمي متطور -->
+                        <path d="M60 20 C40 20, 25 35, 25 55 C25 65, 30 74, 37 80 L37 85 C37 90, 42 95, 47 95 L73 95 C78 95, 83 90, 83 85 L83 80 C90 74, 95 65, 95 55 C95 35, 80 20, 60 20 Z" fill="white" opacity="0.9"/>
+                        
+                        <!-- شبكة عصبية داخلية -->
+                        <circle cx="45" cy="45" r="3" fill="#3B82F6" class="sparkle"/>
+                        <circle cx="60" cy="40" r="3" fill="#8B5CF6" class="sparkle" style="animation-delay: 0.5s;"/>
+                        <circle cx="75" cy="50" r="3" fill="#06B6D4" class="sparkle" style="animation-delay: 1s;"/>
+                        <circle cx="50" cy="60" r="3" fill="#10B981" class="sparkle" style="animation-delay: 1.5s;"/>
+                        <circle cx="70" cy="65" r="3" fill="#F59E0B" class="sparkle" style="animation-delay: 2s;"/>
+                        
+                        <!-- خطوط الاتصال -->
+                        <line x1="45" y1="45" x2="60" y2="40" stroke="#3B82F6" stroke-width="2" opacity="0.6"/>
+                        <line x1="60" y1="40" x2="75" y2="50" stroke="#8B5CF6" stroke-width="2" opacity="0.6"/>
+                        <line x1="45" y1="45" x2="50" y2="60" stroke="#06B6D4" stroke-width="2" opacity="0.6"/>
+                        <line x1="75" y1="50" x2="70" y2="65" stroke="#10B981" stroke-width="2" opacity="0.6"/>
+                        <line x1="50" y1="60" x2="70" y2="65" stroke="#F59E0B" stroke-width="2" opacity="0.6"/>
+                        
+                        <!-- دوائر خارجية للتأثير -->
+                        <circle cx="60" cy="55" r="45" fill="none" stroke="white" stroke-width="1" opacity="0.3"/>
+                        <circle cx="60" cy="55" r="50" fill="none" stroke="white" stroke-width="1" opacity="0.2"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- عنوان الدرس -->
+            <div class="mb-8">
+                <h1 class="text-6xl font-bold mb-4 fade-in gradient-text">
+                    الذكاء الاصطناعي
+                </h1>
+                <h2 class="text-4xl font-semibold text-indigo-600 mb-2 fade-in" style="animation-delay: 0.5s;">
+                    المفاهيم والتطبيقات
+                </h2>
+                <p class="text-xl text-gray-600 fade-in" style="animation-delay: 1s;">
+                    رحلة استكشافية في عالم التكنولوجيا المستقبلية
+                </p>
+            </div>
+            
+            <!-- بطاقة نشاط التهيئة -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-8 slide-up card-hover" style="animation-delay: 1.5s;">
+                <div class="mb-6">
+                    <div class="flex items-center justify-center gap-3 mb-4">
+                        <span class="text-3xl bounce-gentle">🤔</span>
+                        <h3 class="text-2xl font-bold text-gray-800">نشاط التهيئة</h3>
+                        <span class="text-3xl bounce-gentle" style="animation-delay: 0.5s;">💭</span>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 rounded-xl p-6 mb-6">
+                        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                            🌟 تخيل أنك تفتح تطبيق يوتيوب الآن... كيف يعرف التطبيق بالضبط 
+                            <span class="font-bold text-blue-600">الفيديوهات التي ستحبها</span> 
+                            من بين ملايين الفيديوهات المتاحة؟
+                        </p>
+                        
+                        <div class="text-center">
+                            <button 
+                                onclick="revealHint()" 
+                                id="hint-button" 
+                                class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-yellow-500 hover:to-orange-600 transition-all transform hover:scale-105 hint-glow">
+                                🔍 اكتشف السر المذهل!
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- التلميحة المخفية -->
+                    <div id="hint-content" class="hidden">
+                        <div class="bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl p-6 border-2 border-green-300 reveal-animation">
+                            <div class="text-center mb-4">
+                                <span class="text-4xl">✨</span>
+                                <h4 class="text-xl font-bold text-green-800 mt-2">السر المذهل!</h4>
+                            </div>
+                            
+                            <div class="space-y-4 text-green-700">
+                                <p class="text-lg font-semibold text-center">
+                                    🧠 <span class="text-green-800">الذكاء الاصطناعي</span> هو السر!
+                                </p>
+                                
+                                <div class="bg-white bg-opacity-70 rounded-lg p-4">
+                                    <p class="text-sm leading-relaxed">
+                                        يحلل يوتيوب <span class="font-bold">سلوكك</span> ويتعلم من:
+                                    </p>
+                                    <ul class="text-sm mt-2 space-y-1">
+                                        <li>📺 الفيديوهات التي تشاهدها</li>
+                                        <li>⏱️ مدة مشاهدتك لكل فيديو</li>
+                                        <li>👍 الفيديوهات التي تعجبك</li>
+                                        <li>🔍 ما تبحث عنه</li>
+                                    </ul>
+                                    <p class="text-sm mt-3 font-semibold text-green-800">
+                                        ثم يستخدم هذه المعلومات ليقترح عليك محتوى مشابه! 🎯
+                                    </p>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <p class="text-lg font-bold text-green-800">
+                                        🚀 هذا مجرد مثال واحد من آلاف التطبيقات المذهلة للذكاء الاصطناعي!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- زر بدء الرحلة -->
+            <div id="start-journey" class="hidden text-center">
+                <button 
+                    onclick="showSlide('concepts')" 
+                    class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-12 py-4 rounded-full text-xl font-bold hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all transform hover:scale-110 shadow-2xl button-appear">
+                    🚀 ابدأ رحلة الاستكشاف
+                </button>
+                <p class="text-gray-600 mt-4 text-lg">
+                    استعد لاكتشاف عالم مليء بالإبداع والتكنولوجيا! ✨
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة المفاهيم -->
+    <div id="concepts-page" class="hidden min-h-screen pt-20 pb-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-12 slide-in-right gradient-text">
+                مفاهيم الذكاء الاصطناعي
+            </h1>
+            
+            <!-- المفاهيم الأساسية -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                
+                <!-- تعلم الآلة -->
+                <div class="concept-card bg-white rounded-xl shadow-lg p-6 border-r-4 border-blue-500 slide-up card-hover" 
+                     style="animation-delay: 0.2s;" 
+                     onclick="toggleDescription('ml-desc')"
+                     onmouseenter="showDescription('ml-desc')">
+                    <div class="text-center mb-4">
+                        <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow">
+                            <span class="text-3xl bounce-gentle">🤖</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-600 mb-3 gradient-text">تعلم الآلة</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            اضغط أو مرر الماوس لمعرفة المزيد
+                        </p>
+                        
+                        <!-- الوصف المخفي -->
+                        <div id="ml-desc" class="concept-description mt-4">
+                            <div class="bg-blue-50 p-4 rounded-lg text-right">
+                                <p class="text-blue-800 font-semibold mb-2">📚 التعريف:</p>
+                                <p class="text-blue-700 text-sm mb-3">
+                                    قدرة الحاسوب على التعلم من البيانات وتحسين أدائه تلقائياً دون برمجة صريحة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- الشبكة العصبية -->
+                <div class="concept-card bg-white rounded-xl shadow-lg p-6 border-r-4 border-green-500 zoom-in card-hover" 
+                     style="animation-delay: 0.4s;"
+                     onclick="toggleDescription('nn-desc')"
+                     onmouseenter="showDescription('nn-desc')">
+                    <div class="text-center mb-4">
+                        <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow" style="animation-delay: 0.5s;">
+                            <span class="text-3xl bounce-gentle">🧠</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-green-600 mb-3 gradient-text">الشبكة العصبية</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            اضغط أو مرر الماوس لمعرفة المزيد
+                        </p>
+                        
+                        <!-- الوصف المخفي -->
+                        <div id="nn-desc" class="concept-description mt-4">
+                            <div class="bg-green-50 p-4 rounded-lg text-right">
+                                <p class="text-green-800 font-semibold mb-2">📚 التعريف:</p>
+                                <p class="text-green-700 text-sm mb-3">
+                                    نظام محاكاة للدماغ البشري يتكون من عقد مترابطة لمعالجة المعلومات المعقدة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- معالجة اللغة الطبيعية -->
+                <div class="concept-card bg-white rounded-xl shadow-lg p-6 border-r-4 border-purple-500 slide-up card-hover" 
+                     style="animation-delay: 0.6s;"
+                     onclick="toggleDescription('nlp-desc')"
+                     onmouseenter="showDescription('nlp-desc')">
+                    <div class="text-center mb-4">
+                        <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow" style="animation-delay: 1s;">
+                            <span class="text-3xl bounce-gentle">💬</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-purple-600 mb-3 gradient-text">معالجة اللغة الطبيعية</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            اضغط أو مرر الماوس لمعرفة المزيد
+                        </p>
+                        
+                        <!-- الوصف المخفي -->
+                        <div id="nlp-desc" class="concept-description mt-4">
+                            <div class="bg-purple-50 p-4 rounded-lg text-right">
+                                <p class="text-purple-800 font-semibold mb-2">📚 التعريف:</p>
+                                <p class="text-purple-700 text-sm mb-3">
+                                    قدرة الحاسوب على فهم وتحليل ومعالجة اللغة البشرية والتفاعل معها بشكل طبيعي
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المهمة -->
+            <div class="bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 rounded-2xl shadow-xl p-8 mb-12 slide-up" style="animation-delay: 0.8s;">
+                <div class="text-center mb-8">
+                    <div class="flex items-center justify-center gap-3 mb-4">
+                        <span class="text-4xl bounce-gentle">📋</span>
+                        <h2 class="text-3xl font-bold text-gray-800 gradient-text">المهمة</h2>
+                        <span class="text-4xl bounce-gentle" style="animation-delay: 0.5s;">🎯</span>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6 mb-6">
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                            <span class="font-bold text-indigo-600">بالتعاون مع مجموعتك</span> صنفي الأمثلة التالية لكل مفهوم من مفاهيم الذكاء الاصطناعي
+                        </p>
+                        
+                        <!-- مهارة التفكير العليا والاستراتيجية -->
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg border-2 border-blue-200">
+                                <h4 class="font-bold text-blue-800 mb-2">🧠 مهارة التفكير العليا:</h4>
+                                <p class="text-blue-700 text-sm">
+                                    <span class="font-semibold">التصنيف والتحليل</span> - القدرة على تمييز الخصائص المميزة لكل مفهوم وتصنيف الأمثلة وفقاً لها
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border-2 border-green-200">
+                                <h4 class="font-bold text-green-800 mb-2">🎯 الاستراتيجية المستخدمة:</h4>
+                                <p class="text-green-700 text-sm">
+                                    <span class="font-semibold">التعلم التعاوني</span> - العمل الجماعي لحل المشكلات وتبادل الأفكار والخبرات
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- النشاط التفاعلي - التصنيف بالسحب والإفلات -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-8 slide-up" style="animation-delay: 1s;">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 gradient-text">🎮 نشاط التصنيف التفاعلي</h3>
+                    <p class="text-gray-600">اسحب الأمثلة وأفلتها في المكان المناسب لكل مفهوم</p>
+                </div>
+
+                <!-- الأمثلة للسحب -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-700 mb-4 text-center">📦 الأمثلة المتاحة</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 p-4 bg-gray-50 rounded-xl">
+                        <!-- أمثلة تعلم الآلة -->
+                        <div class="example-card bg-blue-100 p-3 rounded-lg cursor-move hover:bg-blue-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="ml">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🛒</span>
+                                <p class="text-sm font-semibold text-blue-800">توصيات أمازون</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-green-100 p-3 rounded-lg cursor-move hover:bg-green-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="nn">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">👤</span>
+                                <p class="text-sm font-semibold text-green-800">التعرف على الوجوه</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-purple-100 p-3 rounded-lg cursor-move hover:bg-purple-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="nlp">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🗣️</span>
+                                <p class="text-sm font-semibold text-purple-800">مساعد سيري</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-blue-100 p-3 rounded-lg cursor-move hover:bg-blue-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="ml">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">📈</span>
+                                <p class="text-sm font-semibold text-blue-800">التنبؤ بالأسعار</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-green-100 p-3 rounded-lg cursor-move hover:bg-green-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="nn">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🚗</span>
+                                <p class="text-sm font-semibold text-green-800">السيارات الذكية</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-purple-100 p-3 rounded-lg cursor-move hover:bg-purple-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="nlp">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🌐</span>
+                                <p class="text-sm font-semibold text-purple-800">ترجمة جوجل</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-blue-100 p-3 rounded-lg cursor-move hover:bg-blue-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="ml">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🏥</span>
+                                <p class="text-sm font-semibold text-blue-800">تشخيص الأمراض</p>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card bg-green-100 p-3 rounded-lg cursor-move hover:bg-green-200 transition-all transform hover:scale-105 shadow-md" 
+                             draggable="true" ondragstart="drag(event)" data-category="nn">
+                            <div class="text-center">
+                                <span class="text-2xl mb-2 block">🔐</span>
+                                <p class="text-sm font-semibold text-green-800">بصمة الوجه</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مناطق الإسقاط -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <!-- منطقة تعلم الآلة -->
+                    <div class="drop-zone bg-blue-50 border-2 border-dashed border-blue-300 rounded-xl p-6 min-h-48 transition-all" 
+                         data-category="ml" 
+                         ondrop="drop(event)" 
+                         ondragover="allowDrop(event)"
+                         ondragleave="this.style.borderColor=''; this.style.backgroundColor=''">
+                        <div class="text-center mb-4">
+                            <div class="bg-blue-200 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 pulse-glow">
+                                <span class="text-2xl">🤖</span>
+                            </div>
+                            <h4 class="font-bold text-blue-600">تعلم الآلة</h4>
+                        </div>
+                        <div class="dropped-items space-y-2"></div>
+                    </div>
+                    
+                    <!-- منطقة الشبكة العصبية -->
+                    <div class="drop-zone bg-green-50 border-2 border-dashed border-green-300 rounded-xl p-6 min-h-48 transition-all" 
+                         data-category="nn" 
+                         ondrop="drop(event)" 
+                         ondragover="allowDrop(event)"
+                         ondragleave="this.style.borderColor=''; this.style.backgroundColor=''">
+                        <div class="text-center mb-4">
+                            <div class="bg-green-200 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 pulse-glow">
+                                <span class="text-2xl">🧠</span>
+                            </div>
+                            <h4 class="font-bold text-green-600">الشبكة العصبية</h4>
+                        </div>
+                        <div class="dropped-items space-y-2"></div>
+                    </div>
+                    
+                    <!-- منطقة معالجة اللغة الطبيعية -->
+                    <div class="drop-zone bg-purple-50 border-2 border-dashed border-purple-300 rounded-xl p-6 min-h-48 transition-all" 
+                         data-category="nlp" 
+                         ondrop="drop(event)" 
+                         ondragover="allowDrop(event)"
+                         ondragleave="this.style.borderColor=''; this.style.backgroundColor=''">
+                        <div class="text-center mb-4">
+                            <div class="bg-purple-200 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3 pulse-glow">
+                                <span class="text-2xl">💬</span>
+                            </div>
+                            <h4 class="font-bold text-purple-600">معالجة اللغة الطبيعية</h4>
+                        </div>
+                        <div class="dropped-items space-y-2"></div>
+                    </div>
+                </div>
+
+                <!-- زر التحقق من الإجابة -->
+                <div class="text-center mb-6">
+                    <button onclick="checkAnswers()" 
+                            class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-3 rounded-full text-lg font-bold hover:from-green-600 hover:to-emerald-700 transition-all transform hover:scale-105 shadow-lg pulse-glow">
+                        ✅ تحقق من الإجابة
+                    </button>
+                </div>
+
+                <!-- منطقة النتائج -->
+                <div id="results" class="hidden"></div>
+            </div>
+
+            <!-- سؤال إضافة أمثلة جديدة -->
+            <div class="bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 rounded-2xl shadow-xl p-8 slide-up" style="animation-delay: 1.2s;">
+                <div class="text-center mb-6">
+                    <div class="flex items-center justify-center gap-3 mb-4">
+                        <span class="text-3xl bounce-gentle">💡</span>
+                        <h3 class="text-2xl font-bold text-gray-800">تحدي إضافي</h3>
+                        <span class="text-3xl bounce-gentle" style="animation-delay: 0.5s;">🚀</span>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6">
+                        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                            <span class="font-bold text-orange-600">هل بإمكانك إضافة مثال</span> لأي مفهوم من المفاهيم السابقة 
+                            <span class="font-bold text-red-600">غير المذكورة سابقاً؟</span>
+                        </p>
+                        
+                        <div class="flex flex-col items-center gap-4">
+                            <textarea id="additional-example" 
+                                      placeholder="اكتب مثالاً جديداً هنا... مثل: تطبيق واتساب، ألعاب الفيديو، كاميرات المراقبة..."
+                                      class="w-full max-w-md p-3 border-2 border-orange-300 rounded-lg focus:border-orange-500 focus:outline-none resize-none"
+                                      rows="3"></textarea>
+                            
+                            <button onclick="addExample()" 
+                                    class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-full font-semibold hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105">
+                                ➕ إضافة المثال
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تقييم الأداء للمجموعات -->
+            <div class="bg-gradient-to-r from-indigo-100 via-blue-100 to-cyan-100 rounded-2xl shadow-xl p-8 slide-up" style="animation-delay: 1.4s;">
+                <div class="text-center mb-8">
+                    <div class="flex items-center justify-center gap-3 mb-6">
+                        <span class="text-4xl bounce-gentle">⭐</span>
+                        <h3 class="text-3xl font-bold text-gray-800 gradient-text">تقييم الأداء</h3>
+                        <span class="text-4xl bounce-gentle" style="animation-delay: 0.5s;">🏆</span>
+                    </div>
+                    
+                    <!-- عناصر التقييم -->
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6 mb-8">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">📋 عناصر التقييم</h4>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border-2 border-green-200">
+                                <div class="text-center">
+                                    <span class="text-3xl mb-2 block">⚡</span>
+                                    <h5 class="font-bold text-green-800">سرعة الحل</h5>
+                                    <p class="text-green-600 text-sm mt-1">الوقت المستغرق في إنجاز المهمة</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg border-2 border-blue-200">
+                                <div class="text-center">
+                                    <span class="text-3xl mb-2 block">🤝</span>
+                                    <h5 class="font-bold text-blue-800">التعاون مع المجموعة</h5>
+                                    <p class="text-blue-600 text-sm mt-1">مشاركة جميع الأعضاء والتفاعل</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border-2 border-purple-200">
+                                <div class="text-center">
+                                    <span class="text-3xl mb-2 block">✅</span>
+                                    <h5 class="font-bold text-purple-800">التصنيف الصحيح</h5>
+                                    <p class="text-purple-600 text-sm mt-1">دقة الإجابات والتصنيف</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- تقييم المجموعات -->
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <!-- المجموعة الأولى -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-red-500 card-hover">
+                            <div class="text-center">
+                                <div class="bg-red-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                                    <span class="text-3xl">🔴</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-red-600 mb-4">المجموعة الأولى</h4>
+                                
+                                <!-- النجوم -->
+                                <div class="mb-4">
+                                    <div class="flex justify-center gap-1 mb-2">
+                                        <span class="star text-2xl cursor-pointer hover:scale-110 transition-transform" onclick="rateStar(1, 1, this)">⭐</span>
+                                        <span class="star text-2xl cursor-pointer hover:scale-110 transition-transform" onclick="rateStar(1, 2, this)">⭐</span>
+                                        <span class="star text-2xl cursor-pointer hover:scale-110 transition-transform" onclick="rateStar(1, 3, this)">⭐</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">اضغط على النجوم للتقييم</p>
+                                </div>
+                                
+                                <div class="text-lg font-bold text-red-700">
+                                    النقاط: <span id="group1-score">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المجموعة الثانية -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-blue-500 card-hover">
+                            <div class="text-center">
+                                <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                                    <span class="text-3xl">🔵</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-blue-600 mb-4">المجموعة الثانية</h4>
+                                
+                                <!-- النجوم -->
+                                <div class="mb-4">
+                                    <div class="flex justify-center gap-1 mb-2">
+                                        <span class="star text-2xl cursor-pointer hover:scale-110 transition-transform" onclick="rateStar(2, 1, this)">⭐</span>
+                                        <span class="star text-2xl cursor-pointer hover:scale-110 transition-transform" onclick="rateStar(2, 2, this)">⭐</span>
+                                        <span class="star text-2xl cursor-pointer hover:scale-110 transition-transform" onclick="rateStar(2, 3, this)">⭐</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">اضغط على النجوم للتقييم</p>
+                                </div>
+                                
+                                <div class="text-lg font-bold text-blue-700">
+                                    النقاط: <span id="group2-score">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المجموعة الثالثة -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-green-500 card-hover">
+                            <div class="text-center">
+                                <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                                    <span class="text-3xl">🟢</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-green-600 mb-4">المجموعة الثالثة</h4>
+                                
+                                <!-- النجوم -->
+                                <div class="mb-4">
+                                    <div class="flex justify-center gap-1 mb-2">
+                                        <span class="star text-2xl cursor-pointer hover:scale-110 transition-transform" onclick="rateStar(3, 1, this)">⭐</span>
+                                        <span class="star text-2xl cursor-pointer hover:scale-110 transition-transform" onclick="rateStar(3, 2, this)">⭐</span>
+                                        <span class="star text-2xl cursor-pointer hover:scale-110 transition-transform" onclick="rateStar(3, 3, this)">⭐</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">اضغط على النجوم للتقييم</p>
+                                </div>
+                                
+                                <div class="text-lg font-bold text-green-700">
+                                    النقاط: <span id="group3-score">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- زر ترتيب المجموعات -->
+                    <div class="text-center mb-6">
+                        <button onclick="showRanking()" 
+                                class="bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 text-white px-8 py-3 rounded-full text-lg font-bold hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 transition-all transform hover:scale-105 shadow-lg pulse-glow">
+                            🏆 ترتيب المجموعات
+                        </button>
+                    </div>
+                    
+                    <!-- منطقة عرض الترتيب -->
+                    <div id="ranking-results" class="hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة أخلاقيات البيانات -->
+    <div id="ethics-page" class="hidden min-h-screen pt-20 pb-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-8 slide-in-right gradient-text">
+                أخلاقيات البيانات غير الجيدة في الذكاء الاصطناعي
+            </h1>
+            
+            <!-- مقدمة عن أهمية الأخلاقيات -->
+            <div class="bg-gradient-to-r from-red-100 via-orange-100 to-yellow-100 rounded-2xl shadow-xl p-8 mb-12 slide-up">
+                <div class="text-center mb-6">
+                    <div class="bg-red-200 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                        <span class="text-4xl bounce-gentle">⚠️</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">لماذا نهتم بأخلاقيات الذكاء الاصطناعي؟</h2>
+                </div>
+                
+                <div class="bg-white bg-opacity-80 rounded-xl p-6">
+                    <p class="text-lg text-gray-700 leading-relaxed text-center mb-4">
+                        الذكاء الاصطناعي قوة عظيمة يمكنها تحسين حياتنا، لكن استخدامها بطريقة خاطئة قد يضر بالمجتمع
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed text-center mb-4">
+                        من المهم أن نفهم المخاطر والمشاكل الأخلاقية لنتجنبها ونبني مستقبلاً أفضل
+                    </p>
+                    <div class="text-center">
+                        <span class="inline-block bg-red-100 text-red-800 px-4 py-2 rounded-full font-semibold">
+                            🎯 الهدف: التعرف على المشاكل الأخلاقية وكيفية تجنبها
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المهمة والمهارات -->
+            <div class="bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 rounded-2xl shadow-xl p-8 mb-12 slide-up" style="animation-delay: 0.3s;">
+                <div class="text-center mb-8">
+                    <div class="flex items-center justify-center gap-3 mb-4">
+                        <span class="text-4xl bounce-gentle">🎯</span>
+                        <h2 class="text-3xl font-bold text-gray-800 gradient-text">المهمة</h2>
+                        <span class="text-4xl bounce-gentle" style="animation-delay: 0.5s;">🔍</span>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6 mb-6">
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                            <span class="font-bold text-indigo-600">اقلبوا البطاقات</span> لتحديد نوع المشكلة الأخلاقية لكل مثال من الحياة الواقعية في الذكاء الاصطناعي
+                        </p>
+                        
+                        <!-- مهارة التفكير العليا والاستراتيجية -->
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-gradient-to-r from-red-50 to-pink-50 p-4 rounded-lg border-2 border-red-200">
+                                <h4 class="font-bold text-red-800 mb-2">🧠 مهارة التفكير العليا:</h4>
+                                <p class="text-red-700 text-sm">
+                                    <span class="font-semibold">التفكير النقدي والتقييم الأخلاقي</span> - القدرة على تحليل المواقف وتقييم الآثار الأخلاقية والاجتماعية للتكنولوجيا على المجتمع
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-orange-50 to-yellow-50 p-4 rounded-lg border-2 border-orange-200">
+                                <h4 class="font-bold text-orange-800 mb-2">🎯 الاستراتيجية المستخدمة:</h4>
+                                <p class="text-orange-700 text-sm">
+                                    <span class="font-semibold">التعلم بالاستكشاف التفاعلي</span> - استخدام البطاقات المقلوبة لإثارة الفضول وتحفيز التفكير العميق حول القضايا الأخلاقية المعقدة
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- نشاط قلب البطاقات -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-8 slide-up" style="animation-delay: 0.6s;">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 gradient-text">🃏 نشاط قلب البطاقات</h3>
+                    <p class="text-gray-600">اضغط على أي بطاقة لمعرفة نوع المشكلة الأخلاقية لكل مثال</p>
+                </div>
+
+                <!-- البطاقات -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <!-- بطاقة 1: التحيز والتمييز -->
+                    <div class="flip-card" onclick="flipCard(this, 1)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="text-center">
+                                    <div class="text-3xl mb-3">🚫</div>
+                                    <p class="text-sm leading-relaxed">
+                                        أنظمة التوظيف الذكية ترفض النساء والأقليات تلقائياً، وأنظمة التعرف على الوجوه تخطئ أكثر مع ذوي البشرة الداكنة!
+                                    </p>
+                                    <p class="text-xs opacity-75 mt-3">اضغط لمعرفة نوع المشكلة</p>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-4">⚖️</div>
+                                    <h4 class="text-xl font-bold mb-2">التحيز والتمييز</h4>
+                                    <p class="text-sm opacity-90">عدم العدالة في المعاملة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- بطاقة 2: مسؤولية القرار -->
+                    <div class="flip-card" onclick="flipCard(this, 2)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="text-center">
+                                    <div class="text-3xl mb-3">🤷</div>
+                                    <p class="text-sm leading-relaxed">
+                                        عندما تصدم سيارة ذاتية شخصاً، من المسؤول؟ الشركة المصنعة؟ المبرمج؟ المالك؟ لا أحد يعرف بوضوح!
+                                    </p>
+                                    <p class="text-xs opacity-75 mt-3">اضغط لمعرفة نوع المشكلة</p>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-4">❓</div>
+                                    <h4 class="text-xl font-bold mb-2">مسؤولية القرار</h4>
+                                    <p class="text-sm opacity-90">من المسؤول عندما يخطئ الذكاء الاصطناعي؟</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- بطاقة 3: انتهاك الخصوصية -->
+                    <div class="flip-card" onclick="flipCard(this, 3)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="text-center">
+                                    <div class="text-3xl mb-3">👁️</div>
+                                    <p class="text-sm leading-relaxed">
+                                        تطبيقات التواصل تجمع بياناتك الشخصية وتبيعها للشركات بدون إذنك، ليستهدفوك بإعلانات أو يؤثروا على قراراتك!
+                                    </p>
+                                    <p class="text-xs opacity-75 mt-3">اضغط لمعرفة نوع المشكلة</p>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-4">🔍</div>
+                                    <h4 class="text-xl font-bold mb-2">انتهاك الخصوصية</h4>
+                                    <p class="text-sm opacity-90">استخدام البيانات الشخصية بدون إذن</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- بطاقة 4: النتائج غير المبررة -->
+                    <div class="flip-card" onclick="flipCard(this, 4)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="text-center">
+                                    <div class="text-3xl mb-3">🔒</div>
+                                    <p class="text-sm leading-relaxed">
+                                        البنك يرفض قرضك والنظام يقول "تم الرفض" بدون تفسير! لا تعرف السبب ولا كيف تحسن وضعك!
+                                    </p>
+                                    <p class="text-xs opacity-75 mt-3">اضغط لمعرفة نوع المشكلة</p>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-4">❓</div>
+                                    <h4 class="text-xl font-bold mb-2">النتائج غير المبررة</h4>
+                                    <p class="text-sm opacity-90">قرارات بدون تفسير واضح</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- بطاقة 5: العزلة الاجتماعية -->
+                    <div class="flip-card" onclick="flipCard(this, 5)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="text-center">
+                                    <div class="text-3xl mb-3">📱</div>
+                                    <p class="text-sm leading-relaxed">
+                                        الناس يفضلون التحدث مع الروبوتات والمساعدات الذكية بدلاً من البشر، مما يقلل التفاعل الاجتماعي الحقيقي!
+                                    </p>
+                                    <p class="text-xs opacity-75 mt-3">اضغط لمعرفة نوع المشكلة</p>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-4">😔</div>
+                                    <h4 class="text-xl font-bold mb-2">العزلة الاجتماعية</h4>
+                                    <p class="text-sm opacity-90">تقليل التفاعل البشري الحقيقي</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- بطاقة 6: النتائج غير الموثوقة -->
+                    <div class="flip-card" onclick="flipCard(this, 6)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="text-center">
+                                    <div class="text-3xl mb-3">🎲</div>
+                                    <p class="text-sm leading-relaxed">
+                                        نظام التشخيص الطبي يعطي نتائج مختلفة لنفس الأعراض في أوقات مختلفة، مما يجعل الأطباء لا يثقون به!
+                                    </p>
+                                    <p class="text-xs opacity-75 mt-3">اضغط لمعرفة نوع المشكلة</p>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-4">⚠️</div>
+                                    <h4 class="text-xl font-bold mb-2">النتائج غير الموثوقة</h4>
+                                    <p class="text-sm opacity-90">عدم الثبات في النتائج</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- عداد البطاقات المقلوبة -->
+                <div class="text-center mb-6">
+                    <div class="bg-blue-100 rounded-full px-6 py-3 inline-block">
+                        <span class="text-blue-800 font-semibold">
+                            🃏 البطاقات المكتشفة: <span id="flipped-count">0</span>/6
+                        </span>
+                    </div>
+                </div>
+
+                <!-- رسالة التشجيع -->
+                <div id="encouragement-area" class="text-center mb-6"></div>
+            </div>
+
+            <!-- التقييم التفاعلي -->
+            <div class="bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 rounded-2xl shadow-xl p-8 slide-up" style="animation-delay: 0.9s;">
+                <div class="text-center mb-8">
+                    <div class="flex items-center justify-center gap-3 mb-6">
+                        <span class="text-4xl bounce-gentle">⭐</span>
+                        <h3 class="text-3xl font-bold text-gray-800 gradient-text">تقييم التفكير النقدي</h3>
+                        <span class="text-4xl bounce-gentle" style="animation-delay: 0.5s;">🧠</span>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6 mb-8">
+                        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                            بعد اكتشاف هذه المشاكل الأخلاقية، قيموا مدى <span class="font-bold text-orange-600">عمق تفكيركم</span> في هذه القضايا المهمة
+                        </p>
+                    </div>
+                    
+                    <!-- نظام التقييم بالنجوم -->
+                    <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
+                        <h4 class="text-xl font-bold text-gray-800 mb-6">🌟 قيموا مستوى تفكيركم النقدي</h4>
+                        
+                        <div class="space-y-6">
+                            <!-- معيار 1: فهم المشكلة -->
+                            <div class="ethics-rating">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-semibold text-gray-700">🎯 فهم المشاكل الأخلاقية</span>
+                                    <div class="flex gap-1">
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('understanding', 1, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('understanding', 2, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('understanding', 3, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('understanding', 4, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('understanding', 5, this)">⭐</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-600">مدى فهمكم لخطورة هذه المشاكل على المجتمع</p>
+                            </div>
+
+                            <!-- معيار 2: التفكير في الحلول -->
+                            <div class="ethics-rating">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-semibold text-gray-700">💡 التفكير في الحلول</span>
+                                    <div class="flex gap-1">
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('solutions', 1, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('solutions', 2, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('solutions', 3, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('solutions', 4, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('solutions', 5, this)">⭐</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-600">قدرتكم على التفكير في طرق لتجنب هذه المشاكل</p>
+                            </div>
+
+                            <!-- معيار 3: الوعي بالتأثير -->
+                            <div class="ethics-rating">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-semibold text-gray-700">🌍 الوعي بالتأثير المجتمعي</span>
+                                    <div class="flex gap-1">
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('impact', 1, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('impact', 2, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('impact', 3, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('impact', 4, this)">⭐</span>
+                                        <span class="ethics-star text-2xl text-gray-300" onclick="rateEthics('impact', 5, this)">⭐</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-600">إدراككم لتأثير هذه المشاكل على حياة الناس</p>
+                            </div>
+                        </div>
+
+                        <!-- منطقة عرض النتيجة والرسائل التشجيعية -->
+                        <div id="ethics-feedback" class="mt-8 text-center"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- خلاصة وتوصيات -->
+            <div class="bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 rounded-2xl shadow-xl p-8 slide-up" style="animation-delay: 1.2s;">
+                <div class="text-center mb-6">
+                    <div class="flex items-center justify-center gap-3 mb-4">
+                        <span class="text-4xl bounce-gentle">💡</span>
+                        <h3 class="text-2xl font-bold text-gray-800">كيف نبني ذكاء اصطناعي أخلاقي؟</h3>
+                        <span class="text-4xl bounce-gentle" style="animation-delay: 0.5s;">🌟</span>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6 text-center card-hover">
+                        <div class="text-3xl mb-4">🎯</div>
+                        <h4 class="font-bold text-green-800 mb-2">بيانات متنوعة</h4>
+                        <p class="text-green-700 text-sm">استخدام بيانات تمثل جميع فئات المجتمع بعدالة</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6 text-center card-hover">
+                        <div class="text-3xl mb-4">🔒</div>
+                        <h4 class="font-bold text-blue-800 mb-2">حماية الخصوصية</h4>
+                        <p class="text-blue-700 text-sm">احترام خصوصية الأفراد وحماية بياناتهم الشخصية</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6 text-center card-hover">
+                        <div class="text-3xl mb-4">⚖️</div>
+                        <h4 class="font-bold text-purple-800 mb-2">الشفافية والعدالة</h4>
+                        <p class="text-purple-700 text-sm">وضوح في كيفية عمل الأنظمة وضمان العدالة للجميع</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <div class="bg-white bg-opacity-90 rounded-xl p-6">
+                        <h4 class="font-bold text-gray-800 mb-3">🌟 رسالة مهمة</h4>
+                        <p class="text-gray-700 leading-relaxed">
+                            أنتم جيل المستقبل! عندما تصبحون مطورين أو مستخدمين للذكاء الاصطناعي، 
+                            تذكروا دائماً أن التكنولوجيا يجب أن تخدم الإنسانية وتحقق العدالة للجميع 💙
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة أنواع تعلم الآلة -->
+    <div id="ml-types-page" class="hidden min-h-screen pt-20 pb-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-8 slide-in-right gradient-text">
+                أنواع تعلم الآلة
+            </h1>
+            
+            <!-- مقدمة بسيطة عن تعلم الآلة -->
+            <div class="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 rounded-2xl shadow-xl p-8 mb-12 slide-up">
+                <div class="text-center mb-6">
+                    <div class="bg-blue-200 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 pulse-glow">
+                        <span class="text-4xl bounce-gentle">🤖</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">ما هو تعلم الآلة؟</h2>
+                </div>
+                
+                <div class="bg-white bg-opacity-80 rounded-xl p-6">
+                    <p class="text-lg text-gray-700 leading-relaxed text-center mb-4">
+                        تعلم الآلة هو طريقة لتعليم الحاسوب كيف يتعلم من البيانات
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed text-center mb-4">
+                        مثل الطفل الذي يتعلم التمييز بين الألوان من خلال رؤية أمثلة كثيرة
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed text-center">
+                        الحاسوب يتعلم من البيانات ليتخذ قرارات ذكية أو يتنبأ بأشياء جديدة
+                    </p>
+                </div>
+            </div>
+
+            <!-- أنواع تعلم الآلة -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                
+                <!-- التعلم الموجه -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-green-500 slide-up card-hover cursor-pointer" 
+                     style="animation-delay: 0.2s;" 
+                     onclick="showMLContent('supervised')">
+                    <div class="text-center mb-4">
+                        <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow">
+                            <span class="text-3xl bounce-gentle">👨‍🏫</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-green-600 mb-3 gradient-text">التعلم الموجه</h3>
+                        
+                        <p class="text-gray-600 text-sm mb-4">
+                            اضغط لمعرفة التعريف والمثال
+                        </p>
+                        
+                        <!-- التعريف المخفي -->
+                        <div id="supervised-definition" class="hidden bg-green-50 p-4 rounded-lg text-right reveal-animation">
+                            <p class="text-green-800 font-semibold mb-2">📚 التعريف:</p>
+                            <p class="text-green-700 text-sm mb-3">
+                                تعليم الحاسوب باستخدام أمثلة لها إجابات صحيحة معروفة
+                            </p>
+                        </div>
+                        
+                        <!-- المثال المخفي -->
+                        <div id="supervised-example" class="hidden bg-green-100 p-4 rounded-lg text-right mt-3 reveal-animation">
+                            <p class="text-green-800 font-semibold mb-2">🎯 مثال:</p>
+                            <p class="text-green-700 text-sm">
+                                تعليم الحاسوب التمييز بين صور القطط والكلاب بإعطائه آلاف الصور المُسماة
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- التعلم غير الموجه -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-orange-500 zoom-in card-hover cursor-pointer" 
+                     style="animation-delay: 0.4s;"
+                     onclick="showMLContent('unsupervised')">
+                    <div class="text-center mb-4">
+                        <div class="bg-orange-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow" style="animation-delay: 0.5s;">
+                            <span class="text-3xl bounce-gentle">🔍</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-orange-600 mb-3 gradient-text">التعلم غير الموجه</h3>
+                        
+                        <p class="text-gray-600 text-sm mb-4">
+                            اضغط لمعرفة التعريف والمثال
+                        </p>
+                        
+                        <!-- التعريف المخفي -->
+                        <div id="unsupervised-definition" class="hidden bg-orange-50 p-4 rounded-lg text-right reveal-animation">
+                            <p class="text-orange-800 font-semibold mb-2">📚 التعريف:</p>
+                            <p class="text-orange-700 text-sm mb-3">
+                                ترك الحاسوب يكتشف الأنماط والعلاقات في البيانات بنفسه
+                            </p>
+                        </div>
+                        
+                        <!-- المثال المخفي -->
+                        <div id="unsupervised-example" class="hidden bg-orange-100 p-4 rounded-lg text-right mt-3 reveal-animation">
+                            <p class="text-orange-800 font-semibold mb-2">🎯 مثال:</p>
+                            <p class="text-orange-700 text-sm">
+                                تحليل سلوك العملاء لاكتشاف مجموعات مختلفة من المتسوقين
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- التعلم التعزيزي -->
+                <div class="bg-white rounded-xl shadow-lg p-6 border-r-4 border-red-500 slide-up card-hover cursor-pointer" 
+                     style="animation-delay: 0.6s;"
+                     onclick="showMLContent('reinforcement')">
+                    <div class="text-center mb-4">
+                        <div class="bg-red-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 wave-animation pulse-glow" style="animation-delay: 1s;">
+                            <span class="text-3xl bounce-gentle">🎮</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-red-600 mb-3 gradient-text">التعلم التعزيزي</h3>
+                        
+                        <p class="text-gray-600 text-sm mb-4">
+                            اضغط لمعرفة التعريف والمثال
+                        </p>
+                        
+                        <!-- التعريف المخفي -->
+                        <div id="reinforcement-definition" class="hidden bg-red-50 p-4 rounded-lg text-right reveal-animation">
+                            <p class="text-red-800 font-semibold mb-2">📚 التعريف:</p>
+                            <p class="text-red-700 text-sm mb-3">
+                                تعليم الحاسوب من خلال المكافآت والعقوبات مثل اللعبة
+                            </p>
+                        </div>
+                        
+                        <!-- المثال المخفي -->
+                        <div id="reinforcement-example" class="hidden bg-red-100 p-4 rounded-lg text-right mt-3 reveal-animation">
+                            <p class="text-red-800 font-semibold mb-2">🎯 مثال:</p>
+                            <p class="text-red-700 text-sm">
+                                تعليم الروبوت المشي بإعطائه نقاط عندما يتقدم ونقاط سالبة عندما يسقط
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- نشاط المطابقة التفاعلي -->
+            <div class="bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 rounded-2xl shadow-xl p-8 mb-12 slide-up" style="animation-delay: 0.8s;">
+                <div class="text-center mb-8">
+                    <div class="flex items-center justify-center gap-3 mb-4">
+                        <span class="text-4xl bounce-gentle">🎯</span>
+                        <h2 class="text-3xl font-bold text-gray-800 gradient-text">نشاط المجموعات</h2>
+                        <span class="text-4xl bounce-gentle" style="animation-delay: 0.5s;">🔗</span>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-80 rounded-xl p-6 mb-6">
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                            <span class="font-bold text-indigo-600">اسحبوا وصِلوا</span> بين نوع تعلم الآلة والتطبيق المناسب له
+                        </p>
+                        
+                        <!-- مهارة التفكير العليا والاستراتيجية -->
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-gradient-to-r from-purple-50 to-indigo-50 p-4 rounded-lg border-2 border-purple-200">
+                                <h4 class="font-bold text-purple-800 mb-2">🧠 مهارة التفكير العليا:</h4>
+                                <p class="text-purple-700 text-sm">
+                                    <span class="font-semibold">التركيب والربط</span> - القدرة على ربط المفاهيم النظرية بالتطبيقات العملية وتكوين علاقات منطقية بينها
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-cyan-50 to-blue-50 p-4 rounded-lg border-2 border-cyan-200">
+                                <h4 class="font-bold text-cyan-800 mb-2">🎯 الاستراتيجية المستخدمة:</h4>
+                                <p class="text-cyan-700 text-sm">
+                                    <span class="font-semibold">التعلم بالاكتشاف الموجه</span> - توجيه الطلاب لاكتشاف العلاقات بين المفاهيم والتطبيقات من خلال التجريب والاستكشاف التفاعلي
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- نشاط المطابقة -->
+                <div class="bg-white rounded-2xl shadow-2xl p-8">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 gradient-text">🔗 نشاط المطابقة التفاعلي</h3>
+                        <p class="text-gray-600">اسحب خط من كل نوع تعلم آلة إلى التطبيق المناسب له</p>
+                    </div>
+
+                    <!-- منطقة المطابقة -->
+                    <div class="grid md:grid-cols-2 gap-12 mb-8">
+                        <!-- الأنواع (الجانب الأيسر) -->
+                        <div class="space-y-6">
+                            <h4 class="text-lg font-bold text-gray-700 text-center mb-6">📚 أنواع تعلم الآلة</h4>
+                            
+                            <div class="matching-item bg-gradient-to-r from-green-100 to-emerald-100 p-4 rounded-lg border-2 border-green-300 cursor-pointer hover:shadow-lg transition-all transform hover:scale-105" 
+                                 data-type="supervised" 
+                                 onclick="selectType('supervised', this)">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-green-200 rounded-full w-12 h-12 flex items-center justify-center pulse-glow">
+                                        <span class="text-2xl">👨‍🏫</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-green-800">التعلم الموجه</h5>
+                                        <p class="text-green-600 text-sm">التعلم بأمثلة معروفة النتائج</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="matching-item bg-gradient-to-r from-orange-100 to-yellow-100 p-4 rounded-lg border-2 border-orange-300 cursor-pointer hover:shadow-lg transition-all transform hover:scale-105" 
+                                 data-type="unsupervised" 
+                                 onclick="selectType('unsupervised', this)">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-orange-200 rounded-full w-12 h-12 flex items-center justify-center pulse-glow">
+                                        <span class="text-2xl">🔍</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-orange-800">التعلم غير الموجه</h5>
+                                        <p class="text-orange-600 text-sm">اكتشاف الأنماط بدون توجيه</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="matching-item bg-gradient-to-r from-red-100 to-pink-100 p-4 rounded-lg border-2 border-red-300 cursor-pointer hover:shadow-lg transition-all transform hover:scale-105" 
+                                 data-type="reinforcement" 
+                                 onclick="selectType('reinforcement', this)">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-red-200 rounded-full w-12 h-12 flex items-center justify-center pulse-glow">
+                                        <span class="text-2xl">🎮</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-red-800">التعلم التعزيزي</h5>
+                                        <p class="text-red-600 text-sm">التعلم بالمكافآت والعقوبات</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- التطبيقات (الجانب الأيمن) -->
+                        <div class="space-y-6">
+                            <h4 class="text-lg font-bold text-gray-700 text-center mb-6">💡 التطبيقات العملية</h4>
+                            
+                            <div class="matching-target bg-gray-50 p-4 rounded-lg border-2 border-dashed border-gray-300 cursor-pointer hover:bg-blue-50 hover:border-blue-300 transition-all" 
+                                 data-app="email-spam" 
+                                 data-correct="supervised"
+                                 onclick="selectApp('email-spam', this)">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-blue-200 rounded-full w-12 h-12 flex items-center justify-center">
+                                        <span class="text-2xl">📧</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">فلترة البريد المزعج</h5>
+                                        <p class="text-gray-600 text-sm">تصنيف الرسائل كمزعجة أو عادية</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="matching-target bg-gray-50 p-4 rounded-lg border-2 border-dashed border-gray-300 cursor-pointer hover:bg-blue-50 hover:border-blue-300 transition-all" 
+                                 data-app="customer-groups" 
+                                 data-correct="unsupervised"
+                                 onclick="selectApp('customer-groups', this)">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-purple-200 rounded-full w-12 h-12 flex items-center justify-center">
+                                        <span class="text-2xl">👥</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">تجميع العملاء</h5>
+                                        <p class="text-gray-600 text-sm">اكتشاف أنماط سلوك المتسوقين</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="matching-target bg-gray-50 p-4 rounded-lg border-2 border-dashed border-gray-300 cursor-pointer hover:bg-blue-50 hover:border-blue-300 transition-all" 
+                                 data-app="game-ai" 
+                                 data-correct="reinforcement"
+                                 onclick="selectApp('game-ai', this)">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-green-200 rounded-full w-12 h-12 flex items-center justify-center">
+                                        <span class="text-2xl">🎯</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">ذكاء الألعاب</h5>
+                                        <p class="text-gray-600 text-sm">تعلم اللعب والفوز في الألعاب</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="matching-target bg-gray-50 p-4 rounded-lg border-2 border-dashed border-gray-300 cursor-pointer hover:bg-blue-50 hover:border-blue-300 transition-all" 
+                                 data-app="medical-diagnosis" 
+                                 data-correct="supervised"
+                                 onclick="selectApp('medical-diagnosis', this)">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-red-200 rounded-full w-12 h-12 flex items-center justify-center">
+                                        <span class="text-2xl">🏥</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">التشخيص الطبي</h5>
+                                        <p class="text-gray-600 text-sm">تشخيص الأمراض من الأعراض</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="matching-target bg-gray-50 p-4 rounded-lg border-2 border-dashed border-gray-300 cursor-pointer hover:bg-blue-50 hover:border-blue-300 transition-all" 
+                                 data-app="autonomous-car" 
+                                 data-correct="reinforcement"
+                                 onclick="selectApp('autonomous-car', this)">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-yellow-200 rounded-full w-12 h-12 flex items-center justify-center">
+                                        <span class="text-2xl">🚗</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">السيارة الذاتية</h5>
+                                        <p class="text-gray-600 text-sm">تعلم القيادة والتنقل الآمن</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="matching-target bg-gray-50 p-4 rounded-lg border-2 border-dashed border-gray-300 cursor-pointer hover:bg-blue-50 hover:border-blue-300 transition-all" 
+                                 data-app="market-analysis" 
+                                 data-correct="unsupervised"
+                                 onclick="selectApp('market-analysis', this)">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-indigo-200 rounded-full w-12 h-12 flex items-center justify-center">
+                                        <span class="text-2xl">📊</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">تحليل السوق</h5>
+                                        <p class="text-gray-600 text-sm">اكتشاف اتجاهات السوق الخفية</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- حالة المطابقة الحالية -->
+                    <div id="matching-status" class="text-center mb-6 p-4 bg-blue-50 rounded-lg border-2 border-blue-200">
+                        <p class="text-blue-800 font-semibold">👆 اختر نوع تعلم الآلة ثم اختر التطبيق المناسب له</p>
+                        <div id="current-selection" class="mt-2 text-blue-600"></div>
+                    </div>
+
+                    <!-- عرض المطابقات -->
+                    <div id="matches-display" class="mb-6 space-y-3"></div>
+
+                    <!-- أزرار التحكم -->
+                    <div class="text-center space-x-4">
+                        <button onclick="checkMatching()" 
+                                class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-3 rounded-full text-lg font-bold hover:from-green-600 hover:to-emerald-700 transition-all transform hover:scale-105 shadow-lg pulse-glow">
+                            ✅ تحقق من المطابقة
+                        </button>
+                        
+                        <button onclick="resetMatching()" 
+                                class="bg-gray-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-600 transition-all transform hover:scale-105">
+                            🔄 إعادة تعيين
+                        </button>
+                    </div>
+
+                    <!-- منطقة النتائج -->
+                    <div id="matching-results" class="hidden mt-8"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // متغيرات عامة
+        let draggedElement = null;
+        let userAnswers = {};
+        let groupRatings = { 1: 0, 2: 0, 3: 0 };
+        
+        // متغيرات نشاط المطابقة
+        let selectedType = null;
+        let selectedApp = null;
+        let matches = {};
+        let currentTypeElement = null;
+        let currentAppElement = null;
+        
+        // وظائف التنقل بين الصفحات
+        function showSlide(slideId) {
+            // إخفاء جميع الصفحات
+            document.getElementById('cover-page').classList.add('hidden');
+            document.getElementById('concepts-page').classList.add('hidden');
+            document.getElementById('ml-types-page').classList.add('hidden');
+            document.getElementById('ethics-page').classList.add('hidden');
+            
+            // إظهار الصفحة المحددة
+            if (slideId === 'cover') {
+                document.getElementById('cover-page').classList.remove('hidden');
+            } else if (slideId === 'concepts') {
+                document.getElementById('concepts-page').classList.remove('hidden');
+            } else if (slideId === 'ml-types') {
+                document.getElementById('ml-types-page').classList.remove('hidden');
+            } else if (slideId === 'ethics') {
+                document.getElementById('ethics-page').classList.remove('hidden');
+            }
+        }
+        
+        // وظائف صفحة الغلاف
+        function revealHint() {
+            const hintContent = document.getElementById('hint-content');
+            const hintButton = document.getElementById('hint-button');
+            const startJourney = document.getElementById('start-journey');
+            
+            // إظهار التلميحة
+            hintContent.classList.remove('hidden');
+            
+            // تغيير النص والشكل للزر
+            hintButton.innerHTML = '✅ رائع! لقد اكتشفت السر';
+            hintButton.disabled = true;
+            hintButton.classList.remove('hint-glow', 'hover:scale-105');
+            hintButton.classList.add('opacity-75', 'cursor-not-allowed');
+            
+            // إظهار زر بدء الرحلة بعد ثانيتين
+            setTimeout(() => {
+                startJourney.classList.remove('hidden');
+            }, 2000);
+        }
+        
+        // وظائف صفحة المفاهيم
+        function toggleDescription(descId) {
+            const desc = document.getElementById(descId);
+            desc.classList.toggle('show');
+        }
+        
+        function showDescription(descId) {
+            const desc = document.getElementById(descId);
+            if (!desc.classList.contains('show')) {
+                desc.classList.add('show');
+            }
+        }
+        
+        // وظائف السحب والإفلات
+        function drag(event) {
+            draggedElement = event.target;
+            event.dataTransfer.effectAllowed = "move";
+        }
+        
+        function allowDrop(event) {
+            event.preventDefault();
+            event.currentTarget.style.borderColor = '#22c55e';
+            event.currentTarget.style.backgroundColor = 'rgba(34, 197, 94, 0.1)';
+        }
+        
+        function drop(event) {
+            event.preventDefault();
+            const dropZone = event.currentTarget;
+            const category = dropZone.dataset.category;
+            
+            // إزالة تأثير السحب
+            dropZone.style.borderColor = '';
+            dropZone.style.backgroundColor = '';
+            
+            if (draggedElement) {
+                // إنشاء نسخة من العنصر في منطقة الإسقاط
+                const droppedItem = document.createElement('div');
+                droppedItem.className = 'bg-white p-2 rounded-lg shadow-sm border text-center text-sm reveal-animation';
+                droppedItem.innerHTML = draggedElement.innerHTML;
+                droppedItem.dataset.originalCategory = draggedElement.dataset.category;
+                droppedItem.dataset.currentCategory = category;
+                
+                // إضافة زر الحذف
+                const removeBtn = document.createElement('button');
+                removeBtn.innerHTML = '❌';
+                removeBtn.className = 'ml-2 text-red-500 hover:text-red-700 transition-colors';
+                removeBtn.onclick = function() {
+                    droppedItem.remove();
+                    draggedElement.style.display = 'block';
+                    delete userAnswers[draggedElement.textContent.trim()];
+                };
+                droppedItem.appendChild(removeBtn);
+                
+                // إضافة العنصر لمنطقة الإسقاط
+                dropZone.querySelector('.dropped-items').appendChild(droppedItem);
+                
+                // إخفاء العنصر الأصلي
+                draggedElement.style.display = 'none';
+                
+                // حفظ الإجابة
+                const itemText = draggedElement.textContent.trim();
+                userAnswers[itemText] = {
+                    original: draggedElement.dataset.category,
+                    selected: category
+                };
+                
+                draggedElement = null;
+            }
+        }
+        
+        function checkAnswers() {
+            if (Object.keys(userAnswers).length === 0) {
+                alert('يرجى سحب بعض الأمثلة أولاً قبل التحقق من الإجابات! 📦');
+                return;
+            }
+            
+            let correct = 0;
+            let total = 0;
+            let detailedResults = [];
+            
+            // التحقق من كل إجابة
+            for (let itemText in userAnswers) {
+                total++;
+                const answer = userAnswers[itemText];
+                const isCorrect = answer.original === answer.selected;
+                
+                if (isCorrect) {
+                    correct++;
+                }
+                
+                // إنشاء نتيجة مفصلة لكل عنصر
+                const correctCategoryName = getCategoryName(answer.original);
+                const selectedCategoryName = getCategoryName(answer.selected);
+                
+                detailedResults.push({
+                    item: itemText,
+                    isCorrect: isCorrect,
+                    correctCategory: correctCategoryName,
+                    selectedCategory: selectedCategoryName,
+                    originalCategory: answer.original
+                });
+            }
+            
+            const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+            const resultsDiv = document.getElementById('results');
+            
+            // تحديد رسالة النتيجة والألوان
+            let resultClass = '';
+            let resultMessage = '';
+            let encouragementMessage = '';
+            
+            if (percentage === 100) {
+                resultClass = 'bg-gradient-to-r from-green-100 to-emerald-100 border-green-500 text-green-800';
+                resultMessage = '🎉 مبروك! تصنيف مثالي';
+                encouragementMessage = 'لقد أتقنت تصنيف مفاهيم الذكاء الاصطناعي! 🌟';
+            } else if (percentage >= 80) {
+                resultClass = 'bg-gradient-to-r from-blue-100 to-cyan-100 border-blue-500 text-blue-800';
+                resultMessage = '👏 ممتاز! أداء رائع جداً';
+                encouragementMessage = 'أداء قوي في التصنيف! راجع الإجابات الخاطئة وأعد المحاولة 💪';
+            } else if (percentage >= 60) {
+                resultClass = 'bg-gradient-to-r from-yellow-100 to-orange-100 border-yellow-500 text-yellow-800';
+                resultMessage = '👍 جيد! يمكنك التحسن';
+                encouragementMessage = 'على الطريق الصحيح! راجع المفاهيم وحاول مرة أخرى 📚';
+            } else {
+                resultClass = 'bg-gradient-to-r from-red-100 to-pink-100 border-red-500 text-red-800';
+                resultMessage = '💪 لا تستسلم! حاول مرة أخرى';
+                encouragementMessage = 'التعلم يحتاج صبر! راجع التعريفات وأعد التصنيف 🎯';
+            }
+            
+            // إنشاء HTML للنتائج المفصلة
+            let detailedHTML = '';
+            detailedResults.forEach(result => {
+                const statusIcon = result.isCorrect ? '✅' : '❌';
+                const statusClass = result.isCorrect ? 'bg-green-50 border-green-300' : 'bg-red-50 border-red-300';
+                const textClass = result.isCorrect ? 'text-green-800' : 'text-red-800';
+                
+                detailedHTML += `
+                    <div class="${statusClass} border-2 rounded-lg p-3 mb-2 reveal-animation">
+                        <div class="flex items-center justify-between">
+                            <span class="font-semibold ${textClass}">${statusIcon} ${result.item}</span>
+                            ${!result.isCorrect ? `<button onclick="moveToCorrectCategory('${result.item}', '${result.originalCategory}')" 
+                                class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 transition-colors bounce-click">
+                                🔄 تصحيح
+                            </button>` : ''}
+                        </div>
+                        ${!result.isCorrect ? `
+                            <div class="mt-2 text-sm ${textClass}">
+                                <p>اخترت: <span class="font-semibold">${result.selectedCategory}</span></p>
+                                <p>الإجابة الصحيحة: <span class="font-semibold text-green-700">${result.correctCategory}</span></p>
+                            </div>
+                        ` : `
+                            <div class="mt-1 text-sm ${textClass}">
+                                <p>تصنيف صحيح في: <span class="font-semibold">${result.correctCategory}</span></p>
+                            </div>
+                        `}
+                    </div>
+                `;
+            });
+            
+            resultsDiv.className = `text-center p-6 rounded-xl border-2 ${resultClass} reveal-animation`;
+            resultsDiv.innerHTML = `
+                <div class="mb-6">
+                    <h4 class="text-2xl font-bold mb-2">${resultMessage}</h4>
+                    <div class="text-lg mb-4">
+                        <span class="font-bold">النتيجة: ${correct}/${total}</span>
+                        <span class="mx-2">•</span>
+                        <span class="font-bold">${percentage}%</span>
+                    </div>
+                    <p class="text-base opacity-90">${encouragementMessage}</p>
+                </div>
+                
+                <div class="bg-white bg-opacity-70 rounded-lg p-4 mb-6">
+                    <h5 class="font-bold mb-4 text-gray-800">📋 تفاصيل التصنيف:</h5>
+                    <div class="text-right space-y-2 max-h-60 overflow-y-auto">
+                        ${detailedHTML}
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <button onclick="continueEditing()" 
+                            class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors transform hover:scale-105 bounce-click">
+                        ✏️ متابعة التعديل
+                    </button>
+                    <button onclick="resetActivity()" 
+                            class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors transform hover:scale-105 bounce-click">
+                        🔄 بداية جديدة
+                    </button>
+                    ${percentage === 100 ? `
+                        <button onclick="celebrateSuccess()" 
+                                class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-105 bounce-click">
+                            🎊 احتفال
+                        </button>
+                    ` : ''}
+                </div>
+            `;
+            resultsDiv.classList.remove('hidden');
+        }
+        
+        function getCategoryName(category) {
+            const names = {
+                'ml': 'تعلم الآلة',
+                'nn': 'الشبكة العصبية',
+                'nlp': 'معالجة اللغة الطبيعية'
+            };
+            return names[category] || category;
+        }
+        
+        function moveToCorrectCategory(itemText, correctCategory) {
+            // البحث عن العنصر في مناطق الإسقاط
+            const dropZones = document.querySelectorAll('.drop-zone');
+            let itemElement = null;
+            
+            dropZones.forEach(zone => {
+                const items = zone.querySelectorAll('.dropped-items > div');
+                items.forEach(item => {
+                    if (item.textContent.includes(itemText)) {
+                        itemElement = item;
+                    }
+                });
+            });
+            
+            if (itemElement) {
+                // إزالة العنصر من موقعه الحالي
+                itemElement.remove();
+                
+                // إضافته للمكان الصحيح
+                const correctZone = document.querySelector(`[data-category="${correctCategory}"]`);
+                const droppedItems = correctZone.querySelector('.dropped-items');
+                
+                // إنشاء عنصر جديد
+                const newItem = document.createElement('div');
+                newItem.className = 'bg-white p-2 rounded-lg shadow-sm border text-center text-sm border-green-400 bg-green-50 reveal-animation';
+                newItem.innerHTML = itemElement.innerHTML.replace('❌', '').trim();
+                newItem.dataset.originalCategory = correctCategory;
+                newItem.dataset.currentCategory = correctCategory;
+                
+                // إضافة زر الحذف الجديد
+                const removeBtn = document.createElement('button');
+                removeBtn.innerHTML = '❌';
+                removeBtn.className = 'ml-2 text-red-500 hover:text-red-700 transition-colors';
+                removeBtn.onclick = function() {
+                    newItem.remove();
+                    // إظهار العنصر الأصلي مرة أخرى
+                    const originalCards = document.querySelectorAll('.example-card');
+                    originalCards.forEach(card => {
+                        if (card.textContent.trim() === itemText) {
+                            card.style.display = 'block';
+                        }
+                    });
+                    delete userAnswers[itemText];
+                };
+                newItem.appendChild(removeBtn);
+                
+                droppedItems.appendChild(newItem);
+                
+                // تحديث الإجابات
+                userAnswers[itemText] = {
+                    original: correctCategory,
+                    selected: correctCategory
+                };
+                
+                // إظهار رسالة نجاح
+                showSuccessMessage(`تم تصحيح "${itemText}" بنجاح! ✅`);
+            }
+        }
+        
+        function continueEditing() {
+            // إخفاء النتائج للسماح بالتعديل
+            document.getElementById('results').classList.add('hidden');
+            
+            // إظهار رسالة تشجيعية
+            showSuccessMessage('يمكنك الآن تعديل إجاباتك وإعادة التحقق! 📝');
+        }
+        
+        function celebrateSuccess() {
+            // إنشاء تأثير احتفالي
+            const celebration = document.createElement('div');
+            celebration.className = 'fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50';
+            celebration.innerHTML = `
+                <div class="bg-white rounded-2xl p-8 text-center max-w-md mx-4 transform scale-0 transition-transform duration-500">
+                    <div class="text-6xl mb-4 animate-bounce">🎉</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">مبروك الإتقان!</h3>
+                    <p class="text-gray-600 mb-6">لقد أتممت تصنيف مفاهيم الذكاء الاصطناعي بنجاح تام! 🌟</p>
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all bounce-click">
+                        شكراً! 😊
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(celebration);
+            
+            // تأثير الظهور
+            setTimeout(() => {
+                celebration.querySelector('div > div').style.transform = 'scale(1)';
+            }, 100);
+        }
+        
+        function resetActivity() {
+            // إظهار جميع البطاقات
+            document.querySelectorAll('.example-card').forEach(card => {
+                card.style.display = 'block';
+            });
+            
+            // مسح مناطق الإسقاط
+            document.querySelectorAll('.dropped-items').forEach(area => {
+                area.innerHTML = '';
+            });
+            
+            // مسح الإجابات والنتائج
+            userAnswers = {};
+            document.getElementById('results').classList.add('hidden');
+        }
+        
+        function addExample() {
+            const textarea = document.getElementById('additional-example');
+            const example = textarea.value.trim();
+            
+            if (example === '') {
+                alert('يرجى كتابة مثال أولاً! ✏️');
+                return;
+            }
+            
+            // إظهار رسالة شكر
+            const successMessage = document.createElement('div');
+            successMessage.className = 'bg-green-100 border-2 border-green-300 rounded-lg p-4 mt-4 text-center reveal-animation';
+            successMessage.innerHTML = `
+                <div class="text-green-800">
+                    <span class="text-2xl mb-2 block">✅</span>
+                    <p class="font-bold mb-2">شكراً لك على المثال الرائع!</p>
+                    <p class="text-sm">"${example}"</p>
+                    <p class="text-sm mt-2 opacity-75">تم حفظ مثالك وسيتم مراجعته من قبل المعلم</p>
+                </div>
+            `;
+            
+            // إضافة الرسالة بعد النموذج
+            textarea.parentElement.appendChild(successMessage);
+            
+            // مسح النص
+            textarea.value = '';
+            
+            // إخفاء الرسالة بعد 5 ثوان
+            setTimeout(() => {
+                successMessage.remove();
+            }, 5000);
+        }
+        
+        function rateStar(groupNumber, starNumber, element) {
+            // تحديث التقييم
+            groupRatings[groupNumber] = starNumber;
+            
+            // تحديث النقاط (كل نجمة = 20 نقطة)
+            const score = starNumber * 20;
+            document.getElementById(`group${groupNumber}-score`).textContent = score;
+            
+            // تحديث مظهر النجوم
+            const groupStars = element.parentElement.querySelectorAll('.star');
+            groupStars.forEach((star, index) => {
+                if (index < starNumber) {
+                    star.style.filter = 'brightness(1.2) drop-shadow(0 0 8px gold)';
+                    star.style.transform = 'scale(1.1)';
+                    star.classList.add('star-bounce');
+                    // إزالة التأثير بعد انتهاء الأنيميشن
+                    setTimeout(() => {
+                        star.classList.remove('star-bounce');
+                    }, 400);
+                } else {
+                    star.style.filter = 'grayscale(1) brightness(0.7)';
+                    star.style.transform = 'scale(1)';
+                    star.classList.remove('star-bounce');
+                }
+            });
+            
+            // تأثير bounce للنجمة المضغوطة
+            element.classList.add('star-bounce');
+            setTimeout(() => {
+                element.classList.remove('star-bounce');
+            }, 400);
+            
+            // إظهار رسالة تأكيد
+            showSuccessMessage(`تم تقييم المجموعة ${groupNumber} بـ ${starNumber} نجوم! ⭐`);
+        }
+        
+        function showRanking() {
+            // التحقق من وجود تقييمات
+            const hasRatings = Object.values(groupRatings).some(rating => rating > 0);
+            
+            if (!hasRatings) {
+                alert('يرجى تقييم المجموعات أولاً باستخدام النجوم! ⭐');
+                return;
+            }
+            
+            const scores = [
+                { 
+                    name: '🔴 المجموعة الأولى', 
+                    score: parseInt(document.getElementById('group1-score').textContent),
+                    stars: groupRatings[1],
+                    color: 'red'
+                },
+                { 
+                    name: '🔵 المجموعة الثانية', 
+                    score: parseInt(document.getElementById('group2-score').textContent),
+                    stars: groupRatings[2],
+                    color: 'blue'
+                },
+                { 
+                    name: '🟢 المجموعة الثالثة', 
+                    score: parseInt(document.getElementById('group3-score').textContent),
+                    stars: groupRatings[3],
+                    color: 'green'
+                }
+            ];
+            
+            // ترتيب حسب النقاط
+            scores.sort((a, b) => b.score - a.score);
+            
+            // تحديد ألوان المراكز
+            const rankColors = ['yellow', 'gray', 'orange'];
+            const rankIcons = ['🥇', '🥈', '🥉'];
+            const rankTitles = ['المركز الأول', 'المركز الثاني', 'المركز الثالث'];
+            
+            let rankingHTML = '';
+            scores.forEach((group, index) => {
+                const starsDisplay = '⭐'.repeat(group.stars) + '☆'.repeat(3 - group.stars);
+                rankingHTML += `
+                    <div class="flex items-center justify-between bg-${rankColors[index]}-200 p-4 rounded-lg border-2 border-${rankColors[index]}-300 transform hover:scale-105 transition-all reveal-animation">
+                        <div class="flex items-center gap-3">
+                            <span class="text-3xl bounce-gentle">${rankIcons[index]}</span>
+                            <div>
+                                <span class="font-bold text-${rankColors[index]}-800">${rankTitles[index]}: ${group.name}</span>
+                                <div class="text-sm text-${rankColors[index]}-700 mt-1">
+                                    التقييم: ${starsDisplay} (${group.stars}/3)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="font-bold text-${rankColors[index]}-800 text-xl">${group.score}</div>
+                            <div class="text-sm text-${rankColors[index]}-700">نقطة</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            const rankingDiv = document.getElementById('ranking-results');
+            rankingDiv.innerHTML = `
+                <div class="bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 rounded-xl p-6 reveal-animation border-2 border-yellow-300">
+                    <div class="text-center mb-6">
+                        <h4 class="text-2xl font-bold text-gray-800 mb-2">🏆 ترتيب المجموعات النهائي</h4>
+                        <p class="text-gray-600">بناءً على تقييم الأداء في مفاهيم الذكاء الاصطناعي</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        ${rankingHTML}
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-80 rounded-lg p-4 text-center">
+                        <h5 class="font-bold text-gray-800 mb-2">📊 ملخص التقييم</h5>
+                        <div class="grid grid-cols-3 gap-4 text-sm">
+                            <div class="bg-green-50 p-2 rounded border">
+                                <div class="font-semibold text-green-800">⚡ سرعة الحل</div>
+                                <div class="text-green-600">الوقت والكفاءة</div>
+                            </div>
+                            <div class="bg-blue-50 p-2 rounded border">
+                                <div class="font-semibold text-blue-800">🤝 التعاون</div>
+                                <div class="text-blue-600">العمل الجماعي</div>
+                            </div>
+                            <div class="bg-purple-50 p-2 rounded border">
+                                <div class="font-semibold text-purple-800">✅ صحة الحل</div>
+                                <div class="text-purple-600">دقة التصنيف</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button onclick="resetRatings()" 
+                                class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors bounce-click">
+                            🔄 إعادة تعيين التقييمات
+                        </button>
+                    </div>
+                </div>
+            `;
+            rankingDiv.classList.remove('hidden');
+            
+            // تأثير احتفالي للفائز
+            if (scores[0].score > 0) {
+                setTimeout(() => {
+                    showSuccessMessage(`🎉 تهانينا ${scores[0].name} على الفوز بالمركز الأول!`);
+                }, 1000);
+            }
+        }
+        
+        function resetRatings() {
+            // إعادة تعيين جميع التقييمات
+            groupRatings = { 1: 0, 2: 0, 3: 0 };
+            
+            // إعادة تعيين النقاط
+            document.getElementById('group1-score').textContent = '0';
+            document.getElementById('group2-score').textContent = '0';
+            document.getElementById('group3-score').textContent = '0';
+            
+            // إعادة تعيين مظهر النجوم
+            document.querySelectorAll('.star').forEach(star => {
+                star.style.filter = '';
+                star.style.transform = '';
+                star.classList.remove('bounce-click');
+            });
+            
+            // إخفاء النتائج
+            document.getElementById('ranking-results').classList.add('hidden');
+            
+            showSuccessMessage('تم إعادة تعيين جميع التقييمات! 🔄');
+        }
+        
+        function showMLContent(type) {
+            const definitionId = `${type}-definition`;
+            const exampleId = `${type}-example`;
+            
+            const definitionElement = document.getElementById(definitionId);
+            const exampleElement = document.getElementById(exampleId);
+            
+            // إذا كان التعريف مخفي، أظهره أولاً
+            if (definitionElement.classList.contains('hidden')) {
+                definitionElement.classList.remove('hidden');
+                
+                // بعد ثانية واحدة، أظهر المثال
+                setTimeout(() => {
+                    exampleElement.classList.remove('hidden');
+                }, 1000);
+            } else {
+                // إذا كان المحتوى ظاهر، أخفه
+                definitionElement.classList.add('hidden');
+                exampleElement.classList.add('hidden');
+            }
+        }
+        
+        // وظائف نشاط المطابقة
+        function selectType(type, element) {
+            // إزالة التحديد السابق
+            document.querySelectorAll('.matching-item').forEach(item => {
+                item.classList.remove('ring-4', 'ring-blue-400', 'bg-blue-100');
+            });
+            
+            // تحديد النوع الجديد
+            selectedType = type;
+            currentTypeElement = element;
+            element.classList.add('ring-4', 'ring-blue-400');
+            
+            // تحديث حالة المطابقة
+            updateMatchingStatus();
+            
+            // إذا كان هناك تطبيق محدد، قم بالمطابقة
+            if (selectedApp && currentAppElement) {
+                createMatch();
+            }
+        }
+        
+        function selectApp(app, element) {
+            // إزالة التحديد السابق
+            document.querySelectorAll('.matching-target').forEach(target => {
+                target.classList.remove('ring-4', 'ring-blue-400', 'bg-blue-100');
+            });
+            
+            // تحديد التطبيق الجديد
+            selectedApp = app;
+            currentAppElement = element;
+            element.classList.add('ring-4', 'ring-blue-400', 'bg-blue-100');
+            
+            // تحديث حالة المطابقة
+            updateMatchingStatus();
+            
+            // إذا كان هناك نوع محدد، قم بالمطابقة
+            if (selectedType && currentTypeElement) {
+                createMatch();
+            }
+        }
+        
+        function updateMatchingStatus() {
+            const statusDiv = document.getElementById('current-selection');
+            
+            if (selectedType && selectedApp) {
+                const typeName = getTypeName(selectedType);
+                const appName = getAppName(selectedApp);
+                statusDiv.innerHTML = `
+                    <div class="flex items-center justify-center gap-4 text-lg">
+                        <span class="bg-green-100 px-3 py-1 rounded-full text-green-800 font-semibold">${typeName}</span>
+                        <span class="text-2xl">↔️</span>
+                        <span class="bg-blue-100 px-3 py-1 rounded-full text-blue-800 font-semibold">${appName}</span>
+                    </div>
+                `;
+            } else if (selectedType) {
+                const typeName = getTypeName(selectedType);
+                statusDiv.innerHTML = `
+                    <span class="bg-green-100 px-3 py-1 rounded-full text-green-800 font-semibold">${typeName}</span>
+                    <span class="text-gray-600 mr-2">← اختر التطبيق المناسب</span>
+                `;
+            } else if (selectedApp) {
+                const appName = getAppName(selectedApp);
+                statusDiv.innerHTML = `
+                    <span class="text-gray-600 ml-2">اختر نوع التعلم ←</span>
+                    <span class="bg-blue-100 px-3 py-1 rounded-full text-blue-800 font-semibold">${appName}</span>
+                `;
+            } else {
+                statusDiv.innerHTML = '';
+            }
+        }
+        
+        function createMatch() {
+            // حفظ المطابقة
+            matches[selectedApp] = selectedType;
+            
+            // إضافة المطابقة للعرض
+            displayMatches();
+            
+            // إعادة تعيين التحديد
+            resetSelection();
+            
+            // رسالة نجاح
+            showSuccessMessage(`تم ربط ${getAppName(selectedApp)} مع ${getTypeName(selectedType)}! 🔗`);
+        }
+        
+        function displayMatches() {
+            const matchesDiv = document.getElementById('matches-display');
+            matchesDiv.innerHTML = '';
+            
+            if (Object.keys(matches).length === 0) {
+                return;
+            }
+            
+            matchesDiv.innerHTML = '<h4 class="font-bold text-gray-800 mb-4 text-center">🔗 المطابقات الحالية:</h4>';
+            
+            for (let app in matches) {
+                const type = matches[app];
+                const matchDiv = document.createElement('div');
+                matchDiv.className = 'bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border-2 border-green-200 reveal-animation';
+                matchDiv.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <span class="bg-green-100 px-3 py-1 rounded-full text-green-800 font-semibold text-sm">${getTypeName(type)}</span>
+                            <span class="text-2xl">🔗</span>
+                            <span class="bg-blue-100 px-3 py-1 rounded-full text-blue-800 font-semibold text-sm">${getAppName(app)}</span>
+                        </div>
+                        <button onclick="removeMatch('${app}')" 
+                                class="bg-red-500 text-white px-3 py-1 rounded-full text-sm hover:bg-red-600 transition-colors bounce-click">
+                            ❌ إزالة
+                        </button>
+                    </div>
+                `;
+                matchesDiv.appendChild(matchDiv);
+            }
+        }
+        
+        function removeMatch(app) {
+            delete matches[app];
+            displayMatches();
+            showSuccessMessage(`تم إزالة مطابقة ${getAppName(app)}! 🗑️`);
+        }
+        
+        function resetSelection() {
+            selectedType = null;
+            selectedApp = null;
+            currentTypeElement = null;
+            currentAppElement = null;
+            
+            // إزالة التحديدات البصرية
+            document.querySelectorAll('.matching-item, .matching-target').forEach(element => {
+                element.classList.remove('ring-4', 'ring-blue-400', 'bg-blue-100');
+            });
+            
+            // تحديث الحالة
+            updateMatchingStatus();
+        }
+        
+        function checkMatching() {
+            if (Object.keys(matches).length === 0) {
+                alert('يرجى إنشاء بعض المطابقات أولاً! 🔗');
+                return;
+            }
+            
+            let correct = 0;
+            let total = 0;
+            let detailedResults = [];
+            
+            // التحقق من كل مطابقة
+            for (let app in matches) {
+                total++;
+                const selectedType = matches[app];
+                const correctType = document.querySelector(`[data-app="${app}"]`).dataset.correct;
+                const isCorrect = selectedType === correctType;
+                
+                if (isCorrect) {
+                    correct++;
+                }
+                
+                detailedResults.push({
+                    app: app,
+                    appName: getAppName(app),
+                    selectedType: selectedType,
+                    selectedTypeName: getTypeName(selectedType),
+                    correctType: correctType,
+                    correctTypeName: getTypeName(correctType),
+                    isCorrect: isCorrect
+                });
+            }
+            
+            const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+            const resultsDiv = document.getElementById('matching-results');
+            
+            // تحديد رسالة النتيجة والألوان
+            let resultClass = '';
+            let resultMessage = '';
+            let encouragementMessage = '';
+            
+            if (percentage === 100) {
+                resultClass = 'bg-gradient-to-r from-green-100 to-emerald-100 border-green-500 text-green-800';
+                resultMessage = '🎉 مبروك! مطابقة مثالية';
+                encouragementMessage = 'لقد أتقنت ربط أنواع تعلم الآلة بتطبيقاتها! 🌟';
+            } else if (percentage >= 80) {
+                resultClass = 'bg-gradient-to-r from-blue-100 to-cyan-100 border-blue-500 text-blue-800';
+                resultMessage = '👏 ممتاز! أداء رائع جداً';
+                encouragementMessage = 'فهم قوي للمفاهيم! راجع المطابقات الخاطئة وأعد المحاولة 💪';
+            } else if (percentage >= 60) {
+                resultClass = 'bg-gradient-to-r from-yellow-100 to-orange-100 border-yellow-500 text-yellow-800';
+                resultMessage = '👍 جيد! يمكنك التحسن';
+                encouragementMessage = 'على الطريق الصحيح! راجع خصائص كل نوع وحاول مرة أخرى 📚';
+            } else {
+                resultClass = 'bg-gradient-to-r from-red-100 to-pink-100 border-red-500 text-red-800';
+                resultMessage = '💪 لا تستسلم! حاول مرة أخرى';
+                encouragementMessage = 'التعلم يحتاج صبر! راجع التعريفات وفكر في خصائص كل نوع 🎯';
+            }
+            
+            // إنشاء HTML للنتائج المفصلة
+            let detailedHTML = '';
+            detailedResults.forEach(result => {
+                const statusIcon = result.isCorrect ? '✅' : '❌';
+                const statusClass = result.isCorrect ? 'bg-green-50 border-green-300' : 'bg-red-50 border-red-300';
+                const textClass = result.isCorrect ? 'text-green-800' : 'text-red-800';
+                
+                detailedHTML += `
+                    <div class="${statusClass} border-2 rounded-lg p-4 mb-3 reveal-animation">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-semibold ${textClass} text-lg">${statusIcon} ${result.appName}</span>
+                            ${!result.isCorrect ? `<button onclick="fixMatch('${result.app}', '${result.correctType}')" 
+                                class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 transition-colors bounce-click">
+                                🔧 تصحيح
+                            </button>` : ''}
+                        </div>
+                        <div class="text-sm ${textClass}">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p class="font-semibold mb-1">اخترت:</p>
+                                    <span class="bg-white px-2 py-1 rounded border ${result.isCorrect ? 'border-green-300' : 'border-red-300'}">${result.selectedTypeName}</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold mb-1">الإجابة الصحيحة:</p>
+                                    <span class="bg-green-100 px-2 py-1 rounded border border-green-300 text-green-700">${result.correctTypeName}</span>
+                                </div>
+                            </div>
+                            ${!result.isCorrect ? `
+                                <div class="mt-3 p-2 bg-blue-50 rounded border border-blue-200">
+                                    <p class="text-blue-800 text-xs">
+                                        <strong>لماذا؟</strong> ${getExplanation(result.app, result.correctType)}
+                                    </p>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            resultsDiv.className = `text-center p-6 rounded-xl border-2 ${resultClass} reveal-animation`;
+            resultsDiv.innerHTML = `
+                <div class="mb-6">
+                    <h4 class="text-2xl font-bold mb-2">${resultMessage}</h4>
+                    <div class="text-lg mb-4">
+                        <span class="font-bold">النتيجة: ${correct}/${total}</span>
+                        <span class="mx-2">•</span>
+                        <span class="font-bold">${percentage}%</span>
+                    </div>
+                    <p class="text-base opacity-90">${encouragementMessage}</p>
+                </div>
+                
+                <div class="bg-white bg-opacity-70 rounded-lg p-4 mb-6">
+                    <h5 class="font-bold mb-4 text-gray-800">📋 تفاصيل المطابقة:</h5>
+                    <div class="text-right space-y-2 max-h-60 overflow-y-auto">
+                        ${detailedHTML}
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <button onclick="continueMatching()" 
+                            class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors transform hover:scale-105 bounce-click">
+                        ✏️ متابعة التعديل
+                    </button>
+                    <button onclick="resetMatching()" 
+                            class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors transform hover:scale-105 bounce-click">
+                        🔄 بداية جديدة
+                    </button>
+                    ${percentage === 100 ? `
+                        <button onclick="celebrateMatching()" 
+                                class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-105 bounce-click">
+                            🎊 احتفال
+                        </button>
+                    ` : ''}
+                </div>
+            `;
+            resultsDiv.classList.remove('hidden');
+        }
+        
+        function fixMatch(app, correctType) {
+            // تصحيح المطابقة
+            matches[app] = correctType;
+            
+            // تحديث العرض
+            displayMatches();
+            
+            // إظهار رسالة نجاح
+            showSuccessMessage(`تم تصحيح مطابقة ${getAppName(app)} بنجاح! ✅`);
+        }
+        
+        function continueMatching() {
+            // إخفاء النتائج للسماح بالتعديل
+            document.getElementById('matching-results').classList.add('hidden');
+            
+            // إظهار رسالة تشجيعية
+            showSuccessMessage('يمكنك الآن تعديل المطابقات وإعادة التحقق! 📝');
+        }
+        
+        function celebrateMatching() {
+            // إنشاء تأثير احتفالي
+            const celebration = document.createElement('div');
+            celebration.className = 'fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50';
+            celebration.innerHTML = `
+                <div class="bg-white rounded-2xl p-8 text-center max-w-md mx-4 transform scale-0 transition-transform duration-500">
+                    <div class="text-6xl mb-4 animate-bounce">🎉</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">مبروك الإتقان!</h3>
+                    <p class="text-gray-600 mb-6">لقد أتممت مطابقة أنواع تعلم الآلة مع تطبيقاتها بنجاح تام! 🌟</p>
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all bounce-click">
+                        شكراً! 😊
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(celebration);
+            
+            // تأثير الظهور
+            setTimeout(() => {
+                celebration.querySelector('div > div').style.transform = 'scale(1)';
+            }, 100);
+        }
+        
+        function resetMatching() {
+            // مسح جميع المطابقات
+            matches = {};
+            
+            // إعادة تعيين التحديد
+            resetSelection();
+            
+            // مسح العرض
+            document.getElementById('matches-display').innerHTML = '';
+            document.getElementById('matching-results').classList.add('hidden');
+            
+            // تحديث الحالة
+            document.getElementById('matching-status').innerHTML = `
+                <p class="text-blue-800 font-semibold">👆 اختر نوع تعلم الآلة ثم اختر التطبيق المناسب له</p>
+                <div id="current-selection" class="mt-2 text-blue-600"></div>
+            `;
+            
+            showSuccessMessage('تم إعادة تعيين جميع المطابقات! 🔄');
+        }
+        
+        function getTypeName(type) {
+            const names = {
+                'supervised': 'التعلم الموجه',
+                'unsupervised': 'التعلم غير الموجه',
+                'reinforcement': 'التعلم التعزيزي'
+            };
+            return names[type] || type;
+        }
+        
+        function getAppName(app) {
+            const names = {
+                'email-spam': 'فلترة البريد المزعج',
+                'customer-groups': 'تجميع العملاء',
+                'game-ai': 'ذكاء الألعاب',
+                'medical-diagnosis': 'التشخيص الطبي',
+                'autonomous-car': 'السيارة الذاتية',
+                'market-analysis': 'تحليل السوق'
+            };
+            return names[app] || app;
+        }
+        
+        function getExplanation(app, correctType) {
+            const explanations = {
+                'email-spam': {
+                    'supervised': 'يحتاج أمثلة مُصنفة مسبقاً (رسائل مزعجة/عادية) للتعلم من خصائصها'
+                },
+                'customer-groups': {
+                    'unsupervised': 'يكتشف أنماط سلوك العملاء المخفية بدون معرفة مسبقة بالمجموعات'
+                },
+                'game-ai': {
+                    'reinforcement': 'يتعلم من خلال اللعب والحصول على مكافآت عند الفوز وعقوبات عند الخسارة'
+                },
+                'medical-diagnosis': {
+                    'supervised': 'يحتاج قاعدة بيانات من الأعراض والتشخيصات الصحيحة للتعلم منها'
+                },
+                'autonomous-car': {
+                    'reinforcement': 'تتعلم القيادة من خلال التجربة والخطأ مع مكافآت للقيادة الآمنة'
+                },
+                'market-analysis': {
+                    'unsupervised': 'يحلل بيانات السوق لاكتشاف اتجاهات وأنماط غير معروفة مسبقاً'
+                }
+            };
+            return explanations[app]?.[correctType] || 'راجع خصائص هذا النوع من التعلم';
+        }
+
+        function showSuccessMessage(message) {
+            try {
+                // إنشاء رسالة نجاح مؤقتة
+                const successDiv = document.createElement('div');
+                successDiv.className = 'fixed top-20 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+                successDiv.textContent = message;
+                
+                document.body.appendChild(successDiv);
+                
+                // إظهار الرسالة
+                setTimeout(() => {
+                    if (successDiv && successDiv.parentNode) {
+                        successDiv.style.transform = 'translateX(0)';
+                    }
+                }, 100);
+                
+                // إخفاء الرسالة بعد 3 ثوان
+                setTimeout(() => {
+                    if (successDiv && successDiv.parentNode) {
+                        successDiv.style.transform = 'translateX(100%)';
+                        setTimeout(() => {
+                            if (successDiv && successDiv.parentNode) {
+                                successDiv.remove();
+                            }
+                        }, 300);
+                    }
+                }, 3000);
+            } catch (error) {
+                console.log('خطأ في عرض الرسالة:', error);
+            }
+        }
+        
+        // متغيرات صفحة الأخلاقيات
+        let flippedCards = new Set();
+        let ethicsRatings = {
+            understanding: 0,
+            solutions: 0,
+            impact: 0
+        };
+        
+        // وظائف صفحة الأخلاقيات
+        function flipCard(cardElement, cardId) {
+            try {
+                // قلب البطاقة
+                cardElement.classList.toggle('flipped');
+                
+                // إضافة البطاقة للمجموعة المقلوبة
+                if (!flippedCards.has(cardId)) {
+                    flippedCards.add(cardId);
+                    updateFlippedCount();
+                    showEncouragement();
+                }
+            } catch (error) {
+                console.log('خطأ في قلب البطاقة:', error);
+            }
+        }
+        
+        function updateFlippedCount() {
+            const countElement = document.getElementById('flipped-count');
+            countElement.textContent = flippedCards.size;
+            
+            // تأثير بصري للعداد
+            countElement.parentElement.classList.add('bounce-click');
+            setTimeout(() => {
+                countElement.parentElement.classList.remove('bounce-click');
+            }, 300);
+        }
+        
+        function showEncouragement() {
+            try {
+                const encouragementArea = document.getElementById('encouragement-area');
+                if (!encouragementArea) return;
+                
+                const count = flippedCards.size;
+                
+                let message = '';
+                let className = '';
+                
+                if (count === 1) {
+                    message = '🌟 بداية رائعة! استمروا في الاستكشاف';
+                    className = 'bg-blue-100 text-blue-800 border-blue-300';
+                } else if (count === 2) {
+                    message = '👏 ممتاز! تبدؤون في فهم التحديات الأخلاقية';
+                    className = 'bg-green-100 text-green-800 border-green-300';
+                } else if (count === 3) {
+                    message = '🎯 رائع! نصف الطريق تم إنجازه';
+                    className = 'bg-yellow-100 text-yellow-800 border-yellow-300';
+                } else if (count === 4) {
+                    message = '🚀 إنجاز مميز! تفكيركم يتعمق أكثر';
+                    className = 'bg-orange-100 text-orange-800 border-orange-300';
+                } else if (count === 5) {
+                    message = '🏆 تقريباً انتهيتم! بطاقة واحدة فقط متبقية';
+                    className = 'bg-purple-100 text-purple-800 border-purple-300';
+                } else if (count === 6) {
+                    message = '🎉 مبروك! اكتشفتم جميع المشاكل الأخلاقية - فكرتم بعمق!';
+                    className = 'bg-red-100 text-red-800 border-red-300';
+                }
+                
+                if (message) {
+                    encouragementArea.innerHTML = `
+                        <div class="inline-block ${className} border-2 rounded-full px-6 py-3 encouragement-message">
+                            <span class="font-bold">${message}</span>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.log('خطأ في عرض التشجيع:', error);
+            }
+        }
+        
+        function rateEthics(category, rating, starElement) {
+            try {
+                // تحديث التقييم
+                ethicsRatings[category] = rating;
+                
+                // تحديث مظهر النجوم في هذه الفئة
+                const ratingContainer = starElement.parentElement;
+                const stars = ratingContainer.querySelectorAll('.ethics-star');
+                
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.classList.add('active');
+                        star.classList.add('star-bounce');
+                        // إزالة التأثير بعد انتهاء الأنيميشن
+                        setTimeout(() => {
+                            star.classList.remove('star-bounce');
+                        }, 400);
+                    } else {
+                        star.classList.remove('active');
+                    }
+                });
+                
+                // تحديث التقييم العام
+                updateEthicsFeedback();
+            } catch (error) {
+                console.log('خطأ في التقييم:', error);
+            }
+        }
+        
+        function updateEthicsFeedback() {
+            const feedbackArea = document.getElementById('ethics-feedback');
+            const totalRating = ethicsRatings.understanding + ethicsRatings.solutions + ethicsRatings.impact;
+            const maxRating = 15; // 3 فئات × 5 نجوم
+            const percentage = Math.round((totalRating / maxRating) * 100);
+            
+            // التحقق من وجود تقييمات
+            const hasRatings = Object.values(ethicsRatings).some(rating => rating > 0);
+            
+            if (!hasRatings) {
+                feedbackArea.innerHTML = '';
+                return;
+            }
+            
+            let feedbackMessage = '';
+            let feedbackClass = '';
+            let encouragementText = '';
+            
+            if (percentage >= 90) {
+                feedbackMessage = '🌟 فكرتم بعمق استثنائي!';
+                feedbackClass = 'bg-gradient-to-r from-green-100 to-emerald-100 border-green-500 text-green-800';
+                encouragementText = 'تفكيركم النقدي في المستوى الأعلى! أنتم مفكرون أخلاقيون حقيقيون 🏆';
+            } else if (percentage >= 75) {
+                feedbackMessage = '🎯 فكرتم بعمق رائع!';
+                feedbackClass = 'bg-gradient-to-r from-blue-100 to-cyan-100 border-blue-500 text-blue-800';
+                encouragementText = 'تحليلكم للقضايا الأخلاقية مميز جداً! استمروا في هذا التفكير العميق 💪';
+            } else if (percentage >= 60) {
+                feedbackMessage = '👍 فكرتم بعمق جيد!';
+                feedbackClass = 'bg-gradient-to-r from-yellow-100 to-orange-100 border-yellow-500 text-yellow-800';
+                encouragementText = 'بداية قوية في التفكير الأخلاقي! يمكنكم التعمق أكثر في هذه القضايا 📚';
+            } else if (percentage >= 40) {
+                feedbackMessage = '🌱 بداية التفكير العميق!';
+                feedbackClass = 'bg-gradient-to-r from-orange-100 to-red-100 border-orange-500 text-orange-800';
+                encouragementText = 'تبدؤون في فهم أهمية الأخلاقيات! فكروا أكثر في تأثير هذه المشاكل 🤔';
+            } else {
+                feedbackMessage = '💭 ابدؤوا التفكير بعمق!';
+                feedbackClass = 'bg-gradient-to-r from-red-100 to-pink-100 border-red-500 text-red-800';
+                encouragementText = 'الأخلاقيات موضوع مهم جداً! خذوا وقتكم للتفكير في هذه القضايا 🎯';
+            }
+            
+            feedbackArea.innerHTML = `
+                <div class="p-6 rounded-xl border-2 ${feedbackClass} reveal-animation">
+                    <div class="mb-4">
+                        <h5 class="text-2xl font-bold mb-2">${feedbackMessage}</h5>
+                        <div class="text-lg mb-3">
+                            <span class="font-bold">مستوى التفكير: ${totalRating}/${maxRating}</span>
+                            <span class="mx-2">•</span>
+                            <span class="font-bold">${percentage}%</span>
+                        </div>
+                        <p class="opacity-90">${encouragementText}</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-70 rounded-lg p-4">
+                        <h6 class="font-bold mb-3 text-gray-800">📊 تفاصيل التقييم:</h6>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                            <div class="text-center">
+                                <div class="font-semibold">🎯 فهم المشاكل</div>
+                                <div class="text-lg font-bold">${ethicsRatings.understanding}/5</div>
+                                <div class="text-xs opacity-75">${'⭐'.repeat(ethicsRatings.understanding)}${'☆'.repeat(5-ethicsRatings.understanding)}</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-semibold">💡 التفكير في الحلول</div>
+                                <div class="text-lg font-bold">${ethicsRatings.solutions}/5</div>
+                                <div class="text-xs opacity-75">${'⭐'.repeat(ethicsRatings.solutions)}${'☆'.repeat(5-ethicsRatings.solutions)}</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-semibold">🌍 الوعي بالتأثير</div>
+                                <div class="text-lg font-bold">${ethicsRatings.impact}/5</div>
+                                <div class="text-xs opacity-75">${'⭐'.repeat(ethicsRatings.impact)}${'☆'.repeat(5-ethicsRatings.impact)}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${percentage >= 90 ? `
+                        <div class="mt-4">
+                            <button onclick="celebrateEthicalThinking()" 
+                                    class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-105 bounce-click">
+                                🎊 احتفال بالتفكير العميق
+                            </button>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+        
+        function celebrateEthicalThinking() {
+            // إنشاء تأثير احتفالي
+            const celebration = document.createElement('div');
+            celebration.className = 'fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50';
+            celebration.innerHTML = `
+                <div class="bg-white rounded-2xl p-8 text-center max-w-md mx-4 transform scale-0 transition-transform duration-500">
+                    <div class="text-6xl mb-4 animate-bounce">🧠</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">مبروك التفكير العميق!</h3>
+                    <p class="text-gray-600 mb-6">
+                        لقد أظهرتم مستوى عالياً من التفكير النقدي والوعي الأخلاقي! 
+                        أنتم مفكرون حقيقيون يمكنهم بناء مستقبل أفضل 🌟
+                    </p>
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all bounce-click">
+                        شكراً! نحن فخورون بكم 😊
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(celebration);
+            
+            // تأثير الظهور
+            setTimeout(() => {
+                celebration.querySelector('div > div').style.transform = 'scale(1)';
+            }, 100);
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9acbfce7f191ce18',t:'MTc2NTUyOTU3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
